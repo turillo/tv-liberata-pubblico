@@ -93,8 +93,10 @@ public final class DeviceConfig extends BroadcastReceiver {
         return TEST.equals(prefs(c).getString("canale", PRODUCTION)) ? TEST : PRODUCTION;
     }
 
+    /** This device's own Unsplash key (device configuration), else the one built into the APK (keys.properties). */
     static String unsplashKey(Context c) {
-        return prefs(c).getString("unsplash_key", "");
+        String own = prefs(c).getString("unsplash_key", "");
+        return own.isEmpty() ? BuildConfig.UNSPLASH_ACCESS_KEY : own;
     }
 
     /** The coordinates the configuration fixes, or null. */

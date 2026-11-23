@@ -1,16 +1,228 @@
 {
-  "versione": 1,
+  "versione": 2,
+  "nota": "Catalogo di TV Liberata. libera = APK dalla fonte ufficiale, controllato con SHA-256 e firma (varianti per architettura: TV Liberata sceglie con Build.SUPPORTED_ABIS); store = pagina dell'Appstore (Fire TV) o del Play Store; extra = APK nella Release 'extra' di questo repository. Aggiornato con tools/aggiorna-catalogo.py.",
   "app": [
     {
       "id": "aerial-views",
       "nome": "Aerial Views",
-      "descrizione": "Screensaver con i video aerei di Apple e Amazon, o con le tue foto e i tuoi video. Open source.",
+      "categoria": "Screensaver",
       "pacchetto": "com.neilturner.aerialviews",
+      "tipo": "libera",
+      "descrizione": "Screensaver con i video aerei di Apple e Amazon, o con le tue foto e i tuoi video. Open source.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ],
+      "fonte": "https://github.com/theothernt/AerialViews",
       "versione": "1.8.6",
       "apk": "https://github.com/theothernt/AerialViews/releases/download/1.8.6/aerial-views-1.8.6.apk",
       "sha256": "cd538992471caeb7890045a3c2b15a44fd4ec95509e2f1645a4089965731ef9d",
       "firma": "383b3b2df6d2b17cec60542c576408b0deae502f37749eb5ac7fef2f206fa51b",
-      "fonte": "https://github.com/theothernt/AerialViews"
+      "codice": 154
+    },
+    {
+      "id": "vlc",
+      "nome": "VLC",
+      "categoria": "Video",
+      "pacchetto": "org.videolan.vlc",
+      "tipo": "libera",
+      "descrizione": "Il lettore che apre qualsiasi video e musica, anche dalla rete di casa. Open source.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ],
+      "fonte": "https://www.videolan.org/vlc/download-android.html",
+      "versione": "3.7.1",
+      "codice": 13070105,
+      "firma": "c8768d2cea0c4b622e419b4b4715981946821e4ebc035fb41776cad395a7f68e",
+      "apk": "https://get.videolan.org/vlc-android/3.7.1/VLC-Android-3.7.1-armeabi-v7a.apk",
+      "sha256": "a6a7f940e4bd190c9a70f3f0dc97c1c402c10200af20edac7a1d452b24abd8a0",
+      "varianti": [
+        {
+          "abi": "armeabi-v7a",
+          "apk": "https://get.videolan.org/vlc-android/3.7.1/VLC-Android-3.7.1-armeabi-v7a.apk",
+          "sha256": "a6a7f940e4bd190c9a70f3f0dc97c1c402c10200af20edac7a1d452b24abd8a0"
+        },
+        {
+          "abi": "arm64-v8a",
+          "apk": "https://get.videolan.org/vlc-android/3.7.1/VLC-Android-3.7.1-arm64-v8a.apk",
+          "sha256": "bea9ea0cdecfd8f461ef305d2afe5d1ac1459cfb9156acce2f615788a486de74"
+        }
+      ]
+    },
+    {
+      "id": "smarttube",
+      "nome": "SmartTube",
+      "categoria": "Video",
+      "pacchetto": "org.smarttube.stable",
+      "tipo": "libera",
+      "descrizione": "YouTube per la TV senza pubblicità, con SponsorBlock. Versione stabile. Open source.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ],
+      "fonte": "https://github.com/yuliskov/SmartTube",
+      "versione": "32.80",
+      "codice": 2470,
+      "firma": "109735aa24fe85e2e1623ebb3b1ecc4bf4263f4c6374e4411d646bfa2eda482a",
+      "apk": "https://github.com/yuliskov/SmartTube/releases/download/32.80s/SmartTube_stable_32.80_armeabi-v7a.apk",
+      "sha256": "f90eea37b474f848ba37e8bfc37df5ab31517aa41e12d0d38e185e62378488b8",
+      "varianti": [
+        {
+          "abi": "armeabi-v7a",
+          "apk": "https://github.com/yuliskov/SmartTube/releases/download/32.80s/SmartTube_stable_32.80_armeabi-v7a.apk",
+          "sha256": "f90eea37b474f848ba37e8bfc37df5ab31517aa41e12d0d38e185e62378488b8"
+        },
+        {
+          "abi": "arm64-v8a",
+          "apk": "https://github.com/yuliskov/SmartTube/releases/download/32.80s/SmartTube_stable_32.80_arm64-v8a.apk",
+          "sha256": "c1e1dfdf51aeadf7dc90a27ee2e28bd885dad6a4991d4b8084045a4e3a8f7ad4"
+        }
+      ]
+    },
+    {
+      "id": "spotify",
+      "nome": "Spotify",
+      "categoria": "Musica",
+      "pacchetto": "com.spotify.tv.android",
+      "tipo": "store",
+      "descrizione": "Musica e podcast. Dall'Appstore o dal Play Store.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ]
+    },
+    {
+      "id": "tidal",
+      "nome": "TIDAL",
+      "categoria": "Musica",
+      "pacchetto": "com.aspiro.tidal",
+      "tipo": "store",
+      "descrizione": "Musica in alta qualità. Dall'Appstore o dal Play Store.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ]
+    },
+    {
+      "id": "retroarch",
+      "nome": "RetroArch",
+      "categoria": "Giochi",
+      "pacchetto": "com.retroarch",
+      "tipo": "libera",
+      "descrizione": "Emulatore di console classiche (serve un controller). Versione stabile. Open source.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ],
+      "fonte": "https://www.retroarch.com/?page=platforms",
+      "versione": "1.22.2_GIT",
+      "codice": 1763607132,
+      "firma": "d7a5eab30902c9b2775af6fb4eac2d294a64634fb47dd1382bc3ac5bf669982e",
+      "apk": "https://buildbot.libretro.com/stable/1.22.2/android/RetroArch.apk",
+      "sha256": "2eca60b3a540697cd7676edea2fbabdfaf54c3ae958584168231981099d2868a"
+    },
+    {
+      "id": "moonlight",
+      "nome": "Moonlight",
+      "categoria": "Giochi",
+      "pacchetto": "com.limelight",
+      "tipo": "libera",
+      "descrizione": "Gioca sulla TV ai giochi del PC (NVIDIA GameStream / Sunshine). Open source.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ],
+      "fonte": "https://github.com/moonlight-stream/moonlight-android",
+      "versione": "12.2",
+      "codice": 315,
+      "firma": "d6ce3a4df15060fe488fe52441a549dee4ba199b36e2cb1ed9085cca8bfa1aca",
+      "apk": "https://github.com/moonlight-stream/moonlight-android/releases/download/v12.2/app-nonRoot-release.apk",
+      "sha256": "a871f6190365386ef3ac5722a016d4da015ee1555631ec257f6e5dc3f4a45fe0"
+    },
+    {
+      "id": "xplore",
+      "nome": "X-plore",
+      "categoria": "Strumenti",
+      "pacchetto": "com.lonelycatgames.Xplore",
+      "tipo": "store",
+      "descrizione": "Gestione file, anche in rete. Dall'Appstore o dal Play Store.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ]
+    },
+    {
+      "id": "sendfiles",
+      "nome": "Send Files to TV",
+      "categoria": "Strumenti",
+      "pacchetto": "com.yablio.sendfilestotv",
+      "tipo": "store",
+      "descrizione": "Manda file dal telefono alla TV. Dall'Appstore o dal Play Store.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ]
+    },
+    {
+      "id": "tv-bro",
+      "nome": "TV Bro",
+      "categoria": "Strumenti",
+      "pacchetto": "com.phlox.tvwebbrowser.gecko",
+      "tipo": "libera",
+      "descrizione": "Browser web pensato per il telecomando. Open source.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ],
+      "fonte": "https://github.com/truefedex/tv-bro",
+      "versione": "3.0.7",
+      "codice": 85,
+      "firma": "5aa54ff8346c6aa7659cd6330a3f6fb3ca6971f67f2da42f90909024986f6540",
+      "apk": "https://github.com/truefedex/tv-bro/releases/download/v3.0.7/tvbro-3.0.7-generic-geckoIncluded-armeabi-v7a.apk",
+      "sha256": "13357bbbf5ed6982f44f83f5ca2b54420d0a9a636e928eb7efbd7c2afb0068c2",
+      "varianti": [
+        {
+          "abi": "armeabi-v7a",
+          "apk": "https://github.com/truefedex/tv-bro/releases/download/v3.0.7/tvbro-3.0.7-generic-geckoIncluded-armeabi-v7a.apk",
+          "sha256": "13357bbbf5ed6982f44f83f5ca2b54420d0a9a636e928eb7efbd7c2afb0068c2"
+        },
+        {
+          "abi": "arm64-v8a",
+          "apk": "https://github.com/truefedex/tv-bro/releases/download/v3.0.7/tvbro-3.0.7-generic-geckoIncluded-arm64-v8a.apk",
+          "sha256": "116bed743031c495ab22e4f5fbb4fb152e24b4c4e8d50c8db68b6a895114f89b"
+        }
+      ]
+    },
+    {
+      "id": "downloader",
+      "nome": "Downloader",
+      "categoria": "Strumenti",
+      "pacchetto": "com.esaba.downloader",
+      "tipo": "store",
+      "descrizione": "Scarica file e app da un indirizzo o da un codice. Dall'Appstore o dal Play Store.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ]
+    },
+    {
+      "id": "darkmate",
+      "nome": "DarkMate",
+      "categoria": "IPTV",
+      "pacchetto": "ar.tvplayer.tv",
+      "tipo": "extra",
+      "descrizione": "Lettore IPTV.",
+      "piattaforme": [
+        "fireos",
+        "androidtv"
+      ],
+      "apk": "https://github.com/turillo/tv-liberata-pubblico/releases/download/extra/darkmate.apk",
+      "fonte": "Release extra di TV Liberata",
+      "versione": "5.1.0",
+      "codice": 5103,
+      "firma": "a40da80a59d170caa950cf15c18c454d47a39b26989d8b640ecd745ba71bf5dc",
+      "sha256": "2c0d9d2d3d76cf11a097b1a8d3e8982a662fb656aa3e2d079cab4b8bc3acb82b"
     }
   ]
 }

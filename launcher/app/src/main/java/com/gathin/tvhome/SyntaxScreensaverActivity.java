@@ -43,7 +43,12 @@ public final class SyntaxScreensaverActivity extends Activity {
         aerialMode = SyntaxUi.chip(this, getString(R.string.syntax_aerial));
         TextView test = SyntaxUi.chip(this, getString(R.string.syntax_try));
         syntaxMode.setOnClickListener(v -> setMode(false));
-        aerialMode.setOnClickListener(v -> setMode(true));
+        // Aerial Views: the system screensaver when installed; otherwise its card in the App catalogue.
+        aerialMode.setOnClickListener(v -> {
+            if (ScreensaverMode.aerialInstalled(this)) setMode(true);
+            else startActivity(new android.content.Intent(this, SyntaxCatalogActivity.class)
+                    .putExtra(SyntaxCatalogActivity.EXTRA_FOCUS, "aerial-views"));
+        });
         test.setOnClickListener(v -> {
             if (!ScreensaverMode.startNow(this)) {
                 SyntaxDialog.message(this, getString(R.string.syntax_error), getString(R.string.syntax_try_failed));
@@ -95,8 +100,6 @@ public final class SyntaxScreensaverActivity extends Activity {
         notice = SyntaxUi.text(this, 14, R.string.font_light, SyntaxUi.DANGER);
         notice.setPadding(0, SyntaxUi.dp(this, 8), 0, 0);
         column.addView(notice);
-        // No Aerial Views on this TV (a Fire TV): no button for it, rather than one that does nothing.
-        if (!ScreensaverMode.aerialInstalled(this)) aerialMode.setVisibility(View.GONE);
 
         // The scenes' heading, with the "Preferite" scene's settings on the same line (seconds, panel), compact so
         // the two rows of cards still fit.
@@ -240,6 +243,8 @@ public final class SyntaxScreensaverActivity extends Activity {
         boolean amazon = ScreensaverMode.isAmazon(this);
         syntaxMode.setSelected(syntax);
         aerialMode.setSelected(aerial);
+        aerialMode.setText(ScreensaverMode.aerialInstalled(this) ? getString(R.string.syntax_aerial)
+                : getString(R.string.ss_aerial_install));
         amazonMode.setSelected(amazon);
         int minutes = ScreensaverMode.minutes(this);
         for (int i = 0; i < minuteChips.length; i++) minuteChips[i].setSelected(ScreensaverMode.MINUTES[i] == minutes);

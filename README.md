@@ -1,3 +1,5 @@
+<p align="center"><img src="img/banner-1280.png" alt="TV Liberata" width="640"></p>
+
 # TV Liberata
 
 Una Home pulita per Fire TV Stick (e per le TV Android TV / Google TV): niente pubblicità, niente righe
@@ -14,7 +16,7 @@ attimo (vedi [Tornare alla Home Amazon](#tornare-alla-home-amazon)).
   60 minuti e, se vuoi, a ogni accensione.
 - **Le tue app**: una riga in basso e una griglia, che riordini e da cui nascondi quello che non usi (tieni premuto
   OK su un'app: Sposta, Togli dalla Home, **Disinstalla**). L'elenco delle app nascoste è in Impostazioni TV Liberata,
-  Sistema. Lo store (Appstore su Fire TV, Play Store su Android TV) resta sempre in Home.
+  App. Lo store (Appstore su Fire TV, Play Store su Android TV) resta sempre in Home.
 - **Meteo** in alto, per la tua città: trovata da sola dalla connessione internet, o scelta a mano.
 - **Screensaver**: Orologio, "Preferite" (le tue foto preferite con dissolvenza e zoom lento) e, su Fire TV, Amazon
   Foto; "Avvia dopo" 1, 3, 5, 10, 15 o 30 minuti.
@@ -22,7 +24,8 @@ attimo (vedi [Tornare alla Home Amazon](#tornare-alla-home-amazon)).
   spazio, rete, pulizia, stato dei servizi, versione e canale).
 - **Filtro DNS integrato** (Sistema → Filtro): blocca telemetria, pubblicità e aggiornamenti di Fire OS per tutta la
   TV, con una VPN locale che porta solo il DNS (lo streaming non passa di lì). Eccezioni e statistiche dal telecomando.
-- **Catalogo**: app utili dalla loro fonte ufficiale (per ora Aerial Views), installate con un clic dopo il controllo
+- **Catalogo** (Impostazioni TV Liberata, App): VLC, SmartTube, RetroArch, Moonlight, TV Bro, Aerial Views dalla loro
+  fonte ufficiale, e Spotify, TIDAL, X-plore, Send Files to TV, Downloader dallo store; le app libere si installano dopo il controllo
   dell'impronta e della firma.
 - **Ripristina tutto**: riattiva le app di sistema che TV Liberata ha disattivato (serve il debug della TV, vedi sotto).
 - **Aggiornamenti automatici**: di notte, a TV spenta, oppure proposti all'accensione.
@@ -80,7 +83,7 @@ sono in questo repository: [pacchetto-app.json](pacchetto-app.json) e [pulizia-f
 ## Aggiornamenti
 
 Ogni notte verso le 4, se la TV è spenta, l'app controlla le Release di questo repository. Se hai autorizzato il
-debug della TV (Impostazioni TV Liberata, Sistema, Pulizia avanzata, **Autorizza**, poi "Consenti sempre" sulla TV)
+debug della TV (Impostazioni TV Liberata, Sistema, Ripristina tutto, **Autorizza**, poi "Consenti sempre" sulla TV)
 installa la nuova versione da sola, e alla prima accensione ti dice "TV Liberata è stata aggiornata alla versione X"
 con le novità. Senza quell'autorizzazione te la propone all'accensione; in Sistema, "Cerca aggiornamenti" controlla
 subito. In quel caso l'installazione va consentita una volta: Impostazioni, La mia Fire TV, Opzioni sviluppatore,

@@ -30,15 +30,33 @@ final class Catalog {
     private static final String TAG = "TvHome.Catalog";
     static final String URL = "https://raw.githubusercontent.com/turillo/tv-liberata-pubblico/main/catalogo.json";
 
+    static final String FREE = "libera", STORE = "store", EXTRA = "extra";
+
     /** One app of the catalogue. */
     static final class App {
-        String id, name, description, pkg, version, apk, sha256, signer, source;
+        String id, name, category, description, pkg, type = FREE, version, apk, sha256, signer, source;
+        long code;
+        final List<String> platforms = new ArrayList<>();
+        /** Per-ABI APKs: {abi, url, sha256}; "*" fits every device. Empty: {@link #apk} alone. */
+        final List<String[]> variants = new ArrayList<>();
+
+        boolean store() {
+            return STORE.equals(type);
+        }
+
+        /** Shown on this kind of TV ("fireos" or "androidtv"); no list means both. */
+        boolean on(String platform) {
+            return platforms.isEmpty() || platforms.contains(platform);
+        }
     }
 
     private Catalog() {
     }
 
-    /** The catalogue's apps; entries without a package or an https APK address are left out. */
+    /**
+     * The catalogue's apps. A "store" app needs only a package; an APK app ("libera", "extra") needs an https address
+     * and something to check it against (SHA-256 or signer), or it is left out: never installed unchecked.
+     */
     static List<App> parse(String json) {
         List<App> out = new ArrayList<>();
         List<?> apps = MiniJson.list(MiniJson.parse(json), "app");
@@ -47,18 +65,80 @@ final class Catalog {
             App a = new App();
             a.id = MiniJson.str(o, "id");
             a.name = MiniJson.str(o, "nome");
+            a.category = MiniJson.str(o, "categoria");
             a.description = MiniJson.str(o, "descrizione");
             a.pkg = MiniJson.str(o, "pacchetto");
+            String type = MiniJson.str(o, "tipo");
+            if (type != null) a.type = type.trim().toLowerCase(Locale.ROOT);
             a.version = MiniJson.str(o, "versione");
+            a.code = (long) MiniJson.number(o, "codice", 0);
             a.apk = MiniJson.str(o, "apk");
             a.sha256 = lower(MiniJson.str(o, "sha256"));
             a.signer = lower(MiniJson.str(o, "firma"));
             a.source = MiniJson.str(o, "fonte");
-            if (a.pkg == null || a.name == null || a.apk == null || !a.apk.startsWith("https://")) continue;
-            if (a.sha256 == null && a.signer == null) continue;   // nothing to check it against: never installed
+            List<?> on = MiniJson.list(o, "piattaforme");
+            if (on != null) for (Object p : on) if (p instanceof String) a.platforms.add(((String) p).toLowerCase(Locale.ROOT));
+            List<?> variants = MiniJson.list(o, "varianti");
+            if (variants != null) for (Object v : variants) {
+                String abi = MiniJson.str(v, "abi"), url = MiniJson.str(v, "apk"), sha = lower(MiniJson.str(v, "sha256"));
+                if (abi != null && url != null && url.startsWith("https://") && sha != null) a.variants.add(new String[]{abi, url, sha});
+            }
+            if (a.pkg == null || a.name == null) continue;
+            if (!a.store()) {
+                if (!FREE.equals(a.type) && !EXTRA.equals(a.type)) continue;   // a kind this version does not know
+                if (a.variants.isEmpty() && (a.apk == null || !a.apk.startsWith("https://"))) continue;
+                if (a.sha256 == null && a.signer == null && a.variants.isEmpty()) continue;   // nothing to check against
+            }
             out.add(a);
         }
         return out;
+    }
+
+    /**
+     * The APK for this device: the first variant whose ABI the device supports, in the device's own order of
+     * preference (Build.SUPPORTED_ABIS), then a "*" variant, then the entry's single APK. {url, sha256}; null: none.
+     * Plain Java, tested.
+     */
+    static String[] pick(App a, String[] abis) {
+        for (String abi : abis) for (String[] v : a.variants) if (v[0].equals(abi)) return new String[]{v[1], v[2]};
+        for (String[] v : a.variants) if ("*".equals(v[0])) return new String[]{v[1], v[2]};
+        if (a.apk != null && a.apk.startsWith("https://") && (a.sha256 != null || a.signer != null)) return new String[]{a.apk, a.sha256};
+        return null;
+    }
+
+    static final int INSTALL = 0, INSTALLED = 1, UPDATE = 2;
+
+    /**
+     * What the catalogue's button says. installedCode -1: not installed. With a version code in the catalogue it
+     * decides; otherwise the version names are compared (Updater.newer). A store app is never "Aggiorna": the store
+     * updates it. Plain Java, tested.
+     */
+    static int state(App a, long installedCode, String installedName) {
+        if (installedCode < 0) return INSTALL;
+        if (a.store()) return INSTALLED;
+        if (a.code > 0) return a.code > installedCode ? UPDATE : INSTALLED;
+        if (a.version != null && installedName != null && Updater.newer(a.version, installedName)) return UPDATE;
+        return INSTALLED;
+    }
+
+    /** The installed version code, or -1. */
+    static long installedCode(Context c, String pkg) {
+        try {
+            return versionCode(c.getPackageManager().getPackageInfo(pkg, 0));
+        } catch (PackageManager.NameNotFoundException e) {
+            return -1;
+        }
+    }
+
+    /** The version code on every Android this app runs on (getLongVersionCode is Android 9+). */
+    @SuppressWarnings("deprecation")
+    static long versionCode(PackageInfo pi) {
+        return android.os.Build.VERSION.SDK_INT >= 28 ? pi.getLongVersionCode() : pi.versionCode;
+    }
+
+    /** The store page of a "store" app: Amazon's Appstore on Fire OS, Google Play elsewhere. */
+    static String storeUri(App a, boolean fireOs) {
+        return fireOs ? "amzn://apps/android?p=" + a.pkg : "market://details?id=" + a.pkg;
     }
 
     private static String lower(String s) {
@@ -67,13 +147,26 @@ final class Catalog {
 
     /** The catalogue from GitHub, or the bundled copy. Blocking. */
     static List<App> load(Context c) {
+        String bundled = DnsVpnService.raw(c, R.raw.catalogo);
         try {
-            List<App> online = parse(get(URL));
-            if (!online.isEmpty()) return online;
+            String json = get(URL);
+            List<App> online = parse(json);
+            // The online list wins, unless this build ships a newer format than the one published (before a release).
+            if (!online.isEmpty() && format(json) >= format(bundled)) return online;
         } catch (IOException | RuntimeException e) {
             Log.i(TAG, "online catalogue unavailable, bundled copy: " + e.getMessage());
         }
-        return parse(DnsVpnService.raw(c, R.raw.catalogo));
+        return parse(bundled);
+    }
+
+    /** The catalogue's "versione" (its format), 1 when missing. Plain Java, tested. */
+    static int format(String json) {
+        try {
+            Object root = MiniJson.parse(json);
+            return root instanceof java.util.Map ? (int) MiniJson.number(root, "versione", 1) : 0;
+        } catch (RuntimeException e) {
+            return 0;
+        }
     }
 
     /** The installed version of a package, or null. */
@@ -91,8 +184,11 @@ final class Catalog {
      */
     @SuppressWarnings("deprecation")
     static File download(Context c, App a) throws IOException {
+        String[] chosen = pick(a, android.os.Build.SUPPORTED_ABIS);
+        if (chosen == null) throw new IOException("nessun APK per questo dispositivo");
+        String url = chosen[0], expected = chosen[1];
         File apk = new File(c.getCacheDir(), "catalogo-" + a.pkg + ".apk");
-        HttpURLConnection conn = (HttpURLConnection) new URL(a.apk).openConnection();
+        HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setConnectTimeout(15_000);
         conn.setReadTimeout(60_000);
         conn.setInstanceFollowRedirects(true);
@@ -120,7 +216,7 @@ final class Catalog {
             conn.disconnect();
         }
         String sha = hex(md.digest());
-        if (a.sha256 != null && !a.sha256.equals(sha)) throw fail(apk, "SHA-256 diverso dal catalogo");
+        if (expected != null && !expected.equals(sha)) throw fail(apk, "SHA-256 diverso dal catalogo");
         PackageInfo info = c.getPackageManager().getPackageArchiveInfo(apk.getPath(), PackageManager.GET_SIGNATURES);
         if (info == null || !a.pkg.equals(info.packageName)) throw fail(apk, "non è il pacchetto atteso");
         if (a.signer != null && !a.signer.equals(signer(info.signatures))) throw fail(apk, "firma diversa dal catalogo");

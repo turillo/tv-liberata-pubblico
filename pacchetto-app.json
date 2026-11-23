@@ -52,14 +52,6 @@
       "pacchetto": "com.google.android.youtube.tv",
       "tipo": "store",
       "solo": "androidtv"
-    },
-    {
-      "nome": "Aerial Views",
-      "pacchetto": "com.neilturner.aerialviews",
-      "tipo": "libera",
-      "apk": "https://github.com/theothernt/AerialViews/releases/download/1.8.6/aerial-views-1.8.6.apk",
-      "sha256": "cd538992471caeb7890045a3c2b15a44fd4ec95509e2f1645a4089965731ef9d",
-      "fonte": "https://github.com/theothernt/AerialViews"
     }
   ]
 }

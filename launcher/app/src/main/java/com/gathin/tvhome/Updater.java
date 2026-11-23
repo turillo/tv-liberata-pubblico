@@ -83,8 +83,8 @@ final class Updater {
         if (assets == null) return null;
         for (Object a : assets) {
             String name = MiniJson.str(a, "name"), url = MiniJson.str(a, "browser_download_url");
-            if (name != null && url != null && name.toLowerCase(java.util.Locale.ROOT).endsWith(".apk")
-                    && url.startsWith("https://")) {
+            // Only TV Liberata's own APK: other releases of the repository ("extra": other apps) never count.
+            if (name != null && url != null && name.equalsIgnoreCase("tv-liberata.apk") && url.startsWith("https://")) {
                 Release r = new Release(version(tag), url);
                 String body = MiniJson.str(root, "body");
                 r.notes = body == null ? "" : body.trim();
@@ -225,6 +225,25 @@ final class Updater {
         }
     }
 
+    /**
+     * The Release text as the TV shows it: no Markdown marks (**, `), and the lines a list item wraps onto (they start
+     * with spaces) joined back to their item, so the dialog wraps them itself. Plain Java, tested.
+     */
+    static String readable(String notes) {
+        if (notes == null) return "";
+        StringBuilder out = new StringBuilder();
+        for (String raw : notes.replace("\r", "").split("\n")) {
+            String line = raw.replace("**", "").replace("`", "");
+            if (line.trim().isEmpty()) continue;
+            if (raw.startsWith("  ") && out.length() > 0) out.append(' ').append(line.trim());
+            else {
+                if (out.length() > 0) out.append('\n');
+                out.append(line.trim().startsWith("- ") ? "\u2022 " + line.trim().substring(2) : line.trim());
+            }
+        }
+        return out.toString();
+    }
+
     /** True right after this app was updated, until Home has said so. */
     static boolean announcePending(Context c) {
         SharedPreferences p = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -237,7 +256,7 @@ final class Updater {
         String to = p.getString("updated_to", null);
         if (to == null || p.getBoolean("updated_shown", true) || !to.equals(BuildConfig.VERSION_NAME)) return;
         p.edit().putBoolean("updated_shown", true).apply();
-        String notes = p.getString("updated_notes", "");
+        String notes = readable(p.getString("updated_notes", ""));
         SyntaxDialog.show(home, home.getString(R.string.update_done_title, to),
                 notes == null || notes.isEmpty() ? home.getString(R.string.update_done_no_notes) : notes,
                 new String[]{home.getString(R.string.update_ok)}, 0, which -> { });

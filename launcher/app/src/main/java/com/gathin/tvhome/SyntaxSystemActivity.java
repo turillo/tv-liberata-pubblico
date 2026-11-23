@@ -73,10 +73,8 @@ public final class SyntaxSystemActivity extends Activity {
         TextView filter = SyntaxUi.chip(this, getString(R.string.filter_title));
         filter.setOnClickListener(v -> startActivity(new android.content.Intent(this, SyntaxFilterActivity.class)));
         SyntaxUi.addChip(more, filter);
-        TextView catalog = SyntaxUi.chip(this, getString(R.string.catalog_title));
-        catalog.setOnClickListener(v -> startActivity(new android.content.Intent(this, SyntaxCatalogActivity.class)));
-        SyntaxUi.addChip(more, catalog);
-        TextView sysApps = SyntaxUi.chip(this, getString(R.string.sysapps_title));
+        // The Catalogo moved to the "App" section (1.0.5); "Ripristina tutto" stays here.
+        TextView sysApps = SyntaxUi.chip(this, getString(R.string.sysapps_restore_all));
         sysApps.setOnClickListener(v -> startActivity(new android.content.Intent(this, SyntaxSystemAppsActivity.class)));
         SyntaxUi.addChip(more, sysApps);
         if (Place.configured(this) == null) {
@@ -134,9 +132,7 @@ public final class SyntaxSystemActivity extends Activity {
         marginChip = SyntaxUi.chip(this, getString(R.string.margin_chip, ScreenMargin.percent(this)));
         marginChip.setOnClickListener(v -> startActivity(new android.content.Intent(this, SyntaxMarginActivity.class)));
         if (Device.fireExtras()) SyntaxUi.addChip(row, marginChip);   // Fire TV only
-        TextView hiddenApps = SyntaxUi.chip(this, getString(R.string.hidden_title));
-        hiddenApps.setOnClickListener(v -> startActivity(new android.content.Intent(this, SyntaxHiddenAppsActivity.class)));
-        if (Device.fireExtras()) SyntaxUi.addChip(row, hiddenApps);   // Fire TV only
+        // App nascoste moved to the "App" section (1.0.5).
     }
 
     private TextView marginChip;

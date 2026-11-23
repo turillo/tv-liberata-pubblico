@@ -1,5 +1,14 @@
 # Novità di TV Liberata
 
+## 1.0.5 — novembre 2026
+- Nuovo logo e nuovo banner.
+- Nuova sezione **App** nelle Impostazioni: tutte le app della TV in una griglia, app nascoste, disinstalla, info app con lo spazio occupato e "Svuota cache", e il catalogo.
+- **Catalogo** rinnovato, diviso per categorie: VLC, SmartTube, RetroArch, Moonlight, TV Bro e Aerial Views dalla loro fonte ufficiale; Spotify, TIDAL, X-plore, Send Files to TV e Downloader dallo store. Ogni app dice se è da installare, installata o da aggiornare.
+- **Sfondi da Unsplash**: torna la sorgente Unsplash, da spuntare in Wallpaper, Sorgenti.
+- **Screensaver**: Aerial Views si sceglie da qui; se manca, porta alla sua scheda nel catalogo.
+- **Sistema** più semplice: stato della TV, servizi, filtro DNS, aggiornamenti e "Ripristina tutto".
+- Il messaggio delle novità si legge meglio.
+
 ## 1.0.2 — novembre 2026
 - **Fire TV con Fire OS 7.7**: Amazon non permette alle app di configurare la TV da sole. La configurazione guidata
   ora lo riconosce e mostra "Collega il PC" con l'indirizzo della TV: il programma per PC

@@ -14,7 +14,7 @@ final class Features {
     /** The recycling calendar (AMA). */
     static final boolean RECYCLING = false;
     /** Unsplash among the wallpaper sources (it needs a key, from the device configuration). */
-    static final boolean UNSPLASH = false;
+    static final boolean UNSPLASH = true;   // 1.0.5: back, with the key built in
     /** Screensaver scenes ISS, Sole adesso, Terra adesso, Luna adesso, Webb e Hubble, Terra in diretta. */
     static final boolean SPACE_SCENES = false;
     /** The ANSA news ticker (Home and screensaver), and Il Post with it. */

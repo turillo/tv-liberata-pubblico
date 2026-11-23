@@ -35,7 +35,8 @@ public final class SyntaxSystemAppsActivity extends Activity {
         super.onCreate(state);
         FrameLayout outer = new FrameLayout(this);
         LinearLayout column = SyntaxUi.scrollPage(this, outer);
-        SyntaxUi.header(this, column, getString(R.string.sysapps_title), getString(R.string.sysapps_intro));
+        SyntaxUi.header(this, column, getString(Features.ADVANCED_CLEANUP ? R.string.sysapps_title : R.string.sysapps_restore_all),
+                getString(R.string.sysapps_intro));
         LinearLayout row = SyntaxUi.chipRow(this);
         authorize = SyntaxUi.chip(this, getString(R.string.sysapps_authorize));
         authorize.setOnClickListener(v -> authorize());

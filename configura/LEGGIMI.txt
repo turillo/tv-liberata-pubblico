@@ -35,7 +35,7 @@ Cosa fa sulla TV
 ----------------
 - salva un backup (cartella "backup" accanto al programma);
 - installa TV Liberata se manca, e le sue app: Netflix, Prime Video,
-  RaiPlay, YouTube e Aerial Views (per alcune apre l'Appstore sulla TV:
+  RaiPlay e YouTube (per alcune apre l'Appstore sulla TV:
   premi Scarica col telecomando);
 - disattiva (NON cancella) le app Amazon di pubblicita' e telemetria;
 - toglie o nasconde, solo se lo confermi, le app che non fanno parte di

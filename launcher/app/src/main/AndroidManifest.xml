@@ -112,8 +112,8 @@
             android:name=".SyntaxActivity"
             android:exported="true"
             android:label="@string/syntax_name"
-            android:icon="@drawable/icon_syntax"
-            android:banner="@drawable/banner_syntax"
+            android:icon="@mipmap/ic_launcher"
+            android:banner="@drawable/banner"
             android:taskAffinity="com.gathin.tvhome.syntax"
             android:launchMode="singleTask"
             android:screenOrientation="landscape">
@@ -185,6 +185,8 @@
         <activity android:name=".SyntaxPlaceActivity" android:exported="false"
             android:taskAffinity="com.gathin.tvhome.syntax" android:screenOrientation="landscape" />
         <activity android:name=".SyntaxMarginActivity" android:exported="false"
+            android:taskAffinity="com.gathin.tvhome.syntax" android:screenOrientation="landscape" />
+        <activity android:name=".SyntaxAppsActivity" android:exported="false"
             android:taskAffinity="com.gathin.tvhome.syntax" android:screenOrientation="landscape" />
         <activity android:name=".SyntaxHiddenAppsActivity" android:exported="false"
             android:taskAffinity="com.gathin.tvhome.syntax" android:screenOrientation="landscape" />

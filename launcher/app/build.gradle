@@ -14,10 +14,17 @@ android {
         minSdk 26
         targetSdk 34
         // Numbered versions; the changes are in CHANGELOG.md (also the text of each GitHub Release).
-        versionCode 102
-        versionName '1.0.2'
+        versionCode 105
+        versionName '1.0.5'
         // GitHub Releases checked by the in-app updater (owner/repo), and its production pointer produzione.json.
         buildConfigField 'String', 'UPDATE_REPO', '"turillo/tv-liberata-pubblico"'
+        // The Unsplash Access Key, from launcher/keys.properties (git ignores it; publish.py copies it only for the
+        // build of the public copy, never into that repository). Without it Unsplash shows as "chiave mancante".
+        def keys = new Properties()
+        def keysFile = rootProject.file('keys.properties')
+        if (keysFile.isFile()) keysFile.withInputStream { keys.load(it) }
+        def unsplash = (keys.getProperty('UNSPLASH_ACCESS_KEY') ?: '').trim().replace('\\', '').replace('"', '')
+        buildConfigField 'String', 'UNSPLASH_ACCESS_KEY', "\"${unsplash}\""
         // No API key is built in: Unsplash's (off in 1.0) comes from the device configuration (DeviceConfig).
         // The commit the APK was built from, for Syntax TV's Sistema page; "?" without git.
         def commit = '?'

@@ -26,7 +26,7 @@ final class WallpaperSources {
     /** Pexels was a source until 11 November 2026: its photos stay in the archive, under their own name. */
     static final String OLD_PEXELS = "pexels";
     /** In Syntax TV's order. */
-    /** The sources this edition offers: TV Liberata has no Unsplash (it would need a key). */
+    /** The sources offered (Unsplash: Features.UNSPLASH, with the key built into the APK). */
     static final List<String> ALL = Collections.unmodifiableList(Edition.unsplash() ? Arrays.asList(BING, WIKIMEDIA, UNSPLASH)
             : Arrays.asList(BING, WIKIMEDIA));
     static final List<String> THEMED = Collections.unmodifiableList(Collections.singletonList(UNSPLASH));

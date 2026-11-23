@@ -30,6 +30,7 @@ public final class SyntaxActivity extends Activity {
     private TextView[] summaries;
     private ImageView wallpaperImage, sceneImage;
     private TextView systemFigure;
+    private TextView appsFigure;
     private NewsTickerView ticker;
     private TextView[] profiles, positions;
     private TextView kitchenLabel, kitchenScreensaver, kitchenRecycling, nightFrom, nightTo;
@@ -53,11 +54,20 @@ public final class SyntaxActivity extends Activity {
         column.addView(row, rowLp);
         column.setClipChildren(false);
 
-        summaries = new TextView[5];
+        summaries = new TextView[6];
         wallpaperImage = new ImageView(this);
         sceneImage = new ImageView(this);
         View wallpaper = card(row, wallpaperImage, R.string.syntax_wallpaper, 0);
         View screensaver = card(row, sceneImage, R.string.syntax_screensaver, 1);
+        // App (1.0.5): every app, hidden ones, uninstall, info and the catalogue; the figure is how many apps.
+        FrameLayout appsHolder = new FrameLayout(this);
+        appsHolder.setBackgroundColor(0xFF0B1018);
+        appsFigure = SyntaxUi.text(this, 26, R.string.font_medium, SyntaxUi.ACCENT);
+        appsFigure.setGravity(Gravity.CENTER);
+        appsHolder.addView(appsFigure, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
+                FrameLayout.LayoutParams.MATCH_PARENT));
+        View apps = card(row, appsHolder, R.string.apps_title, 5);
+        apps.setOnClickListener(v -> startActivity(new Intent(this, SyntaxAppsActivity.class)));
         FrameLayout tickerHolder = new FrameLayout(this);
         tickerHolder.setBackgroundColor(0xFF0B1018);
         ticker = new NewsTickerView(this, NewsTicker.label(this, SyntaxPrefs.get(this).sections()), 45, 0.06f);
@@ -285,6 +295,9 @@ public final class SyntaxActivity extends Activity {
                 : scenes.size() == 1 ? sceneName(scenes.get(0))
                 : getString(R.string.syntax_scenes_count, scenes.size());
         summaries[1].setText(mode);
+        int appCount = SyntaxAppsActivity.launchable(this).size();
+        appsFigure.setText(String.valueOf(appCount));
+        summaries[5].setText(getString(R.string.apps_summary, appCount));
         sceneImage.setImageResource(scenePreview(scenes.get(0)));
         summaries[3].setText(s.christmas() ? R.string.xmas_on_summary : R.string.xmas_off_summary);
         summaries[2].setText(s.ticker() ? getString(R.string.syntax_news_on, sectionNames(s.sections()))

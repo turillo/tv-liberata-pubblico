@@ -148,7 +148,7 @@ Lasciala aperta e vai al PC:
      DISINSTALLARLE oppure NASCONDERLE dalla Home (restano
      installate). Il programma non tocca niente senza chiedere.
 7. Il programma installa le app di TV Liberata che mancano:
-   Netflix, Prime Video, RaiPlay, YouTube e Aerial Views.
+   Netflix, Prime Video, RaiPlay e YouTube.
    Per alcune apre la pagina dell'Appstore sulla TV: premi
    "Scarica" col telecomando, poi Invio sul PC.
 8. Alla fine la TV si riavvia e il PC mostra
@@ -166,7 +166,7 @@ e un registro nella sua cartella: tienila, serve per tornare indietro.
 - Tasto Home del telecomando: torni sempre a TV Liberata.
 - In alto: orologio, data e meteo della tua zona.
 - In alto a destra: pulsanti Wi-Fi, Impostazioni e Spegnimento.
-- Le app: Netflix, Prime Video, RaiPlay, YouTube, Aerial Views e
+- Le app: Netflix, Prime Video, RaiPlay, YouTube e
   l'Appstore (sempre presente, per installare nuove app). Le app che
   installi dopo compaiono anche loro.
 - Riga delle app: scorri con le frecce, OK per aprire.
