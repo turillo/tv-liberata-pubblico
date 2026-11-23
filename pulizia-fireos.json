@@ -201,6 +201,18 @@
     {
       "pacchetto": "com.amazon.tv.mattercohost",
       "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.audiohome",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.firetv.troubleshooting",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.bueller.music",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
     }
   ],
   "mai": [

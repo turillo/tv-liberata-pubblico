@@ -401,19 +401,28 @@ function Configura {
 
     Passo '10. Riavvio e verifica'
     if ($Prova) { Write-Host '  [prova] riavvio della TV e verifica finale'; Riepilogo; return }
-    Sh 'reboot' | Out-Null
+    # "adb reboot", non "shell reboot": su Fire OS 7.7 la shell non ha il permesso e la TV non si riavvia.
+    AdbRun @('-s', $Script:Tv, 'reboot') | Out-Null
     Write-Host 'La TV si riavvia (circa 1-2 minuti)...'
     Start-Sleep -Seconds 40
     $t0 = Get-Date
     while ((Stato $Script:Tv) -ne 'device' -and ((Get-Date) - $t0).TotalSeconds -lt 180) { Start-Sleep -Seconds 5; AdbRun @('connect', $Script:Tv) | Out-Null }
     if ((Stato $Script:Tv) -ne 'device') { Ko 'dopo il riavvio la TV non risponde ad ADB: controlla a mano' ; Riepilogo; return }
+    $uptime = [double](((Sh 'cat /proc/uptime') -split ' ')[0])
+    if ($uptime -gt 600) { Ko 'la TV non si e'' riavviata: riavviala a mano (tieni premuti Seleziona e Play) e controlla' }
     Start-Sleep -Seconds 20
     Sh 'input keyevent KEYCODE_WAKEUP' | Out-Null
     Sh 'input keyevent KEYCODE_HOME' | Out-Null
     Start-Sleep -Seconds 5
     $davanti = Sh 'dumpsys window windows | grep mCurrentFocus'
     if ($davanti -match [regex]::Escape("$Pkg/")) { Ok 'dopo il riavvio la Home e'' TV Liberata' } else { Ko "dopo il riavvio davanti c'e': $davanti" }
-    if ((Sh 'settings get secure always_on_vpn_app') -eq $Pkg -and (Sh 'dumpsys connectivity') -match 'type: VPN\[\], state: CONNECTED') { Ok 'filtro DNS attivo' } else { Ko 'filtro DNS non attivo' }
+    # Il filtro riparte dopo l'avvio (anche qualche decina di secondi): lo si aspetta fino a un minuto.
+    $vpn = $false
+    for ($i = 0; $i -lt 12 -and -not $vpn; $i++) {
+        $vpn = (Sh 'dumpsys connectivity') -match 'type: VPN\[\], state: CONNECTED'
+        if (-not $vpn) { Start-Sleep -Seconds 5 }
+    }
+    if ($vpn) { Ok 'filtro DNS attivo' } else { Ko 'filtro DNS non attivo dopo un minuto' }
     if ($FireOs) { if ((Sh 'dumpsys accessibility') -match 'FireHomeGuard|Home Fire TV') { Ok 'servizio Home attivo' } else { Ko 'servizio Home non attivo' } }
     Riepilogo
 }
