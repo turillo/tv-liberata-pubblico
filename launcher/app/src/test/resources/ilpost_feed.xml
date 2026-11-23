@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+    <channel>
+        <title>Il Post</title>
+        <atom:link href="https://www.ilpost.it/feed" rel="self" type="application/rss+xml" />
+        <link>https://www.ilpost.it</link>
+        <description>Gli articoli, le rassegne, i blog, le foto, tutto quello che arriva dal mondo e dalla rete.</description>
+        <lastBuildDate>Wed, 11 Nov 2026 19:28:17 +0000</lastBuildDate>
+        <language>it-IT</language>
+        <sy:updatePeriod>hourly</sy:updatePeriod>
+        <sy:updateFrequency>1</sy:updateFrequency>
+        <generator>ILPOST</generator>
+        <image>
+            <url>https://www.ilpost.it/wp-content/uploads/2017/09/cropped-ilpost-site-icon-32x32.png</url>
+            <title>Il Post</title>
+            <link>https://www.ilpost.it</link>
+            <width>32</width>
+            <height>32</height>
+        </image>
+        <item>
+            <title>Il ministro dell&#8217;Istruzione Giuseppe Valditara ha detto che domani le scuole saranno aperte</title>
+            <link>https://www.ilpost.it/2026/11/11/valditara-scuole-aperte-allarmi-bomba/</link>
+            <pubDate>Wed, 11 Nov 2026 19:15:32 +0000</pubDate>
+        </item>
+        <item>
+            <title>Mamma, pappa, nanna e Stokke</title>
+            <link>https://www.ilpost.it/2026/11/11/tripp-trapp-stokke-sedia-seggiolone/</link>
+            <pubDate>Wed, 11 Nov 2026 18:51:11 +0000</pubDate>
+        </item>
+        <item>
+            <title>In provincia dell&#8217;Aquila due operai sono morti in un crollo di un palazzo in ristrutturazione</title>
+            <link>https://www.ilpost.it/2026/11/11/san-pio-laquila-operai-morti-ristrutturazione/</link>
+            <pubDate>Wed, 11 Nov 2026 18:50:41 +0000</pubDate>
+        </item>
+    </channel>
+</rss>

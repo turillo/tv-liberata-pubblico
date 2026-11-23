@@ -1,0 +1,16 @@
+{
+  "versione": 1,
+  "app": [
+    {
+      "id": "aerial-views",
+      "nome": "Aerial Views",
+      "descrizione": "Screensaver con i video aerei di Apple e Amazon, o con le tue foto e i tuoi video. Open source.",
+      "pacchetto": "com.neilturner.aerialviews",
+      "versione": "1.8.6",
+      "apk": "https://github.com/theothernt/AerialViews/releases/download/1.8.6/aerial-views-1.8.6.apk",
+      "sha256": "cd538992471caeb7890045a3c2b15a44fd4ec95509e2f1645a4089965731ef9d",
+      "firma": "383b3b2df6d2b17cec60542c576408b0deae502f37749eb5ac7fef2f206fa51b",
+      "fonte": "https://github.com/theothernt/AerialViews"
+    }
+  ]
+}

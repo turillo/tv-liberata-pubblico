@@ -1,0 +1,5 @@
+# Copy this file to launcher/keys.properties (git ignores it) and put your keys after the "=".
+# Then rebuild and reinstall the launcher. An empty key leaves that source off ("chiave mancante" in Syntax TV).
+#
+# Unsplash: https://unsplash.com/developers -> New Application -> "Access Key"
+UNSPLASH_ACCESS_KEY=

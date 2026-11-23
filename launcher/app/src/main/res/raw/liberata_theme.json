@@ -1,0 +1,22 @@
+{
+  "personal_header": true,
+  "online_wallpaper": true,
+  "columns": 6,
+  "fill_dock": true,
+  "app_library": false,
+  "tile_menu": true,
+  "background_color": "#090C14",
+  "wallpaper_captions": false,
+  "wallpaper_true_color": false,
+  "home_idle_clock_minutes": 0,
+  "cinematic_home": false,
+  "dock_title": false,
+  "dock_glass": true,
+  "dock_opacity": 65,
+  "icon_only_buttons": true,
+  "ambient_glow": false,
+  "app_glow": false,
+  "glow_style": "off",
+  "focus_overshoot": false,
+  "advanced_effects": true
+}

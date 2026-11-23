@@ -1,0 +1,715 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name" translatable="false">TV Liberata</string>
+    <string name="inputs">Inputs</string>
+    <string name="wifi">Wi-Fi</string>
+    <string name="settings">Settings</string>
+    <string name="choose_input">Inputs</string>
+    <string name="connected">Connected</string>
+    <string name="standby">Standby</string>
+    <string name="not_connected">No device</string>
+    <string name="live_tv">Live TV</string>
+    <string name="no_inputs">No inputs found</string>
+    <string name="good_morning">Good morning</string>
+    <string name="good_afternoon">Good afternoon</string>
+    <string name="good_evening">Good evening</string>
+    <string name="good_night">Good night</string>
+    <string name="festival_dussehra_greeting">Happy Dussehra</string>
+    <string name="festival_diwali_greeting">Happy Diwali</string>
+    <string name="ethernet">Ethernet</string>
+    <string name="offline">Offline</string>
+    <string name="not_available">Not available on this TV</string>
+    <string name="cant_open">Can\'t open %1$s</string>
+    <string name="date_format">EEEE  d MMMM</string>
+    <!-- Date next to the clock on Home; a locale can split it over two lines with \n. -->
+    <string name="date_format_home" translatable="false">@string/date_format</string>
+    <string name="shamsi_month_farvardin">Farvardin</string>
+    <string name="shamsi_month_ordibehesht">Ordibehesht</string>
+    <string name="shamsi_month_khordad">Khordad</string>
+    <string name="shamsi_month_tir">Tir</string>
+    <string name="shamsi_month_mordad">Mordad</string>
+    <string name="shamsi_month_shahrivar">Shahrivar</string>
+    <string name="shamsi_month_mehr">Mehr</string>
+    <string name="shamsi_month_aban">Aban</string>
+    <string name="shamsi_month_azar">Azar</string>
+    <string name="shamsi_month_dey">Dey</string>
+    <string name="shamsi_month_bahman">Bahman</string>
+    <string name="shamsi_month_esfand">Esfand</string>
+    <string name="stats_cpu">CPU %1$d%%</string>
+    <string name="stats_memory">Memory %1$d / %2$d MB</string>
+    <string name="stats_storage">Storage %1$s free</string>
+    <string name="storage_gb_whole">%1$.0f GB</string>
+    <string name="storage_gb_decimal">%1$.1f GB</string>
+    <string name="dream_name">Clock</string>
+    <string name="vpn">VPN</string>
+    <string name="vpn_off">VPN off</string>
+    <string name="home_settings">Choose default home</string>
+    <string name="home_settings_help">Select your original home to stop using CleanYourTV as Home, or CleanYourTV to switch back. The original launcher must be enabled and your TV must provide a home picker; use the restore script first if it was disabled.</string>
+    <string name="launcher_settings">Launcher settings</string>
+    <string name="settings_intro">Personalize what you see when you press Home.</string>
+    <string name="settings_header_section">Greeting and information</string>
+    <string name="settings_dock_section">Apps and dock</string>
+    <string name="settings_wallpaper_section">Wallpaper</string>
+    <string name="settings_motion_section">Motion</string>
+    <string name="settings_system_section">Launcher and TV</string>
+    <string name="columns_label">Apps per row</string>
+    <string name="rows_below_dock_label">Rows below dock</string>
+    <string name="dock_opacity_label">Dock band opacity</string>
+    <string name="wallpaper_label">Wallpaper</string>
+    <string name="wallpaper_state">Wallpaper: %1$s</string>
+    <string name="personal_name_state">Name: %1$s</string>
+    <string name="date_state">Date line: %1$s</string>
+    <string name="weather_state">Weather line: %1$s</string>
+    <string name="dock_size_state">Dock and icons: %1$s</string>
+    <string name="wallpaper_timer_state">Online wallpaper changes: %1$d minutes</string>
+    <string name="wallpaper_none">None</string>
+    <string name="wallpaper_applied">Wallpaper changed</string>
+    <string name="wallpaper_theme_default">Theme default</string>
+    <string name="animations_state">Animations: %1$s</string>
+    <string name="advanced_effects">Advanced effects</string>
+    <string name="advanced_effects_state">Advanced effects: %1$s</string>
+    <string name="advanced_effects_warning">Adds a lifted tile, icon zoom and smooth colour transitions. May increase memory use; the actual difference depends on your TV.</string>
+    <string name="follow_theme">Follow theme (reset on-TV choices)</string>
+    <string name="follow_theme_hint">Uses the current theme or built-in layout and motion settings. Pushing or resetting a theme also clears your on-TV choices.</string>
+    <string name="tv_settings">TV system settings</string>
+    <string name="quick_picture">Display</string>
+    <string name="quick_network">Network</string>
+    <string name="quick_apps">Apps</string>
+    <string name="quick_apps_hint">Re-enable</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
+    <string name="enable">Enable</string>
+    <string name="input_key_service_description">Opens the input switcher when the remote\'s Input button is pressed.</string>
+    <string name="home_key_name">Home button</string>
+    <string name="fire_home_name">Fire TV home</string>
+    <string name="fire_home_description">Shows this launcher whenever Fire TV opens Amazon\'s home screen.</string>
+    <string name="home_key_description">Makes the remote\'s Home button open this launcher.</string>
+    <string name="card_prompt_title">New card from %1$s</string>
+    <string name="card_prompt_body">%1$s can show a card on your home screen. Keeping it hidden leaves the app\'s normal tile as it is.</string>
+    <string name="card_prompt_names">The card is named \'%1$s\'. The app is \'%2$s\'.</string>
+    <string name="card_prompt_resigned">%1$s was updated with a different signing key, so your earlier answer no longer applies. Decide again for its card.</string>
+    <string name="card_prompt_relabelled">%1$s changed the name of its card since you decided. Decide again for it.</string>
+    <string name="card_prompt_hint">You can change this later: hold OK on Settings, then choose Module cards.</string>
+    <string name="card_prompt_identity">%1$s, key %2$s</string>
+    <string name="card_keep_hidden">Keep hidden</string>
+    <string name="card_show">Show card</string>
+    <string name="card_not_saved">Couldn\'t save the choice</string>
+    <string name="module_cards">Module cards</string>
+    <string name="no_module_cards">No module cards installed</string>
+    <string name="card_app_name">App: %1$s</string>
+    <string name="card_state_shown">Shown</string>
+    <string name="card_state_over_limit">Shown, over the limit of 8</string>
+    <string name="card_state_hidden">Hidden</string>
+    <string name="card_state_new">New</string>
+    <string name="card_state_new_key">New key</string>
+    <string name="card_state_new_label">New name</string>
+    <string name="dock_edit">Edit dock</string>
+    <string name="dock_edit_hint">Choose the dock place to change and press OK. Back to finish.</string>
+    <string name="dock_edit_pick_app">Now choose the app to put there and press OK. Back to choose another place.</string>
+    <string name="tile_add_to_dock">Add to dock</string>
+    <string name="tile_replace_in_dock">Replace with another app</string>
+    <string name="dock_edit_pick_place">Choose the dock place for this app and press OK. Back to cancel.</string>
+    <string name="reorder">Reorder apps</string>
+    <string name="tile_move">Move</string>
+    <string name="reorder_hint">OK picks up an app, arrows move it, Back places it. Back again to finish.</string>
+    <string name="reorder_not_saved">Couldn\'t save the new order</string>
+    <string name="app_library">App library</string>
+    <string name="library_empty">No launchable apps found</string>
+    <string name="library_on_home">On Home</string>
+    <string name="library_add_home">Add to Home</string>
+    <string name="library_remove_shortcut">Remove from Home</string>
+    <string name="library_open">Open</string>
+    <string name="library_app_info">App info</string>
+    <string name="library_save_failed">Could not save the shortcut</string>
+    <string name="library_recent">New · Add to Home</string>
+    <string name="library_hint_add">Press to add to Home · Hold for options</string>
+    <string name="library_hint_open">Press to open · Hold for options</string>
+    <plurals name="library_app_count">
+        <item quantity="one">%1$d app</item>
+        <item quantity="other">%1$d apps</item>
+    </plurals>
+    <!-- The greeting, then greeting_name: "Good morning, Mr. Trịnh". -->
+    <string name="greeting_with_name">%1$s, %2$s</string>
+
+    <!-- Race-weekend panel (RaceWeekend). -->
+    <string name="race_kicker">Round %1$d · %2$s · %3$s</string>
+    <string name="race_kicker_no_place">Round %1$d · %2$s</string>
+    <string name="race_next">%1$s in %2$s</string>
+    <string name="race_lights_out">Lights out in %1$s</string>
+    <string name="race_live">%1$s · live</string>
+    <string name="race_finished">Chequered flag</string>
+    <string name="race_practice_1">Practice 1</string>
+    <string name="race_practice_2">Practice 2</string>
+    <string name="race_practice_3">Practice 3</string>
+    <string name="race_sprint_qualifying">Sprint qualifying</string>
+    <string name="race_sprint">Sprint</string>
+    <string name="race_qualifying">Qualifying</string>
+    <string name="race_race">Race</string>
+    <string name="race_practice_1_short">FP1</string>
+    <string name="race_practice_2_short">FP2</string>
+    <string name="race_practice_3_short">FP3</string>
+    <string name="race_sprint_qualifying_short">SQ</string>
+    <string name="race_sprint_short">SPRINT</string>
+    <string name="race_qualifying_short">QUALI</string>
+    <string name="race_race_short">RACE</string>
+    <string name="race_countdown_minutes">%1$d min</string>
+    <string name="race_countdown_hours">%1$dh %2$dm</string>
+    <string name="race_countdown_days">%1$dd %2$dh</string>
+    <!-- Cinematic top shelf (cinematic_home): the line under the focused dock app's name; %1$s is when it was
+         last opened, e.g. "5 minutes ago" or "yesterday, 9:40 pm". -->
+    <string name="last_opened">Last opened %1$s</string>
+    <!-- ISS screensaver scene (config.xml dream_scene "iss"): the panel next to the world map. -->
+    <string name="iss_subtitle">International Space Station</string>
+    <string name="iss_position">Position</string>
+    <string name="iss_altitude">Altitude</string>
+    <string name="iss_speed">Speed</string>
+    <!-- Ground distance from the place at config.xml latitude and longitude, which is never named on screen. -->
+    <string name="iss_distance">Distance</string>
+    <string name="iss_km">%1$s km</string>
+    <string name="iss_kmh">%1$s km/h</string>
+    <string name="iss_north">N</string>
+    <string name="iss_south">S</string>
+    <string name="iss_east">E</string>
+    <string name="iss_west">W</string>
+    <string name="iss_sunlit">In sunlight</string>
+    <string name="iss_eclipsed">In Earth\'s shadow</string>
+    <string name="iss_waiting">Waiting for orbit data</string>
+    <!-- %1$d is a number of days. -->
+    <string name="iss_stale">Orbit data %1$d days old</string>
+    <!-- Personal header weather line (PersonalHeader): temperature now, condition, today's low and high, in °C. -->
+    <string name="weather_loading">Weather…</string>
+    <string name="weather_line">%1$d° %2$s · min %3$d° · max %4$d°</string>
+    <!-- Added to the weather line when it could not be refreshed; %1$s is a time, or a date and time. -->
+    <string name="weather_updated">updated %1$s</string>
+    <!-- Open-Meteo WMO weather codes in WeatherCode.condition() order; every translation keeps all 20 items. -->
+    <string-array name="weather_conditions">
+        <item>Clear</item>
+        <item>Mostly clear</item>
+        <item>Partly cloudy</item>
+        <item>Overcast</item>
+        <item>Fog</item>
+        <item>Drizzle</item>
+        <item>Freezing drizzle</item>
+        <item>Light rain</item>
+        <item>Rain</item>
+        <item>Heavy rain</item>
+        <item>Freezing rain</item>
+        <item>Light snow</item>
+        <item>Snow</item>
+        <item>Heavy snow</item>
+        <item>Snow grains</item>
+        <item>Showers</item>
+        <item>Heavy showers</item>
+        <item>Snow showers</item>
+        <item>Thunderstorm</item>
+        <item>Thunderstorm with hail</item>
+    </string-array>
+    <!-- Sun screensaver scene (config.xml dream_scene "sun"): the panel over NASA SDO's pictures of the Sun. -->
+    <string name="sun_title">Sun</string>
+    <string name="sun_source" translatable="false">SDO · NASA</string>
+    <!-- When SDO published the picture shown, a few minutes (up to about two hours) after it was taken. -->
+    <string name="sun_published">Published</string>
+    <string name="sun_flare">Last flare</string>
+    <!-- %1$s is a flare class such as C1.2, %2$s the time of its peak. -->
+    <string name="sun_flare_value">%1$s at %2$s</string>
+    <string name="sun_loading">Downloading the Sun…</string>
+    <string name="sun_unavailable">Pictures of the Sun unavailable</string>
+    <!-- SolarData.CODES order: AIA 193, AIA 304, AIA 171, HMI continuum; both arrays keep 4 items. -->
+    <string-array name="sun_channel_names">
+        <item>Corona · 193 Å</item>
+        <item>Chromosphere · 304 Å</item>
+        <item>Coronal loops · 171 Å</item>
+        <item>Surface · visible light</item>
+    </string-array>
+    <string-array name="sun_channel_details">
+        <item>About 1.2 million °C</item>
+        <item>About 50,000 °C</item>
+        <item>About 600,000 °C</item>
+        <item>About 5,500 °C, with sunspots</item>
+    </string-array>
+    <!-- Earth screensaver scene (config.xml dream_scene "earth"): the panel over NASA EPIC's photos of the Earth. -->
+    <string name="earth_title">Earth</string>
+    <string name="earth_source" translatable="false">DSCOVR · EPIC · NASA</string>
+    <string name="earth_distance">Distance from Earth</string>
+    <!-- %1$s is a number of millions of km, e.g. 1.49. -->
+    <string name="earth_distance_value">%1$s million km</string>
+    <string name="earth_photo">Photo</string>
+    <string name="earth_photo_value">%1$d of %2$d</string>
+    <!-- Small, after the source: which EPIC collection the photo is from. -->
+    <string name="earth_natural">true colours</string>
+    <string name="earth_enhanced">enhanced colours</string>
+    <string name="earth_loading">Downloading the Earth…</string>
+    <string name="earth_unavailable">Photos of the Earth unavailable</string>
+    <!-- What is in the middle of the photo, in EarthData.region() order; every translation keeps all 13 items. -->
+    <string-array name="earth_regions">
+        <item>Over the Atlantic</item>
+        <item>Over the Pacific</item>
+        <item>Over the Indian Ocean</item>
+        <item>Over the Mediterranean</item>
+        <item>Over the Arctic</item>
+        <item>Over the Southern Ocean</item>
+        <item>Over Europe</item>
+        <item>Over Africa</item>
+        <item>Over Asia</item>
+        <item>Over Oceania</item>
+        <item>Over North America</item>
+        <item>Over South America</item>
+        <item>Over Antarctica</item>
+    </string-array>
+    <!-- Moon screensaver scene (config.xml dream_scene "moon"): the panel next to NASA SVS's picture of the Moon. -->
+    <string name="moon_title">Moon</string>
+    <string name="moon_source" translatable="false">NASA SVS · Dial-a-Moon</string>
+    <!-- %1$d is the percent of the disk lit, %2$s the age in days, e.g. 25.0. -->
+    <string name="moon_detail">%1$d%% lit · %2$s days old</string>
+    <string name="moon_distance">Distance</string>
+    <string name="moon_km">%1$s km</string>
+    <string name="moon_next_new">New Moon</string>
+    <string name="moon_next_full">Full Moon</string>
+    <string name="moon_rise">Moonrise</string>
+    <string name="moon_set">Moonset</string>
+    <string name="moon_loading">Downloading the Moon…</string>
+    <string name="moon_unavailable">Picture of the Moon unavailable</string>
+    <!-- MoonData.phaseName() order; every translation keeps all 8 items. -->
+    <string-array name="moon_phases">
+        <item>New Moon</item>
+        <item>Waxing crescent</item>
+        <item>First quarter</item>
+        <item>Waxing gibbous</item>
+        <item>Full Moon</item>
+        <item>Waning gibbous</item>
+        <item>Last quarter</item>
+        <item>Waning crescent</item>
+    </string-array>
+    <!-- Webb and Hubble screensaver scene (config.xml dream_scene "space"); %1$s is the image's credit line, which the
+         CC BY 4.0 licence requires on screen. -->
+    <string name="space_credit">Credit: %1$s</string>
+    <string name="space_loading">Downloading Webb and Hubble images…</string>
+    <string name="space_unavailable">Webb and Hubble images unavailable</string>
+    <!-- Live Earth screensaver scene (config.xml dream_scene "live"): Meteosat-12 from EUMETSAT. -->
+    <string name="live_title">Earth live</string>
+    <!-- %1$d is the image's year: EUMETSAT asks for the credit "© EUMETSAT [year]". -->
+    <string name="live_source">Meteosat-12 · © EUMETSAT %1$d</string>
+    <!-- %1$s is a time, or a date and time. -->
+    <string name="live_image">Image at %1$s</string>
+    <string name="live_natural">True colour</string>
+    <string name="live_infrared">Infrared (night)</string>
+    <string name="live_view">View</string>
+    <string name="live_disk">Whole disk</string>
+    <string name="live_europe">Europe and Mediterranean</string>
+    <string name="live_lapse">Last 6 hours</string>
+    <string name="live_loading">Downloading Meteosat images…</string>
+    <string name="live_unavailable">Meteosat images unavailable</string>
+    <!-- The fixed label at the left of the screensaver's news ticker (ANSA's "latest news"). -->
+    <string name="news_label">ANSA · LATEST</string>
+    <string name="news_label_ilpost" translatable="false">IL POST</string>
+    <string name="news_label_mixed">LATEST NEWS</string>
+    <!-- Impostazioni TV Liberata (the code calls it Syntax TV): the launcher's settings app for the wallpaper, the screensaver and the news ticker. -->
+    <string name="syntax_name" translatable="false">TV Liberata</string>
+    <string name="syntax_intro">Wallpaper, screensaver and system, set here.</string>
+    <string name="syntax_wallpaper">Wallpaper</string>
+    <string name="syntax_screensaver">Screensaver</string>
+    <string name="syntax_news">News ticker</string>
+    <!-- %1$d active photos of %2$d; %3$s how often it changes, e.g. "every 3 h". -->
+    <string name="syntax_wallpaper_summary">%1$d of %2$d photos · %3$s</string>
+    <string name="syntax_wallpaper_none">No Bing photos yet</string>
+    <string name="favorites_empty">No photos in the archive yet</string>
+    <string name="favorites_none">No favourites yet: showing the active photos</string>
+    <string name="favorites_none_xmas">No Christmas favourites yet: showing the active Christmas photos</string>
+    <string name="favorites_settings">Favourites scene</string>
+    <string name="favorites_seconds">%1$d s</string>
+    <string name="favorites_panel">Photo panel</string>
+    <string name="place_title">Weather location</string>
+    <string name="place_intro">Automatic: found from the internet connection. Or search for your city.</string>
+    <string name="place_auto">Automatic</string>
+    <string name="place_city">City</string>
+    <string name="place_hint">Type a city</string>
+    <string name="place_search">Search</string>
+    <string name="place_searching">Searching…</string>
+    <string name="place_searching_auto">Looking for the place from the connection…</string>
+    <string name="place_none">No city found</string>
+    <string name="place_unknown">Location not known yet: no weather</string>
+    <string name="place_chosen">Chosen: %1$s</string>
+    <string name="place_from_device">From the device configuration: %1$s</string>
+    <string name="place_from_connection">Automatic: %1$s</string>
+    <string name="update_check">Check for updates now</string>
+    <string name="update_checking">Checking…</string>
+    <string name="update_none">You have the latest version (%1$s)</string>
+    <string name="update_failed">Could not check for updates</string>
+    <string name="update_available_title">New version %1$s</string>
+    <string name="update_available">TV Liberata %1$s is available (you have %2$s). Install it now?</string>
+    <string name="update_install">Install</string>
+    <string name="update_later">Later</string>
+    <string name="update_downloading">Downloading the update…</string>
+    <string name="update_bad_signature">The update is not signed by TV Liberata: not installed</string>
+    <string name="update_permission">Allow TV Liberata to install apps: Settings, My Fire TV, Developer options, Install unknown apps</string>
+    <string name="filter_title">DNS filter</string>
+    <string name="filter_intro">Blocks telemetry, ads and system updates for the whole TV, through a local VPN that carries only DNS.</string>
+    <string name="filter_on">Filter: on</string>
+    <string name="filter_off">Filter: off</string>
+    <string name="filter_ota">Block Fire OS updates</string>
+    <string name="filter_reset">Reset counts</string>
+    <string name="filter_starting">starting…</string>
+    <string name="filter_counts">%1$d blocked out of %2$d requests</string>
+    <string name="filter_since">since %1$s</string>
+    <string name="filter_lists_updated">lists updated %1$s</string>
+    <string name="filter_lists_bundled">built-in lists</string>
+    <string name="filter_top">Most blocked:</string>
+    <string name="filter_recent">Blocked lately (OK: let it through)</string>
+    <string name="filter_exceptions">Exceptions (OK: block again)</string>
+    <string name="filter_none_recent">Nothing blocked yet</string>
+    <string name="filter_none_exceptions">No exceptions</string>
+    <string name="filter_add_hint">Domain to let through</string>
+    <string name="filter_add">Add</string>
+    <string name="filter_allow_question">Let this domain through?</string>
+    <string name="filter_block_question">Block this domain again?</string>
+    <string name="filter_no_consent">Without the VPN permission the filter cannot start. Allow it when the TV asks.</string>
+    <string name="tile_uninstall">Uninstall</string>
+    <string name="catalog_title">Catalogue</string>
+    <string name="catalog_intro">Apps from their official source, checked before they are installed.</string>
+    <string name="catalog_loading">Loading the catalogue…</string>
+    <string name="catalog_empty">The catalogue is empty</string>
+    <string name="catalog_install">Install %1$s %2$s</string>
+    <string name="catalog_update">Update %1$s to %2$s</string>
+    <string name="catalog_installed">%1$s: installed</string>
+    <string name="catalog_allow">Allow TV Liberata to install apps, then come back here</string>
+    <string name="catalog_downloading">Downloading %1$s…</string>
+    <string name="catalog_confirm">Confirm the installation of %1$s on the TV</string>
+    <string name="catalog_failed">%1$s not installed: %2$s</string>
+    <string name="sysapps_title">Advanced clean-up</string>
+    <string name="sysapps_intro">Turn system apps off and on again through the TV’s own debugging. Protected apps are not listed; nothing is uninstalled.</string>
+    <string name="sysapps_authorize">Authorise</string>
+    <string name="sysapps_restore_all">Restore all</string>
+    <string name="sysapps_checking">Checking the TV’s debugging…</string>
+    <string name="sysapps_ready">Ready: OK on an app to turn it off or on</string>
+    <string name="sysapps_not_authorized">Not authorised yet: press Authorise and answer "Always allow" on the TV</string>
+    <string name="sysapps_confirm_on_tv">On the TV: tick "Always allow from this computer" and press OK</string>
+    <string name="adb_blocked">This TV does not let apps use its own ADB debugging: these steps need a PC (adb over the network).</string>
+    <string name="sysapps_no_adb">Network debugging is off: Settings, Developer options, ADB debugging</string>
+    <string name="sysapps_disable_q">Turn off %1$s? It can be turned on again here at any time.</string>
+    <string name="sysapps_enable_q">Turn %1$s on again?</string>
+    <string name="sysapps_working">Working…</string>
+    <string name="sysapps_done">Done</string>
+    <string name="sysapps_failed">Not done: %1$s</string>
+    <string name="sysapps_nothing_to_restore">Nothing turned off here</string>
+    <string name="sysapps_restore_q">Turn on again the %1$d apps turned off here?</string>
+    <string name="sysapps_restored">%1$d of %2$d turned on again</string>
+    <string name="update_done_title">TV Liberata updated to version %1$s</string>
+    <string name="update_done_no_notes">Small fixes and improvements.</string>
+    <string name="update_ok">OK</string>
+    <string name="fire_my_apps">My apps</string>
+    <string name="fire_search">Search apps</string>
+    <string name="ss_amazon_photos">Amazon Photos</string>
+    <string name="ss_amazon_disabled">Amazon Photos cannot start: Fire OS’s screensaver app is turned off. Turn it on again from TV Liberata, Sistema, Pulizia avanzata, Restore all (if TV Liberata turned it off), or from a PC: adb shell pm enable com.amazon.ftv.screensaver</string>
+    <string name="ss_start_after">Start after</string>
+    <string name="ss_minutes">%1$d min</string>
+    <string name="ss_minutes_failed">The time could not be changed: authorise the TV’s debugging (Sistema, Pulizia avanzata, Authorise) and try again.</string>
+    <string name="sysapps_only_restore">Apps turned off by TV Liberata: %1$d. Restore all turns them on again.</string>
+    <string name="setup_title">Guided set-up</string>
+    <string name="setup_intro">A few minutes, with the remote only. Everything can be undone with the button below.</string>
+    <string name="setup_name">Name of this device</string>
+    <string name="setup_go">Set up</string>
+    <string name="setup_undo">Undo everything and go back</string>
+    <string name="setup_undo_question">Turn everything TV Liberata changed back to how it was?</string>
+    <string name="setup_later">Later</string>
+    <string name="setup_already">This device is already set up.</string>
+    <string name="setup_adb_checking">Connecting to the TV’s debugging…</string>
+    <string name="setup_adb_consent">On the TV: tick \"Always allow from this computer\", press OK, then press Set up again.</string>
+    <string name="setup_adb_off_fire">ADB debugging is off. Settings, My Fire TV, Developer options, ADB debugging: on. No Developer options? Settings, My Fire TV, About: press 7 times on the device name. Then press Set up again.</string>
+    <string name="setup_adb_off_tv">Network debugging is off. Settings, Device preferences, About: press 7 times on Build; then Developer options, USB debugging and Network debugging: on. Then press Set up again.</string>
+    <string name="setup_step_permissions">Permissions</string>
+    <string name="setup_step_home">TV Liberata as Home</string>
+    <string name="setup_step_cleanup">Base clean-up</string>
+    <string name="setup_cleanup_done">%1$d apps turned off</string>
+    <string name="setup_step_filter">DNS filter</string>
+    <string name="setup_step_updates">Automatic updates</string>
+    <string name="setup_done">Done! TV Liberata is ready.</string>
+    <string name="setup_failed">The set-up stopped: see the step above. Press Set up to try again.</string>
+    <string name="setup_to_home">Go to Home</string>
+    <string name="setup_undo_needs_adb">To undo, the TV’s debugging must be allowed: press Set up first.</string>
+    <string name="setup_undone">Everything is back as before.</string>
+    <string name="setup_undone_partly">Back as before, except: %1$s</string>
+    <string name="syntax_every_minutes">every %1$d min</string>
+    <string name="syntax_every_hours">every %1$d h</string>
+    <string name="syntax_every_day">once a day</string>
+    <string name="syntax_aerial">Aerial Views</string>
+    <string name="syntax_scenes_count">%1$d scenes in turn</string>
+    <!-- %1$s the ticked ANSA sections. -->
+    <string name="syntax_news_on">On · %1$s</string>
+    <string name="syntax_news_off">Off</string>
+    <string name="syntax_all">All</string>
+    <string name="syntax_none">None</string>
+    <!-- %1$d active photos of %2$d. -->
+    <string name="syntax_counter">%1$d active of %2$d · OK switches a photo on or off · hold OK or Menu for more</string>
+    <string name="syntax_wallpaper_empty">No Bing photos yet: they arrive while Home is on screen.</string>
+    <string name="syntax_wallpaper_on_wake">New wallpaper at each power-on</string>
+    <string name="syntax_rotation">Change every</string>
+    <string name="syntax_15m">15 min</string>
+    <string name="syntax_30m">30 min</string>
+    <string name="syntax_1h">1 h</string>
+    <string name="syntax_preview">Preview</string>
+    <string name="syntax_favorite">Favourite ★</string>
+    <string name="syntax_unfavorite">Not a favourite</string>
+    <string name="syntax_delete">Delete</string>
+    <string name="syntax_delete_question">Delete this photo?</string>
+    <string name="syntax_yes">Yes</string>
+    <string name="syntax_no">No</string>
+    <string name="syntax_ok">OK</string>
+    <string name="syntax_off_label">Off</string>
+    <string name="syntax_error">Something went wrong</string>
+    <string name="syntax_not_saved">The choice could not be saved.</string>
+    <string name="syntax_not_deleted">The photo could not be deleted.</string>
+    <string name="syntax_unreadable">This photo cannot be read.</string>
+    <string name="syntax_mode">System screensaver</string>
+    <string name="syntax_mode_scenes">Syntax scenes</string>
+    <string name="syntax_aerial_missing">Aerial Views (not installed)</string>
+    <string name="syntax_try">Try now ▶</string>
+    <string name="syntax_try_failed">This TV cannot start the screensaver from an app.</string>
+    <string name="syntax_scenes">Scenes</string>
+    <string name="syntax_one_scene">At least one scene stays ticked.</string>
+    <string name="syntax_permission_title">Permission needed</string>
+    <string name="syntax_permission">To change the screensaver, grant once over adb: adb shell pm grant com.gathin.tvhome android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="syntax_other_screensaver">The TV uses another screensaver now: pick one of these.</string>
+    <string name="syntax_ticker">News ticker on the screensaver</string>
+    <string name="syntax_on">On</string>
+    <string name="syntax_off">Off</string>
+    <string name="syntax_home_ticker">Show on Home</string>
+    <string name="syntax_idle_clock_on">Clock first: on</string>
+    <string name="syntax_idle_clock_off">Clock first: off</string>
+    <string name="syntax_system">System</string>
+    <string name="syntax_system_summary">%1$s storage free · %2$s RAM free</string>
+    <string name="syntax_speed">Speed</string>
+    <string name="syntax_slow">Slow</string>
+    <string name="syntax_medium">Medium</string>
+    <string name="syntax_fast">Fast</string>
+    <string name="syntax_size">Size</string>
+    <string name="syntax_small">Small</string>
+    <!-- Medium for a size (Italian uses the feminine form here). -->
+    <string name="syntax_medium_f">Medium</string>
+    <string name="syntax_large">Large</string>
+    <string name="syntax_sections">ANSA sections</string>
+    <string name="syntax_one_section">At least one section stays ticked.</string>
+    <string name="syntax_news_loading">Downloading the headlines…</string>
+    <string name="syntax_news_offline">No connection: the preview shows the saved headlines.</string>
+    <string name="syntax_news_empty">The headlines appear here after the first download.</string>
+    <string name="syntax_sources">Sources</string>
+    <string name="syntax_show">Show</string>
+    <!-- %1$s a source name: Unsplash without its API key in launcher/keys.properties. -->
+    <string name="syntax_key_missing">%1$s · key missing</string>
+    <string name="syntax_key_where">Put the key in launcher/keys.properties on the PC, then rebuild</string>
+    <string name="syntax_bing_daily">one photo a day</string>
+    <string name="syntax_per_day">a day</string>
+    <string name="syntax_wikimedia_note">picture of the day, and the days before</string>
+    <string name="syntax_themed_note">with the themes below</string>
+    <string name="syntax_themes">Themes for Unsplash</string>
+    <string name="syntax_one_theme">At least one theme stays ticked.</string>
+    <string name="syntax_theme_sea">Sea</string>
+    <string name="syntax_theme_mountain">Mountains</string>
+    <string name="syntax_theme_city">City</string>
+    <string name="syntax_theme_nature">Nature</string>
+    <string name="syntax_theme_space">Space</string>
+    <string name="syntax_theme_italy">Italy</string>
+    <string name="syntax_theme_season">This season</string>
+    <string name="syntax_archive">Archive</string>
+    <!-- %1$d the most photos the archive keeps; beyond it the oldest non-favourites go. -->
+    <string name="syntax_cap">at most %1$d</string>
+    <string name="syntax_fetch_now">Download now</string>
+    <string name="syntax_fetching">Downloading…</string>
+    <string name="syntax_fetched">%1$d new photos</string>
+    <string name="syntax_fetch_none_ticked">Tick a source besides Bing first (Bing comes with Home on its own).</string>
+    <!-- %1$s a source, %2$d a count. -->
+    <string name="syntax_fetch_added">%1$s: %2$d new photos</string>
+    <string name="syntax_fetch_quota">%1$s: today\'s %2$d already downloaded</string>
+    <string name="syntax_fetch_discarded">%1$s: %2$d photos skipped (portrait, too small or over 8 MB)</string>
+    <string name="syntax_fetch_failed">%1$s: no answer, try again later</string>
+    <string name="syntax_fetch_nothing">%1$s: no new photos right now</string>
+    <string name="syntax_fetched_none">No new photos (today\'s are already here, or the sources did not answer)</string>
+    <!-- Syntax TV, Natale: the Christmas mode. -->
+    <string name="xmas_title">Christmas</string>
+    <string name="xmas_intro">Snow, lights and Christmas scenes. Off by default: switch it on yourself.</string>
+    <string name="xmas_mode">Christmas mode</string>
+    <string name="xmas_on_summary">On</string>
+    <string name="xmas_off_summary">Off · switch it on in December</string>
+    <string name="xmas_home">On Home</string>
+    <string name="xmas_wallpapers">Christmas wallpapers</string>
+    <string name="xmas_wallpapers_title">Christmas wallpapers</string>
+    <string name="xmas_wallpapers_use">Use on Home</string>
+    <string name="xmas_wallpapers_empty">No Christmas photo yet: Sources, Download now.</string>
+    <string name="xmas_sources_title">Christmas sources</string>
+    <string name="xmas_source_note">Christmas photos on the ticked themes</string>
+    <string name="xmas_theme_lights">Lights</string>
+    <string name="xmas_theme_market">Markets</string>
+    <string name="xmas_theme_tree">Trees</string>
+    <string name="xmas_theme_snow">Snowy villages</string>
+    <string name="xmas_snow_home">Snow on Home</string>
+    <string name="xmas_countdown">Countdown</string>
+    <string name="xmas_dock">Lights on the dock</string>
+    <string name="xmas_scenes">Christmas screensaver scenes</string>
+    <string name="xmas_only">Christmas scenes only</string>
+    <string name="xmas_snow_dream">Snow on the screensaver</string>
+    <string name="xmas_status_on">Christmas mode is on. Hold OK on a scene to try it now.</string>
+    <string name="xmas_status_off">Christmas mode is off: Home and the screensaver are as usual.</string>
+    <string name="xmas_eve">It\'s Christmas Eve!</string>
+    <string name="xmas_day">Merry Christmas!</string>
+    <string name="xmas_holidays">Happy holidays</string>
+    <string name="xmas_new_year">Happy New Year</string>
+    <plurals name="xmas_days">
+        <item quantity="one">%1$d day to Christmas</item>
+        <item quantity="other">%1$d days to Christmas</item>
+    </plurals>
+    <string name="xmas_santa_title">Santa Claus</string>
+    <string name="xmas_santa_sub">Christmas Eve journey (simulated)</string>
+    <string name="xmas_santa_where">Position</string>
+    <string name="xmas_santa_pole">North Pole</string>
+    <string name="xmas_santa_presents">Presents delivered</string>
+    <string name="xmas_santa_flying">Flying west with midnight</string>
+    <string name="xmas_santa_done">All delivered: back at the North Pole</string>
+    <plurals name="xmas_santa_days">
+        <item quantity="one">Leaves in %1$d day from the North Pole</item>
+        <item quantity="other">Leaves in %1$d days from the North Pole</item>
+    </plurals>
+    <plurals name="xmas_santa_hours">
+        <item quantity="one">Leaves in %1$d hour</item>
+        <item quantity="other">Leaves in %1$d hours</item>
+    </plurals>
+    <string name="xmas_advent_title">Advent calendar</string>
+    <plurals name="xmas_advent_wait">
+        <item quantity="one">It opens in %1$d day</item>
+        <item quantity="other">It opens in %1$d days</item>
+    </plurals>
+    <!-- %1$d a day of December. -->
+    <string name="xmas_advent_day">%1$d December</string>
+    <string name="xmas_advent_all">All the doors are open</string>
+    <!-- 24 Italian Christmas traditions, one a day from 1 to 24 December; written for this launcher, in Italian. -->
+    <string-array name="xmas_advent_facts" translatable="false">
+        <item>Il calendario dell\'Avvento nasce in Germania nell\'Ottocento: le famiglie contavano i giorni con un segno di gesso sulla porta o accendendo una candela ogni sera.</item>
+        <item>In Italia, per tradizione, l\'albero e il presepe si preparano l\'8 dicembre, giorno dell\'Immacolata, e si tolgono dopo l\'Epifania.</item>
+        <item>Il primo presepe vivente lo volle san Francesco a Greccio, nel Lazio, la notte di Natale del 1223.</item>
+        <item>Il 4 dicembre è santa Barbara, patrona dei vigili del fuoco, dei minatori e di chi lavora con il fuoco.</item>
+        <item>A Napoli, in via San Gregorio Armeno, le botteghe dei pastori sono aperte tutto l\'anno, e nei presepi compaiono anche personaggi di oggi.</item>
+        <item>Il 6 dicembre è san Nicola, le cui reliquie sono custodite a Bari: dalla sua figura generosa nasce quella di Babbo Natale.</item>
+        <item>Il 7 dicembre Milano festeggia il suo patrono, sant\'Ambrogio, con la fiera degli \"Oh bej! Oh bej!\" intorno al Castello Sforzesco.</item>
+        <item>L\'8 dicembre, festa dell\'Immacolata, a Roma il Papa rende omaggio alla statua della Madonna in piazza di Spagna.</item>
+        <item>Il panettone è milanese: secondo la leggenda nacque alla corte di Ludovico il Moro, dal \"pan de Toni\" di un giovane garzone.</item>
+        <item>Il pandoro è veronese: la sua forma a stella a otto punte fu brevettata da Domenico Melegatti nel 1894.</item>
+        <item>Nei giorni delle novene gli zampognari scendono dalle montagne dell\'Appennino a suonare per le strade e davanti ai presepi.</item>
+        <item>Secondo la tradizione il torrone nacque a Cremona nel 1441, per le nozze di Bianca Maria Visconti e Francesco Sforza, con la forma del Torrazzo.</item>
+        <item>Il 13 dicembre è santa Lucia: a Bergamo, Brescia, Verona e in altre città del Nord porta i doni ai bambini, che le lasciano latte e biscotti.</item>
+        <item>A Gubbio, in Umbria, le luci sul monte Ingino disegnano un albero alto più di 650 metri, considerato il più grande del mondo.</item>
+        <item>In Alto Adige i mercatini di Natale di Bolzano, Merano e Bressanone richiamano visitatori da tutta Europa.</item>
+        <item>Dal 16 al 24 dicembre si recita la novena di Natale, nove giorni di preghiera e di canti prima della festa.</item>
+        <item>In Sicilia per Natale si preparano i buccellati, biscotti ripieni di fichi secchi, uvetta, mandorle e scorza d\'arancia.</item>
+        <item>La stella di Natale viene dal Messico, dove si chiama \"flor de Nochebuena\", il fiore della notte di Natale.</item>
+        <item>In piazza San Pietro l\'albero e il presepe arrivano ogni anno in dono da una regione italiana o da un altro paese.</item>
+        <item>A Roma il mercatino di piazza Navona, con giocattoli, dolciumi e calze, dura fino al giorno della Befana.</item>
+        <item>Il 21 dicembre, più o meno, cade il solstizio d\'inverno: la notte più lunga dell\'anno, dopo la quale le giornate tornano ad allungarsi.</item>
+        <item>In molte regioni il cenone della Vigilia è \"di magro\": pesce, baccalà e, a Napoli, il capitone, senza carne.</item>
+        <item>In Puglia e in Calabria per Natale si friggono le cartellate e le zeppole, dolci con miele o vincotto.</item>
+        <item>A mezzanotte della Vigilia si mette il Bambinello nella mangiatoia del presepe; i Re Magi arriveranno il 6 gennaio, con la Befana.</item>
+    </string-array>
+    <!-- Christmas.SCENES order. -->
+    <string-array name="xmas_scene_names">
+        <item>Santa\'s journey</item>
+        <item>Advent</item>
+        <item>Favourites</item>
+    </string-array>
+    <!-- SyntaxSettings.SCENES order. -->
+    <string-array name="syntax_scene_names">
+        <item>Clock</item>
+        <item>ISS live</item>
+        <item>Sun now</item>
+        <item>Earth now</item>
+        <item>Moon now</item>
+        <item>Webb and Hubble</item>
+        <item>Earth live</item>
+        <item>Favourites</item>
+    </string-array>
+    <string name="syntax_profile">Profile</string>
+    <string-array name="syntax_profile_names">
+        <item>Living room</item>
+        <item>Kitchen</item>
+        <item>Hobby room</item>
+        <item>Attic</item>
+    </string-array>
+    <string name="syntax_apps_position">Apps row</string>
+    <string name="kitchen_temp">%d°</string>
+    <string name="kitchen_rain_now">Raining now</string>
+    <string name="kitchen_rain_in">Rain in %d min</string>
+    <string name="kitchen_rain_none">No rain for 2 hours</string>
+    <string name="kitchen_updated">Updated at %s</string>
+    <string name="kitchen_recycling">Recycling</string>
+    <string name="kitchen_recycling_empty">Calendar not set up yet</string>
+    <string name="kitchen_open">Open panel ▶</string>
+    <string name="kitchen_screensaver">Screensaver</string>
+    <string name="syntax_kitchen">Kitchen panel</string>
+    <string-array name="syntax_apps_position_names">
+        <item>Bottom</item>
+        <item>Middle</item>
+        <item>Top</item>
+    </string-array>
+    <string name="kitchen_night_from">Night from %s</string>
+    <string name="kitchen_night_off">Night: off</string>
+    <string name="kitchen_night_to">until %s</string>
+    <string name="recycling_take_in">Take the bins in by %s</string>
+    <string name="recycling_tonight">Tonight put out: %s</string>
+    <string name="recycling_hours">from %1$s to %2$s</string>
+    <string name="recycling_now">Now, by %s</string>
+    <string name="recycling_next">Next: %1$s · %2$s</string>
+    <string name="recycling_this_evening">this evening</string>
+    <string name="recycling_glass">Glass: in the street bells</string>
+    <string-array name="recycling_bins">
+        <item>Paper</item>
+        <item>Organic</item>
+        <item>Plastic and metals</item>
+        <item>General waste</item>
+        <item>Glass</item>
+    </string-array>
+    <string-array name="recycling_days">
+        <item>Monday evening</item>
+        <item>Tuesday evening</item>
+        <item>Wednesday evening</item>
+        <item>Thursday evening</item>
+        <item>Friday evening</item>
+        <item>Saturday evening</item>
+        <item>Sunday evening</item>
+    </string-array>
+    <string-array name="recycling_day_names">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+    </string-array>
+    <string name="recycling_calendar">Calendar ▶</string>
+    <string name="recycling_title">Recycling</string>
+    <string name="recycling_intro">The evening each bin goes out. OK switches a bin on or off.</string>
+    <string name="recycling_show">Show the box</string>
+    <string name="recycling_from">Put out from %s</string>
+    <string name="recycling_to">until %s</string>
+    <string name="recycling_by">Take in by %s</string>
+    <string name="margin_title">Screen margins</string>
+    <string name="margin_chip">Screen margins %d%%</string>
+    <string name="margin_value">%d%%</string>
+    <string name="margin_help">Left and right change the margin until the whole frame shows on this TV. OK saves, Back leaves it as it was.</string>
+    <string name="hidden_title">Hidden apps</string>
+    <string name="hidden_intro">Hidden apps stay installed but are not in Home\'s app row. OK hides or shows one.</string>
+    <string name="hidden_chip">✓ Hidden · %s</string>
+    <string name="hidden_failed">The choice could not be saved.</string>
+    <string name="power_off">Power off all</string>
+    <string name="power_confirm_fire">Turn off the TV and the Fire TV?</string>
+    <string name="power_confirm_tv">Turn off the TV?</string>
+    <string name="power_yes">Yes</string>
+    <string name="power_no">No</string>
+    <string name="power_unavailable">The launcher\'s accessibility service is off (or Android is older than 9): turn it on in Settings, Accessibility, and try again.</string>
+    <string name="share_title">Wallpapers in the house</string>
+    <string name="share_mine">Share my wallpapers</string>
+    <string name="share_from">Take from: %1$s</string>
+    <string name="share_from_none">nobody</string>
+    <string name="share_searching">Looking for the TVs that share…</string>
+    <string name="share_none_found">No TV is sharing its wallpapers (is it on, with "Share my wallpapers"?).</string>
+    <string name="share_pick">Take the wallpapers from</string>
+    <string name="share_pick_note">This TV then downloads nothing itself: it copies that TV\'s photos, the ones on, the favourites and the deleted ones, Christmas included.</string>
+    <string name="share_copied">Copied from %1$s: %2$d new photos</string>
+    <string name="share_failed">%1$s not reachable now (off or in standby?): tried again later</string>
+</resources>

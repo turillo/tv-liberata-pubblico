@@ -1,0 +1,65 @@
+<?xml version="1.0"?><WMS_Capabilities><Capability><Layer><Layer queryable="1" opaque="0">
+        <Name>frp</Name>
+        <Title>Fire Radiative Power (FRP)</Title>
+        <Abstract>The Fire Radiative Power product (FRP, in megawatts) provides information on the measured radiant heat output of detected fires. It has been demonstrated in small-scale experimental fires that the amount of radiant heat energy liberated per unit time (the Fire Radiative Power) is related to the rate at which fuel is being consumed. This is a direct result of the combustion process, whereby carbon-based fuel is oxidised to CO2 with the release of a certain heat yield. Therefore, measuring this FRP and integrating it over the lifetime of the fire provides an estimate of the total Fire Radiative Energy (FRE), which for wildfires should be proportional to the total mass of fuel biomass combusted.&#13;
+&#13;
+Geostationary observations allow high temporal frequency FRP measurements, and thus a much-improved ability to estimate FRE via temporal integration when compared to the far less-frequent observations made from systems in low-Earth orbit. The FRP product is derived every 10 min at the High Resolution of the MTG FCI sensor (1km). The product includes for each processed pixel:&#13;
+&#13;
+FRP (MW)&#13;
+Corresponding uncertainty in the FRP retrieval based on the variability of the background radiance estimation&#13;
+A confidence measure (representing the level of confidence that the observation is indeed a true fire)&#13;
+Applications: The FRP product is intended to support emerging operational atmosphere, climate and climatewildfire management-related applications, such as air quality forecasting, carbon cycle assessment and modelling, and fire activity models.</Abstract>
+        <KeywordList>
+          <Keyword>features</Keyword>
+          <Keyword>mtg_fd_frp_mosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-180.0</westBoundLongitude>
+          <eastBoundLongitude>180.0</eastBoundLongitude>
+          <southBoundLatitude>-90.0</southBoundLatitude>
+          <northBoundLatitude>90.0</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-180.0" miny="-90.0" maxx="180.0" maxy="90.0"/>
+        <BoundingBox CRS="EPSG:4326" minx="-90.0" miny="-180.0" maxx="90.0" maxy="180.0"/>
+        <Dimension name="time" default="2026-11-04T16:10:00Z" units="ISO8601" nearestValue="1">2026-07-23T00:00:00.000Z/2026-11-04T17:00:00.000Z/PT10M</Dimension>
+        <Style>
+          <Name>frp_default</Name>
+          <Title>sentinel_slstr_frp</Title>
+          <Abstract>sentinel_slstr_frp</Abstract>
+          <LegendURL width="640" height="80">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://view.eumetsat.int/geoserver/mtg_fd/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=640&amp;height=80&amp;layer=frp"/>
+          </LegendURL>
+        </Style>
+      </Layer><Layer queryable="1" opaque="0">
+        <Name>rgb_geocolour</Name>
+        <Title>Geo Colour RGB - MTG-I - 0 degree</Title>
+        <Abstract>Geo Colour RGB - MTG - 0 degree</Abstract>
+        <KeywordList>
+          <Keyword>mtg_fd_rgb_geocolour</Keyword>
+          <Keyword>WCS</Keyword>
+          <Keyword>ImageMosaic</Keyword>
+        </KeywordList>
+        <CRS>EPSG:4326</CRS>
+        <CRS>CRS:84</CRS>
+        <EX_GeographicBoundingBox>
+          <westBoundLongitude>-81.2777938842773</westBoundLongitude>
+          <eastBoundLongitude>81.2807235717773</eastBoundLongitude>
+          <southBoundLatitude>-77.3506393432617</southBoundLatitude>
+          <northBoundLatitude>77.3563919067383</northBoundLatitude>
+        </EX_GeographicBoundingBox>
+        <BoundingBox CRS="CRS:84" minx="-81.2777938842773" miny="-77.3506393432617" maxx="81.2807235717773" maxy="77.3563919067383"/>
+        <BoundingBox CRS="EPSG:4326" minx="-77.3506393432617" miny="-81.2777938842773" maxx="77.3563919067383" maxy="81.2807235717773"/>
+        <Dimension name="time" default="2026-11-04T17:00:00Z" units="ISO8601" nearestValue="1">2024-09-23T00:00:00.000Z/2026-11-04T17:00:00.000Z/PT10M</Dimension>
+        <Style>
+          <Name>raster</Name>
+          <Title>A simple default style</Title>
+          <Abstract>A sample style for rasters</Abstract>
+          <LegendURL width="20" height="20">
+            <Format>image/png</Format>
+            <OnlineResource xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="simple" xlink:href="https://view.eumetsat.int/geoserver/mtg_fd/ows?service=WMS&amp;version=1.3.0&amp;request=GetLegendGraphic&amp;format=image%2Fpng&amp;width=20&amp;height=20&amp;layer=rgb_geocolour"/>
+          </LegendURL>
+        </Style>
+      </Layer></Layer></Capability></WMS_Capabilities>

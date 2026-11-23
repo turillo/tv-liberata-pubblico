@@ -1,0 +1,7 @@
+# TV Liberata DNS filter: Fire OS system updates (a switch of its own, on by default).
+# From dumbtv's extra-hosts.txt (https://github.com/humblemuzzu/dumbtv, MIT): nothing can check for or download an update.
+softwareupdates.amazon.com
+dubri19p4y5b.cloudfront.net
+distro-download.amazon.com
+amzdigital-a.akamaihd.net
+amzdigitaldownloads.edgesuite.net

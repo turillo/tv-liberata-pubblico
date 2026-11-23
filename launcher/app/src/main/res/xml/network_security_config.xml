@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Everything stays HTTPS-only except NASA SVS (the Moon screensaver scene's Dial-a-Moon): that server accepts only
+     TLS 1.3, which Android 9 lacks, so the Moon's public picture and numbers come over plain HTTP from that one host. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="false">svs.gsfc.nasa.gov</domain>
+    </domain-config>
+</network-security-config>

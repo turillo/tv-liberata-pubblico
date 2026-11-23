@@ -1,0 +1,43 @@
+# TV Liberata DNS filter: base list (Amazon telemetry, registration, analytics, advertising).
+# Derived from dumbtv's data/blocklists/extra-hosts.txt (https://github.com/humblemuzzu/dumbtv, MIT,
+# Copyright (c) 2026 dumbtv contributors). A domain blocks all its subdomains.
+# Kept OUT on purpose (the TV needs them): launcher content (atv-ext, ktpx, a4k), artwork (m.media-amazon.com,
+# ecx.images-amazon.com), the Appstore, YouTube, Prime Video's CDNs and push channel
+# (device-messaging-na.amazon.com), Alexa's voice servers.
+
+# device telemetry and registration
+arcus-uswest.amazon.com
+arcus.amazon.com
+device-metrics-us.amazon.com
+device-metrics-us-2.amazon.com
+device-metrics-us-ud.amazon.com
+det-ta-g7g.amazon.com
+det-ta-g7g.integ.amazon.com
+unagi-zaz.amazon.com
+unagi-na.amazon.com
+metrics.media-amazon.com
+
+# analytics pipeline
+aan.amazon.com
+fls-na.amazon.com
+todo-ta-g7g.amazon.com
+pindorama.amazon.com
+latinum.amazon.com
+dcape-na.amazon.com
+ceviche.amazon.com
+minerva.amazon.com
+
+# Amazon advertising: home promo rows, Appstore sponsored tiles, ad attribution
+aax.amazon-adsystem.com
+aax-us.amazon-adsystem.com
+aax-us-east.amazon-adsystem.com
+aax-us-west.amazon-adsystem.com
+aax-eu.amazon-adsystem.com
+aax-fe.amazon-adsystem.com
+amazon-adsystem.com
+mads.amazon.com
+
+# basic tracking seen on TVs and set-top boxes
+app-measurement.com
+crashlytics.com
+firebase-settings.crashlytics.com

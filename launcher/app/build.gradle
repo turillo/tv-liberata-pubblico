@@ -1,0 +1,92 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.gathin.tvhome'
+    compileSdk 34
+
+    defaultConfig {
+        // Opt-in identity for firmware with a package-name HOME allowlist; see docs/devices/xiaomi-mitv-aetp0-dofus.md.
+        // TV Liberata: one app for every device since 1.0 (the package of the former "liberata" edition, so its
+        // installs keep updating). The owner's own data lives in each device's configuration (DeviceConfig).
+        applicationId 'com.gathin.tvhome.liberata'
+        minSdk 26
+        targetSdk 34
+        // Numbered versions; the changes are in CHANGELOG.md (also the text of each GitHub Release).
+        versionCode 100
+        versionName '1.0'
+        // GitHub Releases checked by the in-app updater (owner/repo), and its production pointer produzione.json.
+        buildConfigField 'String', 'UPDATE_REPO', '"turillo/tv-liberata-pubblico"'
+        // No API key is built in: Unsplash's (off in 1.0) comes from the device configuration (DeviceConfig).
+        // The commit the APK was built from, for Syntax TV's Sistema page; "?" without git.
+        def commit = '?'
+        try {
+            def out = new ByteArrayOutputStream()
+            def result = project.exec {
+                commandLine 'git', 'rev-parse', '--short', 'HEAD'
+                workingDir rootProject.rootDir
+                standardOutput = out
+                errorOutput = new ByteArrayOutputStream()
+                ignoreExitValue = true
+            }
+            if (result.exitValue == 0 && out.toString().trim()) commit = out.toString().trim()
+        } catch (Exception ignored) {
+        }
+        buildConfigField 'String', 'GIT_COMMIT', "\"${commit}\""
+    }
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    // The release key lives outside the repository: launcher/local.properties (git ignores it) has
+    // tvliberata.signing=<path to a .properties file with storeFile, storePassword, keyAlias, keyPassword>.
+    // Without it the APK is signed with the debug key and will not update an installed TV Liberata.
+    def localProps = new Properties()
+    def localFile = rootProject.file('local.properties')
+    if (localFile.isFile()) localFile.withInputStream { localProps.load(it) }
+    def signingPath = localProps.getProperty('tvliberata.signing')
+    signingConfigs {
+        if (signingPath && file(signingPath).isFile()) {
+            def sp = new Properties()
+            file(signingPath).withInputStream { sp.load(it) }
+            tvliberata {
+                storeFile file(sp.getProperty('storeFile'))
+                storePassword sp.getProperty('storePassword')
+                keyAlias sp.getProperty('keyAlias')
+                keyPassword sp.getProperty('keyPassword')
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            // R8 strips and optimises the code (AndroidX included): smaller APK, faster start on a slow TV CPU.
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.findByName('tvliberata') ?: signingConfigs.debug
+        }
+    }
+
+    packagingOptions {
+        resources {
+            // Kotlin metadata pulled in by AndroidX's dependencies. This launcher is plain Java and never reads it;
+            // leaving it out saves about 14 KB of every install.
+            excludes += ['kotlin/**', 'META-INF/*.version', 'META-INF/*.kotlin_module', 'DebugProbesKt.bin']
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation 'androidx.dynamicanimation:dynamicanimation:1.0.0'
+    // Test only (never in the APK): plain JVM tests for the module card validators, src/test.
+    testImplementation 'junit:junit:4.13.2'
+}

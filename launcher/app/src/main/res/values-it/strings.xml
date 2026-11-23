@@ -1,0 +1,591 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="inputs">Ingressi</string>
+    <string name="settings">Impostazioni</string>
+    <string name="choose_input">Ingressi</string>
+    <string name="connected">Collegato</string>
+    <string name="standby">Standby</string>
+    <string name="not_connected">Nessun dispositivo</string>
+    <string name="live_tv">TV in diretta</string>
+    <string name="no_inputs">Nessun ingresso trovato</string>
+    <string name="good_morning">Buongiorno</string>
+    <string name="good_afternoon">Buon pomeriggio</string>
+    <string name="good_evening">Buonasera</string>
+    <string name="good_night">Buonanotte</string>
+    <string name="offline">Offline</string>
+    <string name="not_available">Non disponibile su questa TV</string>
+    <string name="cant_open">Impossibile aprire %1$s</string>
+    <string name="stats_cpu">CPU %1$d%%</string>
+    <string name="stats_memory">Memoria: %1$d / %2$d MB</string>
+    <string name="stats_storage">Spazio: %1$s liberi</string>
+    <string name="dream_name">Orologio</string>
+    <string name="vpn_off">VPN disattivata</string>
+    <string name="home_settings">Scegli la home predefinita</string>
+    <string name="home_settings_help">Seleziona la home originale per smettere di usare CleanYourTV come Home, oppure CleanYourTV per tornare indietro. Il launcher originale deve essere attivo e la TV deve offrire la scelta della home; se era disattivato, usa prima lo script di ripristino.</string>
+    <string name="launcher_settings">Impostazioni del launcher</string>
+    <string name="columns_label">App per riga</string>
+    <string name="dock_opacity_label">Opacità della barra del dock</string>
+    <string name="rows_below_dock_label">Righe sotto il dock</string>
+    <string name="wallpaper_label">Sfondo</string>
+    <string name="wallpaper_state">Sfondo: %1$s</string>
+    <string name="wallpaper_none">Nessuno</string>
+    <string name="wallpaper_applied">Sfondo cambiato</string>
+    <string name="wallpaper_theme_default">Predefinito del tema</string>
+    <string name="animations_state">Animazioni: %1$s</string>
+    <string name="advanced_effects">Effetti avanzati</string>
+    <string name="advanced_effects_state">Effetti avanzati: %1$s</string>
+    <string name="advanced_effects_warning">Aggiunge riquadro sollevato, zoom dell\'icona e transizioni di colore fluide. Può aumentare l\'uso di memoria; la differenza dipende dalla TV.</string>
+    <string name="follow_theme">Segui il tema (azzera le scelte fatte sulla TV)</string>
+    <string name="follow_theme_hint">Usa il tema corrente o le impostazioni predefinite di layout e animazioni. Applicare o reimpostare un tema cancella anche le scelte fatte sulla TV.</string>
+    <string name="tv_settings">Impostazioni di sistema della TV</string>
+    <string name="quick_picture">Schermo</string>
+    <string name="quick_network">Rete</string>
+    <string name="quick_apps">App</string>
+    <string name="quick_apps_hint">Riattiva</string>
+    <string name="on">Sì</string>
+    <string name="off">No</string>
+    <string name="enable">Attiva</string>
+    <string name="input_key_service_description">Apre il selettore degli ingressi quando si preme il tasto Input del telecomando.</string>
+    <string name="home_key_name">Tasto Home</string>
+    <string name="fire_home_name">Home Fire TV</string>
+    <string name="fire_home_description">Mostra questo launcher ogni volta che Fire TV apre la Home di Amazon.</string>
+    <string name="home_key_description">Fa aprire questo launcher dal tasto Home del telecomando.</string>
+    <string name="card_prompt_title">Nuova scheda da %1$s</string>
+    <string name="card_prompt_body">%1$s può mostrare una scheda nella schermata Home. Se la lasci nascosta, il riquadro normale dell\'app resta com\'è.</string>
+    <string name="card_prompt_names">La scheda si chiama \'%1$s\'. L\'app è \'%2$s\'.</string>
+    <string name="card_prompt_resigned">%1$s è stata aggiornata con una chiave di firma diversa, quindi la tua risposta precedente non vale più. Decidi di nuovo per la sua scheda.</string>
+    <string name="card_prompt_relabelled">%1$s ha cambiato il nome della sua scheda dopo la tua scelta. Decidi di nuovo.</string>
+    <string name="card_prompt_hint">Puoi cambiare idea dopo: tieni premuto OK su Impostazioni, poi scegli Schede modulo.</string>
+    <string name="card_prompt_identity">%1$s, chiave %2$s</string>
+    <string name="card_keep_hidden">Tieni nascosta</string>
+    <string name="card_show">Mostra scheda</string>
+    <string name="card_not_saved">Impossibile salvare la scelta</string>
+    <string name="module_cards">Schede modulo</string>
+    <string name="no_module_cards">Nessuna scheda modulo installata</string>
+    <string name="card_app_name">App: %1$s</string>
+    <string name="card_state_shown">Visibile</string>
+    <string name="card_state_over_limit">Visibile, oltre il limite di 8</string>
+    <string name="card_state_hidden">Nascosta</string>
+    <string name="card_state_new">Nuova</string>
+    <string name="card_state_new_key">Nuova chiave</string>
+    <string name="card_state_new_label">Nuovo nome</string>
+    <string name="dock_edit">Modifica dock</string>
+    <string name="dock_edit_hint">Scegli il posto del dock da cambiare e premi OK. Indietro per finire.</string>
+    <string name="dock_edit_pick_app">Ora scegli l\'app da mettere lì e premi OK. Indietro per scegliere un altro posto.</string>
+    <string name="tile_add_to_dock">Aggiungi al dock</string>
+    <string name="tile_replace_in_dock">Sostituisci con un\'altra app</string>
+    <string name="dock_edit_pick_place">Scegli il posto del dock per questa app e premi OK. Indietro per annullare.</string>
+    <string name="reorder">Riordina le app</string>
+    <string name="tile_move">Sposta</string>
+    <string name="reorder_hint">OK prende un\'app, le frecce la spostano, Indietro la posiziona. Ancora Indietro per finire.</string>
+    <string name="reorder_not_saved">Impossibile salvare il nuovo ordine</string>
+    <string name="app_library">Libreria app</string>
+    <string name="library_empty">Nessuna app avviabile trovata</string>
+    <string name="library_on_home">In Home</string>
+    <string name="library_add_home">Aggiungi a Home</string>
+    <string name="library_remove_shortcut">Rimuovi da Home</string>
+    <string name="library_open">Apri</string>
+    <string name="library_app_info">Info app</string>
+    <string name="library_save_failed">Impossibile salvare il collegamento</string>
+    <string name="library_recent">Nuova · Aggiungi a Home</string>
+    <string name="library_hint_add">Premi per aggiungere a Home · Tieni premuto per le opzioni</string>
+    <string name="library_hint_open">Premi per aprire · Tieni premuto per le opzioni</string>
+    <plurals name="library_app_count">
+        <item quantity="one">%1$d app</item>
+        <item quantity="other">%1$d app</item>
+    </plurals>
+    <string name="race_kicker">Gara %1$d · %2$s · %3$s</string>
+    <string name="race_kicker_no_place">Gara %1$d · %2$s</string>
+    <string name="race_next">%1$s tra %2$s</string>
+    <string name="race_lights_out">Via tra %1$s</string>
+    <string name="race_live">%1$s · in diretta</string>
+    <string name="race_finished">Bandiera a scacchi</string>
+    <string name="last_opened">Ultima apertura: %1$s</string>
+    <string name="iss_subtitle">Stazione Spaziale Internazionale</string>
+    <string name="iss_position">Posizione</string>
+    <string name="iss_altitude">Quota</string>
+    <string name="iss_speed">Velocità</string>
+    <string name="iss_distance">Distanza</string>
+    <string name="iss_km">%1$s km</string>
+    <string name="iss_kmh">%1$s km/h</string>
+    <string name="iss_north">N</string>
+    <string name="iss_south">S</string>
+    <string name="iss_east">E</string>
+    <string name="iss_west">O</string>
+    <string name="iss_sunlit">Illuminata dal Sole</string>
+    <string name="iss_eclipsed">Nell\'ombra della Terra</string>
+    <string name="iss_waiting">In attesa dei dati orbitali</string>
+    <string name="iss_stale">Dati orbitali di %1$d giorni fa</string>
+    <string name="weather_loading">Meteo…</string>
+    <string name="weather_line">%1$d° %2$s · min %3$d° · max %4$d°</string>
+    <string name="weather_updated">aggiornato alle %1$s</string>
+    <string-array name="weather_conditions">
+        <item>Sereno</item>
+        <item>Prevalentemente sereno</item>
+        <item>Parzialmente nuvoloso</item>
+        <item>Coperto</item>
+        <item>Nebbia</item>
+        <item>Pioggerella</item>
+        <item>Pioggerella gelata</item>
+        <item>Pioggia debole</item>
+        <item>Pioggia</item>
+        <item>Pioggia forte</item>
+        <item>Pioggia gelata</item>
+        <item>Neve debole</item>
+        <item>Neve</item>
+        <item>Neve forte</item>
+        <item>Nevischio</item>
+        <item>Rovesci</item>
+        <item>Rovesci forti</item>
+        <item>Rovesci di neve</item>
+        <item>Temporale</item>
+        <item>Temporale con grandine</item>
+    </string-array>
+    <string name="sun_title">Sole</string>
+    <string name="sun_published">Pubblicata</string>
+    <string name="sun_flare">Ultimo brillamento</string>
+    <string name="sun_flare_value">%1$s alle %2$s</string>
+    <string name="sun_loading">Scarico le immagini del Sole…</string>
+    <string name="sun_unavailable">Immagini del Sole non disponibili</string>
+    <string-array name="sun_channel_names">
+        <item>Corona · 193 Å</item>
+        <item>Cromosfera · 304 Å</item>
+        <item>Anelli coronali · 171 Å</item>
+        <item>Superficie · luce visibile</item>
+    </string-array>
+    <string-array name="sun_channel_details">
+        <item>Circa 1,2 milioni °C</item>
+        <item>Circa 50.000 °C</item>
+        <item>Circa 600.000 °C</item>
+        <item>Circa 5.500 °C, con le macchie solari</item>
+    </string-array>
+    <string name="earth_title">Terra</string>
+    <string name="earth_distance">Distanza dalla Terra</string>
+    <string name="earth_distance_value">%1$s milioni di km</string>
+    <string name="earth_photo">Foto</string>
+    <string name="earth_photo_value">%1$d di %2$d</string>
+    <string name="earth_natural">colori reali</string>
+    <string name="earth_enhanced">colori accentuati</string>
+    <string name="earth_loading">Scarico le foto della Terra…</string>
+    <string name="earth_unavailable">Foto della Terra non disponibili</string>
+    <string-array name="earth_regions">
+        <item>Sopra l\'Atlantico</item>
+        <item>Sopra il Pacifico</item>
+        <item>Sopra l\'Oceano Indiano</item>
+        <item>Sopra il Mediterraneo</item>
+        <item>Sopra l\'Artico</item>
+        <item>Sopra l\'Oceano Antartico</item>
+        <item>Sopra l\'Europa</item>
+        <item>Sopra l\'Africa</item>
+        <item>Sopra l\'Asia</item>
+        <item>Sopra l\'Oceania</item>
+        <item>Sopra il Nord America</item>
+        <item>Sopra il Sud America</item>
+        <item>Sopra l\'Antartide</item>
+    </string-array>
+    <string name="moon_title">Luna</string>
+    <string name="moon_detail">%1$d%% illuminata · %2$s giorni</string>
+    <string name="moon_distance">Distanza</string>
+    <string name="moon_km">%1$s km</string>
+    <string name="moon_next_new">Luna nuova</string>
+    <string name="moon_next_full">Luna piena</string>
+    <string name="moon_rise">Sorge</string>
+    <string name="moon_set">Tramonta</string>
+    <string name="moon_loading">Scarico l\'immagine della Luna…</string>
+    <string name="moon_unavailable">Immagine della Luna non disponibile</string>
+    <string-array name="moon_phases">
+        <item>Luna nuova</item>
+        <item>Luna crescente</item>
+        <item>Primo quarto</item>
+        <item>Gibbosa crescente</item>
+        <item>Luna piena</item>
+        <item>Gibbosa calante</item>
+        <item>Ultimo quarto</item>
+        <item>Luna calante</item>
+    </string-array>
+    <string name="space_credit">Crediti: %1$s</string>
+    <string name="space_loading">Scarico le immagini di Webb e Hubble…</string>
+    <string name="space_unavailable">Immagini di Webb e Hubble non disponibili</string>
+    <string name="live_title">Terra in diretta</string>
+    <string name="live_source">Meteosat-12 · © EUMETSAT %1$d</string>
+    <string name="live_image">Immagine delle %1$s</string>
+    <string name="live_natural">Colori naturali</string>
+    <string name="live_infrared">Infrarosso (notte)</string>
+    <string name="live_view">Vista</string>
+    <string name="live_disk">Disco intero</string>
+    <string name="live_europe">Europa e Mediterraneo</string>
+    <string name="live_lapse">Ultime 6 ore</string>
+    <string name="live_loading">Scarico le immagini Meteosat…</string>
+    <string name="live_unavailable">Immagini Meteosat non disponibili</string>
+    <string name="news_label">ANSA · ULTIM\'ORA</string>
+    <string name="news_label_mixed">ULTIM\'ORA</string>
+    <string name="syntax_intro">Sfondo, screensaver e sistema, da cambiare qui.</string>
+    <string name="syntax_wallpaper">Wallpaper</string>
+    <string name="syntax_screensaver">Screensaver</string>
+    <string name="syntax_news">Feed notizie</string>
+    <string name="syntax_wallpaper_summary">%1$d attive su %2$d · %3$s</string>
+    <string name="syntax_wallpaper_none">Ancora nessuna foto Bing</string>
+    <string name="favorites_empty">Nessuna foto nell\'archivio</string>
+    <string name="favorites_none">Nessuna preferita: mostro le foto attive</string>
+    <string name="favorites_none_xmas">Nessuna preferita natalizia: mostro le foto natalizie attive</string>
+    <string name="favorites_settings">Scena Preferite</string>
+    <string name="favorites_seconds">%1$d s</string>
+    <string name="favorites_panel">Pannello foto</string>
+    <string name="place_title">Posizione meteo</string>
+    <string name="place_intro">Automatica: trovata dalla connessione internet. Oppure cerca la tua città.</string>
+    <string name="place_auto">Automatica</string>
+    <string name="place_city">Città</string>
+    <string name="place_hint">Scrivi una città</string>
+    <string name="place_search">Cerca</string>
+    <string name="place_searching">Cerco…</string>
+    <string name="place_searching_auto">Cerco la posizione dalla connessione…</string>
+    <string name="place_none">Nessuna città trovata</string>
+    <string name="place_unknown">Posizione non ancora nota: niente meteo</string>
+    <string name="place_chosen">Scelta: %1$s</string>
+    <string name="place_from_device">Dalla configurazione del dispositivo: %1$s</string>
+    <string name="place_from_connection">Automatica: %1$s</string>
+    <string name="update_check">Cerca aggiornamenti ora</string>
+    <string name="update_checking">Controllo…</string>
+    <string name="update_none">Hai già l’ultima versione (%1$s)</string>
+    <string name="update_failed">Controllo aggiornamenti non riuscito</string>
+    <string name="update_available_title">Nuova versione %1$s</string>
+    <string name="update_available">È disponibile TV Liberata %1$s (hai la %2$s). La installo adesso?</string>
+    <string name="update_install">Installa</string>
+    <string name="update_later">Più tardi</string>
+    <string name="update_downloading">Scarico l’aggiornamento…</string>
+    <string name="update_bad_signature">L’aggiornamento non è firmato da TV Liberata: non installato</string>
+    <string name="update_permission">Consenti a TV Liberata di installare app: Impostazioni, La mia Fire TV, Opzioni sviluppatore, Installa app sconosciute</string>
+    <string name="filter_title">Filtro DNS</string>
+    <string name="filter_intro">Blocca telemetria, pubblicità e aggiornamenti di sistema per tutta la TV, con una VPN locale che porta solo il DNS.</string>
+    <string name="filter_on">Filtro: acceso</string>
+    <string name="filter_off">Filtro: spento</string>
+    <string name="filter_ota">Blocca aggiornamenti Fire OS</string>
+    <string name="filter_reset">Azzera conteggi</string>
+    <string name="filter_starting">in avvio…</string>
+    <string name="filter_counts">%1$d bloccate su %2$d richieste</string>
+    <string name="filter_since">dal %1$s</string>
+    <string name="filter_lists_updated">liste aggiornate il %1$s</string>
+    <string name="filter_lists_bundled">liste incluse</string>
+    <string name="filter_top">Più bloccati:</string>
+    <string name="filter_recent">Bloccati di recente (OK: lascia passare)</string>
+    <string name="filter_exceptions">Eccezioni (OK: blocca di nuovo)</string>
+    <string name="filter_none_recent">Ancora niente di bloccato</string>
+    <string name="filter_none_exceptions">Nessuna eccezione</string>
+    <string name="filter_add_hint">Dominio da lasciar passare</string>
+    <string name="filter_add">Aggiungi</string>
+    <string name="filter_allow_question">Lasciar passare questo dominio?</string>
+    <string name="filter_block_question">Bloccare di nuovo questo dominio?</string>
+    <string name="filter_no_consent">Senza il permesso VPN il filtro non parte. Consentilo quando la TV lo chiede.</string>
+    <string name="tile_uninstall">Disinstalla</string>
+    <string name="catalog_title">Catalogo</string>
+    <string name="catalog_intro">App dalla loro fonte ufficiale, controllate prima di installarle.</string>
+    <string name="catalog_loading">Carico il catalogo…</string>
+    <string name="catalog_empty">Il catalogo è vuoto</string>
+    <string name="catalog_install">Installa %1$s %2$s</string>
+    <string name="catalog_update">Aggiorna %1$s alla %2$s</string>
+    <string name="catalog_installed">%1$s: installata</string>
+    <string name="catalog_allow">Consenti a TV Liberata di installare app, poi torna qui</string>
+    <string name="catalog_downloading">Scarico %1$s…</string>
+    <string name="catalog_confirm">Conferma l’installazione di %1$s sulla TV</string>
+    <string name="catalog_failed">%1$s non installata: %2$s</string>
+    <string name="sysapps_title">Pulizia avanzata</string>
+    <string name="sysapps_intro">Disattiva e riattiva le app di sistema tramite il debug della TV stessa. Le app protette non compaiono; non si disinstalla nulla.</string>
+    <string name="sysapps_authorize">Autorizza</string>
+    <string name="sysapps_restore_all">Ripristina tutto</string>
+    <string name="sysapps_checking">Controllo il debug della TV…</string>
+    <string name="sysapps_ready">Pronto: OK su un’app per disattivarla o riattivarla</string>
+    <string name="sysapps_not_authorized">Non ancora autorizzato: premi Autorizza e rispondi "Consenti sempre" sulla TV</string>
+    <string name="sysapps_confirm_on_tv">Sulla TV: spunta "Consenti sempre da questo computer" e premi OK</string>
+    <string name="adb_blocked">Questa TV non permette alle app di usare il suo debug ADB: per questi passi serve un PC (adb in rete).</string>
+    <string name="sysapps_no_adb">Il debug di rete è spento: Impostazioni, Opzioni sviluppatore, Debug ADB</string>
+    <string name="sysapps_disable_q">Disattivare %1$s? Si riattiva da qui quando vuoi.</string>
+    <string name="sysapps_enable_q">Riattivare %1$s?</string>
+    <string name="sysapps_working">Lavoro…</string>
+    <string name="sysapps_done">Fatto</string>
+    <string name="sysapps_failed">Non riuscito: %1$s</string>
+    <string name="sysapps_nothing_to_restore">Niente disattivato da qui</string>
+    <string name="sysapps_restore_q">Riattivare le %1$d app disattivate da qui?</string>
+    <string name="sysapps_restored">%1$d su %2$d riattivate</string>
+    <string name="update_done_title">TV Liberata è stata aggiornata alla versione %1$s</string>
+    <string name="update_done_no_notes">Piccole correzioni e miglioramenti.</string>
+    <string name="update_ok">OK</string>
+    <string name="fire_my_apps">Le mie app</string>
+    <string name="fire_search">Cerca app</string>
+    <string name="ss_amazon_photos">Amazon Foto</string>
+    <string name="ss_amazon_disabled">Amazon Foto non può partire: l’app screensaver di Fire OS è disattivata. Riattivala da TV Liberata, Sistema, Pulizia avanzata, Ripristina tutto (se l’ha disattivata TV Liberata), oppure dal PC: adb shell pm enable com.amazon.ftv.screensaver</string>
+    <string name="ss_start_after">Avvia dopo</string>
+    <string name="ss_minutes">%1$d min</string>
+    <string name="ss_minutes_failed">Non riesco a cambiare il tempo: autorizza il debug della TV (Sistema, Pulizia avanzata, Autorizza) e riprova.</string>
+    <string name="sysapps_only_restore">App disattivate da TV Liberata: %1$d. Ripristina tutto le riattiva.</string>
+    <string name="setup_title">Configurazione guidata</string>
+    <string name="setup_intro">Pochi minuti, solo col telecomando. Tutto si può annullare col pulsante qui sotto.</string>
+    <string name="setup_name">Nome di questo dispositivo</string>
+    <string name="setup_go">Configura</string>
+    <string name="setup_undo">Annulla tutto e torna come prima</string>
+    <string name="setup_undo_question">Rimettere tutto quello che TV Liberata ha cambiato com’era prima?</string>
+    <string name="setup_later">Più tardi</string>
+    <string name="setup_already">Questo dispositivo è già configurato.</string>
+    <string name="setup_adb_checking">Mi collego al debug della TV…</string>
+    <string name="setup_adb_consent">Sulla TV: spunta \"Consenti sempre da questo computer\", premi OK, poi premi di nuovo Configura.</string>
+    <string name="setup_adb_off_fire">Il debug ADB è spento. Impostazioni, La mia Fire TV, Opzioni sviluppatore, Debug ADB: attivo. Non vedi Opzioni sviluppatore? Impostazioni, La mia Fire TV, Informazioni: premi 7 volte sul nome del dispositivo. Poi premi di nuovo Configura.</string>
+    <string name="setup_adb_off_tv">Il debug di rete è spento. Impostazioni, Preferenze dispositivo, Info: premi 7 volte su Build; poi Opzioni sviluppatore, Debug USB e Debug di rete: attivi. Poi premi di nuovo Configura.</string>
+    <string name="setup_step_permissions">Permessi</string>
+    <string name="setup_step_home">TV Liberata come Home</string>
+    <string name="setup_step_cleanup">Pulizia di base</string>
+    <string name="setup_cleanup_done">%1$d app disattivate</string>
+    <string name="setup_step_filter">Filtro DNS</string>
+    <string name="setup_step_updates">Aggiornamenti automatici</string>
+    <string name="setup_done">Fatto! TV Liberata è pronta.</string>
+    <string name="setup_failed">La configurazione si è fermata: vedi il passo qui sopra. Premi Configura per riprovare.</string>
+    <string name="setup_to_home">Vai alla Home</string>
+    <string name="setup_undo_needs_adb">Per annullare serve il debug della TV autorizzato: premi prima Configura.</string>
+    <string name="setup_undone">Tutto è tornato come prima.</string>
+    <string name="setup_undone_partly">Tornato come prima, tranne: %1$s</string>
+    <string name="syntax_every_minutes">ogni %1$d min</string>
+    <string name="syntax_every_hours">ogni %1$d h</string>
+    <string name="syntax_every_day">una volta al giorno</string>
+    <string name="syntax_aerial">Aerial Views</string>
+    <string name="syntax_scenes_count">%1$d scene a rotazione</string>
+    <string name="syntax_news_on">Attiva · %1$s</string>
+    <string name="syntax_news_off">Spenta</string>
+    <string name="syntax_all">Tutte</string>
+    <string name="syntax_none">Nessuna</string>
+    <string name="syntax_counter">%1$d attive su %2$d · OK attiva o disattiva una foto · tieni premuto OK o Menu per altro</string>
+    <string name="syntax_wallpaper_empty">Ancora nessuna foto Bing: arrivano mentre la Home è a schermo.</string>
+    <string name="syntax_wallpaper_on_wake">Nuovo sfondo a ogni accensione</string>
+    <string name="syntax_rotation">Cambia ogni</string>
+    <string name="syntax_15m">15 min</string>
+    <string name="syntax_30m">30 min</string>
+    <string name="syntax_1h">1 h</string>
+    <string name="syntax_preview">Anteprima</string>
+    <string name="syntax_favorite">Preferita ★</string>
+    <string name="syntax_unfavorite">Togli dalle preferite</string>
+    <string name="syntax_delete">Elimina</string>
+    <string name="syntax_delete_question">Eliminare questa foto?</string>
+    <string name="syntax_yes">Sì</string>
+    <string name="syntax_no">No</string>
+    <string name="syntax_ok">OK</string>
+    <string name="syntax_off_label">Disattivata</string>
+    <string name="syntax_error">Qualcosa non ha funzionato</string>
+    <string name="syntax_not_saved">Non è stato possibile salvare la scelta.</string>
+    <string name="syntax_not_deleted">Non è stato possibile eliminare la foto.</string>
+    <string name="syntax_unreadable">Questa foto non si può leggere.</string>
+    <string name="syntax_mode">Screensaver di sistema</string>
+    <string name="syntax_mode_scenes">Scene TV Liberata</string>
+    <string name="syntax_aerial_missing">Aerial Views (non installata)</string>
+    <string name="syntax_try">Prova ora ▶</string>
+    <string name="syntax_try_failed">Questa TV non permette di avviare lo screensaver da un\'app.</string>
+    <string name="syntax_scenes">Scene</string>
+    <string name="syntax_one_scene">Almeno una scena deve restare spuntata.</string>
+    <string name="syntax_permission_title">Serve un permesso</string>
+    <string name="syntax_permission">Per cambiare lo screensaver concedi una volta, via adb: adb shell pm grant com.gathin.tvhome android.permission.WRITE_SECURE_SETTINGS</string>
+    <string name="syntax_other_screensaver">Ora la TV usa un altro screensaver: scegline uno di questi.</string>
+    <string name="syntax_ticker">Striscia sullo screensaver</string>
+    <string name="syntax_on">Attiva</string>
+    <string name="syntax_off">Spenta</string>
+    <string name="syntax_home_ticker">Mostra nella Home</string>
+    <string name="syntax_idle_clock_on">Orologio prima: acceso</string>
+    <string name="syntax_idle_clock_off">Orologio prima: spento</string>
+    <string name="syntax_system">Sistema</string>
+    <string name="syntax_system_summary">%1$s spazio libero · %2$s RAM libera</string>
+    <string name="syntax_speed">Velocità</string>
+    <string name="syntax_slow">Lenta</string>
+    <string name="syntax_medium">Media</string>
+    <string name="syntax_fast">Veloce</string>
+    <string name="syntax_size">Dimensione</string>
+    <string name="syntax_small">Piccola</string>
+    <string name="syntax_medium_f">Media</string>
+    <string name="syntax_large">Grande</string>
+    <string name="syntax_sections">Sezioni ANSA</string>
+    <string name="syntax_one_section">Almeno una sezione deve restare spuntata.</string>
+    <string name="syntax_news_loading">Scarico i titoli…</string>
+    <string name="syntax_news_offline">Nessuna connessione: l\'anteprima mostra i titoli salvati.</string>
+    <string name="syntax_news_empty">I titoli compaiono qui dopo il primo download.</string>
+    <string name="syntax_sources">Sorgenti</string>
+    <string name="syntax_show">Mostra</string>
+    <string name="syntax_key_missing">%1$s · chiave mancante</string>
+    <string name="syntax_key_where">Inserisci la chiave in launcher/keys.properties sul PC, poi ricompila</string>
+    <string name="syntax_bing_daily">una foto al giorno</string>
+    <string name="syntax_per_day">al giorno</string>
+    <string name="syntax_wikimedia_note">foto del giorno, e dei giorni prima</string>
+    <string name="syntax_themed_note">con i temi qui sotto</string>
+    <string name="syntax_themes">Temi per Unsplash</string>
+    <string name="syntax_one_theme">Almeno un tema deve restare spuntato.</string>
+    <string name="syntax_theme_sea">Mare</string>
+    <string name="syntax_theme_mountain">Montagna</string>
+    <string name="syntax_theme_city">Città</string>
+    <string name="syntax_theme_nature">Natura</string>
+    <string name="syntax_theme_space">Spazio</string>
+    <string name="syntax_theme_italy">Italia</string>
+    <string name="syntax_theme_season">Stagione</string>
+    <string name="syntax_archive">Archivio</string>
+    <string name="syntax_cap">al massimo %1$d</string>
+    <string name="syntax_fetch_now">Scarica ora</string>
+    <string name="syntax_fetching">Scarico…</string>
+    <string name="syntax_fetched">%1$d foto nuove</string>
+    <string name="syntax_fetch_none_ticked">Spunta prima una sorgente oltre a Bing (Bing arriva da solo con la Home).</string>
+    <string name="syntax_fetch_added">%1$s: %2$d foto nuove</string>
+    <string name="syntax_fetch_quota">%1$s: le %2$d di oggi sono già arrivate</string>
+    <string name="syntax_fetch_discarded">%1$s: %2$d foto scartate (verticali, piccole o oltre 8 MB)</string>
+    <string name="syntax_fetch_failed">%1$s: nessuna risposta, riprova più tardi</string>
+    <string name="syntax_fetch_nothing">%1$s: nessuna foto nuova per ora</string>
+    <string name="syntax_fetched_none">Nessuna foto nuova (quelle di oggi ci sono già, o le sorgenti non hanno risposto)</string>
+    <string name="xmas_title">Natale</string>
+    <string name="xmas_intro">Neve, lucine e scene natalizie. Spenta di default: si accende solo a mano.</string>
+    <string name="xmas_mode">Modalità Natale</string>
+    <string name="xmas_on_summary">Attiva</string>
+    <string name="xmas_off_summary">Spenta · accendila a dicembre</string>
+    <string name="xmas_home">Nella Home</string>
+    <string name="xmas_wallpapers">Sfondi natalizi</string>
+    <string name="xmas_wallpapers_title">Sfondi natalizi</string>
+    <string name="xmas_wallpapers_use">Usa nella Home</string>
+    <string name="xmas_wallpapers_empty">Ancora nessuna foto natalizia: Sorgenti, Scarica ora.</string>
+    <string name="xmas_sources_title">Sorgenti natalizie</string>
+    <string name="xmas_source_note">foto natalizie sui temi spuntati</string>
+    <string name="xmas_theme_lights">Luci</string>
+    <string name="xmas_theme_market">Mercatini</string>
+    <string name="xmas_theme_tree">Alberi</string>
+    <string name="xmas_theme_snow">Borghi innevati</string>
+    <string name="xmas_snow_home">Neve nella Home</string>
+    <string name="xmas_countdown">Conto alla rovescia</string>
+    <string name="xmas_dock">Lucine nel dock</string>
+    <string name="xmas_scenes">Scene natalizie dello screensaver</string>
+    <string name="xmas_only">Solo scene natalizie</string>
+    <string name="xmas_snow_dream">Neve negli screensaver</string>
+    <string name="xmas_status_on">Modalità Natale attiva. Tieni premuto OK su una scena per provarla subito.</string>
+    <string name="xmas_status_off">Modalità Natale spenta: Home e screensaver sono come sempre.</string>
+    <string name="xmas_eve">È la Vigilia!</string>
+    <string name="xmas_day">Buon Natale!</string>
+    <string name="xmas_holidays">Buone feste</string>
+    <string name="xmas_new_year">Buon anno</string>
+    <plurals name="xmas_days">
+        <item quantity="one">Manca %1$d giorno a Natale</item>
+        <item quantity="other">Mancano %1$d giorni a Natale</item>
+    </plurals>
+    <string name="xmas_santa_title">Babbo Natale</string>
+    <string name="xmas_santa_sub">Il viaggio della Vigilia (simulato)</string>
+    <string name="xmas_santa_where">Posizione</string>
+    <string name="xmas_santa_pole">Polo Nord</string>
+    <string name="xmas_santa_presents">Regali consegnati</string>
+    <string name="xmas_santa_flying">In volo verso ovest, insieme alla mezzanotte</string>
+    <string name="xmas_santa_done">Consegne completate: è tornato al Polo Nord</string>
+    <plurals name="xmas_santa_days">
+        <item quantity="one">Partenza tra %1$d giorno dal Polo Nord</item>
+        <item quantity="other">Partenza tra %1$d giorni dal Polo Nord</item>
+    </plurals>
+    <plurals name="xmas_santa_hours">
+        <item quantity="one">Partenza tra %1$d ora</item>
+        <item quantity="other">Partenza tra %1$d ore</item>
+    </plurals>
+    <string name="xmas_advent_title">Calendario dell\'Avvento</string>
+    <plurals name="xmas_advent_wait">
+        <item quantity="one">Si apre tra %1$d giorno</item>
+        <item quantity="other">Si apre tra %1$d giorni</item>
+    </plurals>
+    <string name="xmas_advent_day">%1$d dicembre</string>
+    <string name="xmas_advent_all">Tutte le caselle sono aperte</string>
+    <string-array name="xmas_scene_names">
+        <item>Babbo Natale in viaggio</item>
+        <item>Avvento</item>
+        <item>Preferite</item>
+    </string-array>
+    <string-array name="syntax_scene_names">
+        <item>Orologio</item>
+        <item>ISS in diretta</item>
+        <item>Sole adesso</item>
+        <item>Terra adesso</item>
+        <item>Luna adesso</item>
+        <item>Webb e Hubble</item>
+        <item>Terra in diretta</item>
+        <item>Preferite</item>
+    </string-array>
+    <string name="syntax_profile">Profilo</string>
+    <string-array name="syntax_profile_names">
+        <item>Salotto</item>
+        <item>Cucina</item>
+        <item>Sala hobby</item>
+        <item>Mansarda</item>
+    </string-array>
+    <string name="syntax_apps_position">Riga app</string>
+    <string name="kitchen_temp">%d°</string>
+    <string name="kitchen_rain_now">Piove ora</string>
+    <string name="kitchen_rain_in">Pioggia tra %d min</string>
+    <string name="kitchen_rain_none">Niente pioggia per 2 ore</string>
+    <string name="kitchen_updated">Aggiornato alle %s</string>
+    <string name="kitchen_recycling">Raccolta differenziata</string>
+    <string name="kitchen_recycling_empty">Calendario da configurare</string>
+    <string name="kitchen_open">Apri pannello ▶</string>
+    <string name="kitchen_screensaver">Screensaver</string>
+    <string name="syntax_kitchen">Pannello cucina</string>
+    <string-array name="syntax_apps_position_names">
+        <item>Basso</item>
+        <item>Centro</item>
+        <item>Alto</item>
+    </string-array>
+    <string name="kitchen_night_from">Notte dalle %s</string>
+    <string name="kitchen_night_off">Notte: spenta</string>
+    <string name="kitchen_night_to">fino alle %s</string>
+    <string name="recycling_take_in">Ritira i contenitori entro le %s</string>
+    <string name="recycling_tonight">Stasera esponi: %s</string>
+    <string name="recycling_hours">dalle %1$s alle %2$s</string>
+    <string name="recycling_now">Adesso, entro le %s</string>
+    <string name="recycling_next">Prossima: %1$s · %2$s</string>
+    <string name="recycling_this_evening">stasera</string>
+    <string name="recycling_glass">Vetro: nelle campane stradali</string>
+    <string-array name="recycling_bins">
+        <item>Carta</item>
+        <item>Organico</item>
+        <item>Plastica e metalli</item>
+        <item>Indifferenziato</item>
+        <item>Vetro</item>
+    </string-array>
+    <string-array name="recycling_days">
+        <item>lunedì sera</item>
+        <item>martedì sera</item>
+        <item>mercoledì sera</item>
+        <item>giovedì sera</item>
+        <item>venerdì sera</item>
+        <item>sabato sera</item>
+        <item>domenica sera</item>
+    </string-array>
+    <string-array name="recycling_day_names">
+        <item>Lunedì</item>
+        <item>Martedì</item>
+        <item>Mercoledì</item>
+        <item>Giovedì</item>
+        <item>Venerdì</item>
+        <item>Sabato</item>
+        <item>Domenica</item>
+    </string-array>
+    <string name="recycling_calendar">Calendario ▶</string>
+    <string name="recycling_title">Raccolta differenziata</string>
+    <string name="recycling_intro">La sera in cui esporre ogni contenitore. OK accende o spegne un contenitore.</string>
+    <string name="recycling_show">Mostra il riquadro</string>
+    <string name="recycling_from">Esporre dalle %s</string>
+    <string name="recycling_to">alle %s</string>
+    <string name="recycling_by">Ritirare entro le %s</string>
+    <string name="margin_title">Margini schermo</string>
+    <string name="margin_chip">Margini schermo %d%%</string>
+    <string name="margin_value">%d%%</string>
+    <string name="margin_help">Sinistra e destra cambiano il margine finché la cornice si vede tutta su questa TV. OK salva, Indietro lascia com\'era.</string>
+    <string name="hidden_title">App nascoste</string>
+    <string name="hidden_intro">Le app nascoste restano installate ma non compaiono nella riga app di Home. OK nasconde o mostra.</string>
+    <string name="hidden_chip">✓ Nascosta · %s</string>
+    <string name="hidden_failed">Non è stato possibile salvare la scelta.</string>
+    <string name="power_off">Spegni tutto</string>
+    <string name="power_confirm_fire">Spegnere TV e Firestick?</string>
+    <string name="power_confirm_tv">Spegnere la TV?</string>
+    <string name="power_yes">Sì</string>
+    <string name="power_no">No</string>
+    <string name="power_unavailable">Il servizio di accessibilità del launcher è spento (o Android è più vecchio della 9): attivalo in Impostazioni, Accessibilità, e riprova.</string>
+    <string name="share_title">Sfondi in casa</string>
+    <string name="share_mine">Condividi i miei sfondi</string>
+    <string name="share_from">Prendi da: %1$s</string>
+    <string name="share_from_none">nessuno</string>
+    <string name="share_searching">Cerco le TV che condividono…</string>
+    <string name="share_none_found">Nessuna TV condivide i suoi sfondi (è accesa, con "Condividi i miei sfondi"?).</string>
+    <string name="share_pick">Prendi gli sfondi da</string>
+    <string name="share_pick_note">Questa TV non scarica più nulla da sola: copia le foto di quella TV, attive, preferite ed eliminate, anche quelle natalizie.</string>
+    <string name="share_copied">Copiate da %1$s: %2$d foto nuove</string>
+    <string name="share_failed">%1$s non raggiungibile ora (spenta o in standby?): riprovo più tardi</string>
+</resources>

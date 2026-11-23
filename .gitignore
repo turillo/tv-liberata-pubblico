@@ -1,0 +1,10 @@
+# Build output and local settings (the signing key is never in this repository)
+launcher/.gradle/
+launcher/build/
+launcher/app/build/
+launcher/local.properties
+launcher/keys.properties
+*.apk
+*.aab
+*.jks
+*.keystore

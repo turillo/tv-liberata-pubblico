@@ -1,0 +1,8 @@
+# TV Liberata, guided set-up: base clean-up for Android TV. From dumbtv data/androidtv/packages.txt (MIT).
+com.android.adservices.api
+com.android.ondevicepersonalization.services
+com.android.federatedcompute.services
+com.google.android.feedback
+com.android.tv.feedbackconsent
+com.google.android.partnersetup
+com.onn.updatenotification
