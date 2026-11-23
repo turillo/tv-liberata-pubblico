@@ -31,7 +31,7 @@ public class EditionTest {
         assertEquals(Features.SPACE_SCENES, scene);
         assertTrue(geo && github && lists);
         assertEquals("com.gathin.tvhome.liberata", BuildConfig.APPLICATION_ID);
-        assertEquals("1.0", BuildConfig.VERSION_NAME);
+        assertTrue(BuildConfig.VERSION_NAME.startsWith("1.0"));   // 1.0.x: the same features
         assertFalse(BuildConfig.UPDATE_REPO.isEmpty());
     }
 }

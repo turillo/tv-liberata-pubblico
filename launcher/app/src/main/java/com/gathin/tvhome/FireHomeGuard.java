@@ -19,6 +19,7 @@ import android.view.WindowManager;
 import android.view.accessibility.AccessibilityEvent;
 import android.view.accessibility.AccessibilityNodeInfo;
 import android.view.accessibility.AccessibilityWindowInfo;
+import android.util.Log;
 
 /**
  * Fire OS only: makes this launcher the home screen without touching Amazon's. Fire OS keeps HOME bound to its
@@ -44,52 +45,24 @@ public final class FireHomeGuard extends AccessibilityService {
     private static final int COVER_COLOR = 0xFF0B1418;   // close to Home's dark background, so no flash shows
 
     private static volatile FireHomeGuard running;
-    /**
-     * Until this uptime, Amazon's home is left alone: the user opened one of its screens from TV Liberata on purpose
-     * ("Le mie app", "Cerca app"). Cleared by HOME, by any other app coming up, or when the screen turns on.
-     */
-    private static volatile long passUntil;
-    /** When Amazon's home first came up during the pass: later Amazon home windows are HOME again. */
-    private static volatile long passShown;
-    private static final long PASS_MS = 15_000L, SETTLE_MS = 3_000L;
 
-    /**
-     * Lets Amazon's home come up once, opened on purpose from a TV Liberata tile. Only that first appearance (and
-     * the windows of its first seconds) pass: the next time Amazon's home comes up, by HOME, TV Liberata takes over
-     * as always. Never longer than PASS_MS if Amazon's home does not come up at all.
-     */
-    static void pass() {
-        passUntil = SystemClock.uptimeMillis() + PASS_MS;
-        passShown = 0;
+    /** True while the service is bound: Amazon's home is replaced and TV Liberata's own updates are confirmed. */
+    static boolean isRunning() {
+        return running != null;
     }
 
-    /** True while this Amazon home window is the one opened on purpose. */
-    private static boolean passing() {
-        long now = SystemClock.uptimeMillis();
-        if (passShown > 0) {
-            if (now - passShown < SETTLE_MS) return true;
-            passUntil = 0;
-            passShown = 0;
-            return false;
-        }
-        if (now < passUntil) {
-            passShown = now;
-            return true;
-        }
-        return false;
-    }
-
+    /**
+     * The second way to see HOME, besides the window event: on Fire OS 7.7 the HOME key usually reaches no filter,
+     * but when it does and Amazon's home is already in front (it sent no new window), TV Liberata comes back.
+     */
     @Override
     protected boolean onKeyEvent(KeyEvent event) {
-        // HOME while one of Amazon's screens is open on purpose: back to TV Liberata, as HOME always does here.
-        if (event.getKeyCode() == KeyEvent.KEYCODE_HOME && event.getAction() == KeyEvent.ACTION_UP
-                && (passShown > 0 || SystemClock.uptimeMillis() < passUntil)) {
-            passUntil = 0;
-            passShown = 0;
+        if (event.getKeyCode() == KeyEvent.KEYCODE_HOME && event.getAction() == KeyEvent.ACTION_UP && onAmazonHome) {
             handler.postDelayed(this::launchWhenCovered, 150);
         }
         return false;   // never consumed: the remote works as before
     }
+
     private final Handler handler = new Handler(Looper.getMainLooper());
     private final Runnable uncover = this::uncover;
     private final Runnable launch = () -> home(this, 0);
@@ -99,14 +72,13 @@ public final class FireHomeGuard extends AccessibilityService {
 
     /**
      * HOME pressed (Android says so to every app with ACTION_CLOSE_SYSTEM_DIALOGS, reason "homekey"): with Amazon's
-     * home already in front (opened on purpose from a tile) no new window comes up, so TV Liberata is brought back here.
+     * home already in front no new window comes up, so TV Liberata is brought back here. Fire OS keeps this broadcast
+     * behind an Amazon permission; it costs nothing where it does not arrive.
      */
     private final BroadcastReceiver homeKey = new BroadcastReceiver() {
         @Override
         public void onReceive(Context c, Intent i) {
             if (!"homekey".equals(i.getStringExtra("reason"))) return;
-            passUntil = 0;
-            passShown = 0;
             if (onAmazonHome) handler.postDelayed(FireHomeGuard.this::launchWhenCovered, 300);
         }
     };
@@ -114,7 +86,6 @@ public final class FireHomeGuard extends AccessibilityService {
     private final BroadcastReceiver screenOn = new BroadcastReceiver() {
         @Override
         public void onReceive(Context c, Intent i) {
-            passUntil = 0;
             if (onAmazonHome) launchWhenCovered();
         }
     };
@@ -249,12 +220,13 @@ public final class FireHomeGuard extends AccessibilityService {
         if (!AMAZON.contentEquals(pkg)) {
             if ("com.android.systemui".contentEquals(pkg) || "android".contentEquals(pkg)) return;
             onAmazonHome = false;
-            if (!getPackageName().contentEquals(pkg)) passUntil = 0;   // another app: Amazon's home is HOME again
             if (!getPackageName().contentEquals(pkg)) arrived(this);
+            if (SelfInstall.installer(pkg) && SelfInstall.armed(this)) confirmInstall(0);
             return;
         }
+        // Only Amazon's main home screen: its settings and other screens are left alone.
         onAmazonHome = cls != null && AMAZON_HOME.contentEquals(cls);
-        if (!onAmazonHome || passing()) return;
+        if (!onAmazonHome) return;
         long now = SystemClock.uptimeMillis();
         if (now - lastLaunch < REPEAT_MS) return;
         lastLaunch = now;
@@ -297,6 +269,39 @@ public final class FireHomeGuard extends AccessibilityService {
     private void uncover() {
         handler.removeCallbacks(uncover);
         if (cover != null) cover.setVisibility(View.GONE);
+    }
+
+    // ---- TV Liberata's own update: the system installer's buttons, pressed for the user ---------------------------
+
+    private static final int CONFIRM_TRIES = 40;
+    private static final long CONFIRM_EVERY_MS = 400;
+    private static final Object CONFIRM_TOKEN = new Object();
+
+    /**
+     * Android's install screen for TV Liberata's own update, started by TV Liberata a moment ago (SelfInstall.arm):
+     * presses "Installa", then "Apri" or "Fine" if the installer shows them. Any other install screen, or this one
+     * after the short window, is left to the user. Looks again a few times while the screen draws its buttons.
+     */
+    private void confirmInstall(int attempt) {
+        handler.removeCallbacksAndMessages(CONFIRM_TOKEN);
+        if (attempt >= CONFIRM_TRIES || !SelfInstall.armed(this)) return;
+        AccessibilityNodeInfo root = getRootInActiveWindow();
+        if (root != null) {
+            CharSequence pkg = root.getPackageName();
+            if (pkg != null && SelfInstall.installer(pkg) && SelfInstall.ours(root, getString(R.string.app_name))) {
+                String id = pkg + ":id/";
+                if (SelfInstall.press(root, id + "ok_button", true)) {
+                    Log.i("TvHome.Guard", "own update: Installa pressed");
+                } else if (SelfInstall.press(root, id + "launch_button", false)
+                        || SelfInstall.press(root, id + "done_button", false)) {
+                    SelfInstall.disarm(this);
+                    root.recycle();
+                    return;
+                }
+            }
+            root.recycle();
+        }
+        handler.postAtTime(() -> confirmInstall(attempt + 1), CONFIRM_TOKEN, SystemClock.uptimeMillis() + CONFIRM_EVERY_MS);
     }
 
     @Override

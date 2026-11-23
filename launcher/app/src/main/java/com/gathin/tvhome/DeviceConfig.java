@@ -34,6 +34,8 @@ public final class DeviceConfig extends BroadcastReceiver {
     static final class Values {
         String name, channel = PRODUCTION, city, unsplashKey;
         double lat = Double.NaN, lon = Double.NaN;
+        /** "nascondi": apps taken off TV Liberata's Home at the first set-up (the PC program); never again later. */
+        final java.util.List<String> hide = new java.util.ArrayList<>();
     }
 
     static Values parse(String json) {
@@ -49,6 +51,10 @@ public final class DeviceConfig extends BroadcastReceiver {
         if (Math.abs(lat) <= 90 && Math.abs(lon) <= 180 && !(lat == 0 && lon == 0)) {
             v.lat = lat;
             v.lon = lon;
+        }
+        java.util.List<?> hide = MiniJson.list(root, "nascondi");
+        if (hide != null) for (Object o : hide) {
+            if (o instanceof String && ((String) o).matches("[A-Za-z0-9_]+([.][A-Za-z0-9_]+)+")) v.hide.add((String) o);
         }
         return v;
     }
@@ -116,11 +122,14 @@ public final class DeviceConfig extends BroadcastReceiver {
             return;
         }
         save(c, v);
+        // Only what the PC names now: an app installed later stays on Home, as the user expects.
+        for (String pkg : v.hide) LibraryApps.save(c, pkg, false);
         Setup.markDone(c);   // configured from the PC: no guided set-up on screen
         //noinspection ResultOfMethodCallIgnored
         f.delete();   // it may hold a key: not left on shared storage
         Log.i(TAG, "device configuration loaded: " + v.name + ", channel " + v.channel);
-        setResultData("caricata: " + v.name + ", canale " + v.channel + (Double.isNaN(v.lat) ? "" : ", coordinate fissate"));
+        setResultData("caricata: " + v.name + ", canale " + v.channel + (Double.isNaN(v.lat) ? "" : ", coordinate fissate")
+                + (v.hide.isEmpty() ? "" : ", nascoste " + v.hide.size()));
     }
 
     private static String read(File f) {

@@ -15,7 +15,6 @@ attimo (vedi [Tornare alla Home Amazon](#tornare-alla-home-amazon)).
 - **Le tue app**: una riga in basso e una griglia, che riordini e da cui nascondi quello che non usi (tieni premuto
   OK su un'app: Sposta, Togli dalla Home, **Disinstalla**). L'elenco delle app nascoste è in Impostazioni TV Liberata,
   Sistema. Lo store (Appstore su Fire TV, Play Store su Android TV) resta sempre in Home.
-  Su Fire TV ci sono anche "Le mie app" e "Cerca app" di Amazon (nascondibili).
 - **Meteo** in alto, per la tua città: trovata da sola dalla connessione internet, o scelta a mano.
 - **Screensaver**: Orologio, "Preferite" (le tue foto preferite con dissolvenza e zoom lento) e, su Fire TV, Amazon
   Foto; "Avvia dopo" 1, 3, 5, 10, 15 o 30 minuti.
@@ -37,6 +36,14 @@ Tutto si regola da **Impostazioni TV Liberata**, l'app delle impostazioni che ar
 - Connessione internet (per sfondi e meteo; senza rete restano le foto già scaricate).
 
 ## Installazione su Fire TV
+
+La guida passo passo, solo col telecomando: [Guida-installazione-TV-Liberata.txt](Guida-installazione-TV-Liberata.txt).
+
+**Fire OS 7.7**: Amazon non permette a TV Liberata di configurarsi da sola. Dopo averla installata con Downloader, la
+configura una volta un PC Windows sulla stessa rete: scarica
+[Configura-TV-Liberata.zip](https://github.com/turillo/tv-liberata-pubblico/releases/latest/download/Configura-TV-Liberata.zip)
+(o apri `tinyurl.com/Tv-liberata-pc`), estrailo e fai doppio clic su `Configura-TV-Liberata.bat`. Le liste che usa
+sono in questo repository: [pacchetto-app.json](pacchetto-app.json) e [pulizia-fireos.json](pulizia-fireos.json).
 
 ### Con un PC e adb (consigliata: fa anche diventare Home)
 
@@ -80,8 +87,9 @@ subito. In quel caso l'installazione va consentita una volta: Impostazioni, La m
 **Installa app sconosciute**, attiva **TV Liberata**. Si installano solo aggiornamenti firmati con la stessa chiave.
 
 Su Fire OS 7.7 Amazon non permette alle app di usare il debug della TV stessa (provato su Fire TV Stick Lite):
-lì gli aggiornamenti vengono sempre proposti all'accensione, e la configurazione guidata e "Ripristina tutto"
-richiedono un PC con adb.
+lì la configurazione la fa una volta il programma per PC (Configura-TV-Liberata.zip, vedi sopra). Dopo, TV Liberata
+scarica gli aggiornamenti, ne controlla la firma e conferma da sola l'installazione di sistema; "Ripristina tutto" si
+fa dal programma per PC ("Annulla tutto e torna come prima").
 
 L'autorizzazione del debug permette all'app di dare comandi alla TV come farebbe un PC collegato: la usa solo per
 installare i propri aggiornamenti, per la configurazione guidata e per "Ripristina tutto". Il debug ADB deve restare

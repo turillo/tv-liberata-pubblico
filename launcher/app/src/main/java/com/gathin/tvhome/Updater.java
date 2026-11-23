@@ -225,7 +225,13 @@ final class Updater {
         }
     }
 
-    /** At the first Home after a silent update: "TV Liberata è stata aggiornata alla versione X" and the changes. */
+    /** True right after this app was updated, until Home has said so. */
+    static boolean announcePending(Context c) {
+        SharedPreferences p = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        return BuildConfig.VERSION_NAME.equals(p.getString("updated_to", null)) && !p.getBoolean("updated_shown", true);
+    }
+
+    /** At the first Home after an update: "TV Liberata è stata aggiornata alla versione X" and the changes. */
     static void announce(Activity home) {
         SharedPreferences p = home.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         String to = p.getString("updated_to", null);
@@ -252,7 +258,11 @@ final class Updater {
             if (r.version.equals(p.getString("offered", ""))) return;
             p.edit().putString("offered", r.version).apply();
             ui.post(() -> {
-                if (!home.isFinishing() && !home.isDestroyed()) offer(home, r);
+                if (home.isFinishing() || home.isDestroyed()) return;
+                // Fire OS 7.7 has no adb from the TV itself: with FireHomeGuard on, the installer's "Installa" is
+                // pressed for the user (SelfInstall), so the update goes in with only a short flash of that screen.
+                if (quiet(home)) install(home, r);
+                else offer(home, r);
             });
         });
     }
@@ -282,6 +292,11 @@ final class Updater {
                 } else offer(a, r);
             });
         });
+    }
+
+    /** The update can go in without asking: the installer is allowed and FireHomeGuard confirms it. */
+    static boolean quiet(Context c) {
+        return FireHomeGuard.isRunning() && c.getPackageManager().canRequestPackageInstalls();
     }
 
     private static void offer(Activity a, Release r) {
@@ -353,6 +368,10 @@ final class Updater {
                     ui.post(() -> Toast.makeText(app, R.string.update_bad_signature, Toast.LENGTH_LONG).show());
                     return;
                 }
+                // After the install: the new version opens Home (HomeRestore) and says what changed.
+                app.getSharedPreferences(PREFS, Context.MODE_PRIVATE).edit().putString("updated_to", r.version)
+                        .putString("updated_notes", r.notes).putBoolean("updated_shown", false).apply();
+                if (FireHomeGuard.isRunning()) SelfInstall.arm(app);
                 session(app, apk);
             } catch (IOException | RuntimeException e) {
                 Log.w(TAG, "update not installed: " + e.getMessage());

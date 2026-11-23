@@ -74,6 +74,7 @@ public final class DnsVpnService extends VpnService {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        PowerOnOpen.listen(this);   // "Apri TV Liberata all'accensione" needs a living process: this one
         if (intent != null && ACTION_STOP.equals(intent.getAction())) {
             stop();
             stopSelf();
@@ -182,6 +183,7 @@ public final class DnsVpnService extends VpnService {
 
     @Override
     public void onDestroy() {
+        PowerOnOpen.stop(this);
         stop();
         forward.shutdownNow();
         super.onDestroy();

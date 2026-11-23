@@ -1,0 +1,272 @@
+=====================================================================
+                TV LIBERATA - GUIDA ALL'INSTALLAZIONE
+            Per Amazon Fire TV Stick (e Android TV), da zero
+=====================================================================
+
+Cos'e' TV Liberata
+------------------
+Una nuova schermata Home per la tua TV: sfondi fotografici, orologio
+e meteo, le tue app in una riga ordinata, screensaver, filtro contro
+pubblicita' e tracciamento, aggiornamenti automatici.
+
+L'app si installa col solo telecomando. Sulle Fire TV piu' recenti
+(Fire OS 7.7) Amazon non le permette di configurarsi da sola: in quel
+caso serve UNA volta un PC Windows sulla stessa rete (Parte 5B),
+dopo non serve piu'.
+
+Tempo necessario: circa 15 minuti (20 con il PC).
+
+Cosa ti serve
+-------------
+- La Fire TV Stick collegata alla TV e a internet (Wi-Fi o cavo).
+- Il telecomando.
+- Il codice di installazione:  8520002
+  (in alternativa l'indirizzo:  tinyurl.com/tvliberata)
+- Solo per Fire OS 7.7: un PC Windows 10 o 11 sulla stessa rete e
+  l'indirizzo  tinyurl.com/Tv-liberata-pc
+
+NOTA: i nomi dei menu possono cambiare leggermente in base al modello
+e alla versione di Fire OS. Se una voce non corrisponde, cerca quella
+dal nome piu' simile.
+
+
+=====================================================================
+ PARTE 1 - INSTALLARE L'APP "DOWNLOADER"
+=====================================================================
+
+1. Dalla Home della Fire TV vai sulla lente di ingrandimento (Cerca)
+   oppure su "Trova".
+2. Scrivi:  Downloader
+3. Scegli l'app "Downloader" (icona arancione, di AFTVnews).
+4. Premi "Scarica" (o "Ottieni") e attendi la fine dell'installazione.
+5. NON aprirla ancora: prima vanno sistemate le impostazioni (Parte 2).
+
+
+=====================================================================
+ PARTE 2 - ATTIVARE LE OPZIONI SVILUPPATORE
+=====================================================================
+
+Queste opzioni sono nascoste: si attivano cosi'.
+
+1. Dalla Home vai su  Impostazioni  (icona a ingranaggio, a destra).
+2. Apri  "La mia Fire TV"  (su alcuni modelli: "Dispositivo e software").
+3. Apri  "Informazioni".
+4. Seleziona la prima voce, quella con il nome del dispositivo
+   (es. "Fire TV Stick", "Fire TV Stick Lite", "Fire TV Stick 4K").
+5. Premi il tasto centrale del telecomando (OK) 7 VOLTE di seguito.
+   In basso comparira' il messaggio: "Ora sei uno sviluppatore".
+6. Premi il tasto Indietro: nel menu "La mia Fire TV" ora c'e' la
+   nuova voce  "Opzioni sviluppatore".
+
+
+=====================================================================
+ PARTE 3 - DEBUG ADB E INSTALLAZIONE DI APP
+=====================================================================
+
+1. Impostazioni -> La mia Fire TV -> Opzioni sviluppatore.
+2. "Debug ADB"  ->  ATTIVA.
+   (Serve per configurare TV Liberata. Se compare un avviso, conferma.)
+3. "Installa app sconosciute"  ->  apri la voce e metti
+   "Downloader" su  ATTIVO.
+   Sui modelli piu' vecchi la voce si chiama
+   "App da fonti sconosciute": in quel caso basta attivarla.
+4. Torna alla Home (tasto Home del telecomando).
+
+
+=====================================================================
+ PARTE 4 - SCARICARE E INSTALLARE TV LIBERATA
+=====================================================================
+
+1. Apri l'app  Downloader.
+2. Al primo avvio:
+   - se chiede l'accesso a foto, file o memoria -> "Consenti";
+   - chiudi eventuali messaggi di benvenuto.
+3. Nella casella in alto ("Enter a URL or Search Term")
+   scrivi il codice:  8520002
+   e premi  "Go"  (Vai).
+   (Se il codice non funziona, scrivi invece:  tinyurl.com/tvliberata)
+4. Puo' comparire per un attimo una pagina di reindirizzamento:
+   e' normale, attendi.
+5. Parte il download di TV Liberata. Alla fine compare la schermata
+   di installazione: premi  "Installa".
+6. Quando ha finito premi  "Apri"  (oppure "Fine" e aprila dopo
+   dalle tue app).
+7. Downloader ti chiedera' se eliminare il file scaricato:
+   scegli  "Elimina"  (due volte, se richiesto). Libera spazio e
+   non serve piu'.
+
+
+=====================================================================
+ PARTE 5 - LA CONFIGURAZIONE
+=====================================================================
+
+Al primo avvio TV Liberata apre la "Configurazione guidata".
+Scrivi il nome della TV (es. "Salotto", "Camera", "Cucina di Mario").
+Poi succede una di queste due cose:
+
+---------------------------------------------------------------------
+ 5A - La TV si configura da sola (Android TV e Fire TV meno recenti)
+---------------------------------------------------------------------
+
+1. Premi  "Configura".
+2. Autorizzazione: comparira' una finestra di sistema simile a
+      "Consentire il debug USB?"  oppure  "Consentire il debug ADB?"
+   IMPORTANTE:
+   - spunta la casella  "Consenti sempre da questo computer";
+   - poi premi  "OK".
+   (Non preoccuparti del nome "computer": e' TV Liberata stessa.)
+3. Filtro: alla richiesta di attivare una "VPN" o una "connessione"
+   premi  "OK".
+   Il traffico NON va da nessuna parte: serve solo a bloccare
+   pubblicita' e tracciamento direttamente sulla TV.
+4. TV Liberata diventa la schermata principale, disattiva alcune app
+   inutili di Amazon (pubblicita', suggerimenti, telemetria; nulla
+   viene cancellato) e alla fine mostra  "Fatto!".
+
+---------------------------------------------------------------------
+ 5B - Compare "Collega il PC" (Fire TV con Fire OS 7.7)
+---------------------------------------------------------------------
+
+La pagina mostra in grande l'INDIRIZZO della TV (es. 192.168.1.60).
+Lasciala aperta e vai al PC:
+
+1. Sul PC apri il browser e vai su:  tinyurl.com/Tv-liberata-pc
+   Si scarica il file  Configura-TV-Liberata.zip.
+2. Tasto destro sul file -> "Estrai tutto" -> "Estrai".
+3. Nella cartella estratta fai doppio clic su
+      Configura-TV-Liberata.bat
+   (se Windows avvisa "PC protetto":
+    "Ulteriori informazioni" -> "Esegui comunque").
+4. Il programma cerca la TV da solo e chiede "E' questa?":
+   controlla che l'indirizzo sia quello della pagina sulla TV
+   e rispondi  S.  (Se non la trova, scrivi tu l'indirizzo.)
+5. Sulla TV compare "Consentire il debug USB?":
+   spunta  "Consenti sempre da questo computer"  e premi  OK.
+6. Sul PC scegli  1  (Configura TV Liberata) e rispondi:
+   - il nome della TV;
+   - le app che NON fanno parte di TV Liberata: puoi
+     DISINSTALLARLE oppure NASCONDERLE dalla Home (restano
+     installate). Il programma non tocca niente senza chiedere.
+7. Il programma installa le app di TV Liberata che mancano:
+   Netflix, Prime Video, RaiPlay, YouTube e Aerial Views.
+   Per alcune apre la pagina dell'Appstore sulla TV: premi
+   "Scarica" col telecomando, poi Invio sul PC.
+8. Alla fine la TV si riavvia e il PC mostra
+   "Configurazione completata". Sulla TV la pagina "Collega il PC"
+   si completa da sola fino a  "Fatto!".
+
+Da quel momento il PC non serve piu'. Il programma lascia un backup
+e un registro nella sua cartella: tienila, serve per tornare indietro.
+
+
+=====================================================================
+ PARTE 6 - USARE TV LIBERATA
+=====================================================================
+
+- Tasto Home del telecomando: torni sempre a TV Liberata.
+- In alto: orologio, data e meteo della tua zona.
+- In alto a destra: pulsanti Wi-Fi, Impostazioni e Spegnimento.
+- Le app: Netflix, Prime Video, RaiPlay, YouTube, Aerial Views e
+  l'Appstore (sempre presente, per installare nuove app). Le app che
+  installi dopo compaiono anche loro.
+- Riga delle app: scorri con le frecce, OK per aprire.
+- Tieni premuto OK su un'app (o premi il tasto Menu) per:
+  spostarla, nasconderla o disinstallarla.
+- Le app nascoste si ritrovano in Impostazioni TV Liberata ->
+  Sistema -> App nascoste.
+- Impostazioni TV Liberata (riquadro "TV Liberata"):
+    Wallpaper    -> scegli e gestisci le foto di sfondo
+    Screensaver  -> Orologio, Preferite o Amazon Foto, e dopo quanti
+                    minuti deve partire
+    Sistema      -> stato della TV, filtro, catalogo (es. Aerial
+                    Views), aggiornamenti, configurazione guidata
+
+
+=====================================================================
+ PARTE 7 - AGGIORNAMENTI
+=====================================================================
+
+Non devi fare nulla. TV Liberata controlla ogni giorno se c'e' una
+nuova versione, ne verifica la firma e la installa: per un attimo si
+vede la schermata di installazione, poi TV Liberata torna da sola e
+mostra le novita': premi OK.
+
+Se invece ti chiede "Aggiornamento disponibile, installare?", premi
+"Installa" e poi ancora "Installa" nella schermata di sistema.
+
+Per controllare subito: Impostazioni TV Liberata -> Sistema ->
+"Cerca aggiornamenti ora".
+
+IMPORTANTE: lascia attivo "Debug ADB" (Parte 3).
+
+
+=====================================================================
+ PARTE 8 - SE QUALCOSA NON VA
+=====================================================================
+
+* Il codice 8520002 non funziona in Downloader
+  -> controlla di averlo scritto giusto; in alternativa usa
+     tinyurl.com/tvliberata ; verifica che la Fire TV sia connessa
+     a internet.
+
+* "Installazione bloccata" o "App da fonti sconosciute"
+  -> rifai la Parte 3, punto 3 (Downloader su ATTIVO).
+
+* Il programma per PC non trova la TV
+  -> PC e TV devono essere sulla stessa rete; controlla che
+     "Debug ADB" sia attivo (Parte 3) e scrivi a mano l'indirizzo
+     che vedi sulla pagina "Collega il PC".
+
+* Non e' comparsa la finestra "Consentire il debug?" o hai premuto
+  "Annulla"
+  -> spegni e riaccendi "Debug ADB" (Parte 3), poi rilancia la
+     configurazione (5A: "Configura"; 5B: rilancia il programma
+     sul PC). Ricordati di spuntare "Consenti sempre".
+
+* Il tasto Home riporta alla Home di Amazon
+  -> succede a volte dopo un aggiornamento di Fire OS: riavvia la
+     Fire TV (Impostazioni -> La mia Fire TV -> Riavvia). Se continua,
+     rilancia il programma per PC e scegli 1.
+
+* Un'app non funziona piu' o manca qualcosa
+  -> Fire OS 7.7: rilancia il programma per PC e scegli
+     2 (Annulla tutto e torna come prima), poi di nuovo 1.
+     Altre TV: Impostazioni TV Liberata -> Sistema ->
+     Pulizia avanzata -> "Ripristina tutto".
+
+* Voglio tornare alla Fire TV originale
+  -> Fire OS 7.7: rilancia il programma per PC e scegli
+     2 (Annulla tutto e torna come prima).
+     Altre TV: Impostazioni TV Liberata -> Sistema ->
+     Configurazione guidata -> "Annulla tutto e torna come prima".
+     Poi, se vuoi, disinstalla TV Liberata da Impostazioni Fire TV
+     -> Applicazioni -> Gestisci applicazioni.
+     Le app eventualmente disinstallate vanno riscaricate
+     dall'Appstore.
+
+
+=====================================================================
+ APPENDICE - ANDROID TV / GOOGLE TV (es. Sony, Philips, TCL)
+=====================================================================
+
+Il procedimento e' lo stesso, cambiano solo alcuni menu:
+
+- Downloader: cercalo nel Google Play Store
+  ("Downloader by AFTVnews") e installalo.
+- Opzioni sviluppatore:
+  Impostazioni -> Preferenze dispositivo (o "Sistema") ->
+  Informazioni -> premi OK 7 volte su  "Build".
+- Debug: Impostazioni -> Preferenze dispositivo ->
+  Opzioni sviluppatore -> "Debug USB" -> ATTIVO.
+- Installazione app: Impostazioni -> App -> Sicurezza e limitazioni
+  (o "Accesso speciale alle app") -> "Fonti sconosciute" /
+  "Installa app sconosciute" -> Downloader su ATTIVO.
+- Poi segui dalla Parte 4 (di solito la configurazione e' la 5A).
+
+
+---------------------------------------------------------------------
+TV Liberata e' un progetto indipendente, non affiliato ad Amazon,
+Google o ai produttori delle TV.
+Codice di installazione: 8520002   -   tinyurl.com/tvliberata
+Programma per PC (Fire OS 7.7):  tinyurl.com/Tv-liberata-pc
+---------------------------------------------------------------------

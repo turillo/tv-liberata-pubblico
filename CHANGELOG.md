@@ -1,5 +1,19 @@
 # Novità di TV Liberata
 
+## 1.0.2 — novembre 2026
+- **Fire TV con Fire OS 7.7**: Amazon non permette alle app di configurare la TV da sole. La configurazione guidata
+  ora lo riconosce e mostra "Collega il PC" con l'indirizzo della TV: il programma per PC
+  (tinyurl.com/Tv-liberata-pc) la configura una volta sola, poi il PC non serve più.
+- **Aggiornamenti** su Fire TV: TV Liberata scarica la nuova versione, controlla la firma e conferma da sola
+  l'installazione (con il servizio Home attivo); altrimenti chiede "Aggiornamento disponibile, installare?".
+  Dopo l'aggiornamento torna alla Home e mostra le novità.
+- **Tasto Home**: riporta sempre a TV Liberata. Tolte "Le mie app" e "Cerca app" (portavano nella Home Amazon senza
+  ritorno); l'Appstore resta tra le app.
+- Alla prima configurazione dal PC: installate Netflix, Prime Video, RaiPlay, YouTube, l'Appstore e Aerial Views;
+  le altre app si possono togliere o nascondere dalla Home. Le app installate dopo restano dove sono.
+- Nuova opzione **"Apri TV Liberata all'accensione"** (Configurazione guidata), accesa da sola sulle Fire TV dove il
+  servizio Home non c'è.
+
 ## 1.0 — novembre 2026
 Prima versione: una sola app per Fire TV e Android TV (riconosciute da sole).
 - **Home pulita**: orologio, data e meteo (posizione trovata dalla connessione, correggibile a mano); pulsanti Wi-Fi,

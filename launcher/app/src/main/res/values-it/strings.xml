@@ -309,8 +309,6 @@
     <string name="update_done_title">TV Liberata è stata aggiornata alla versione %1$s</string>
     <string name="update_done_no_notes">Piccole correzioni e miglioramenti.</string>
     <string name="update_ok">OK</string>
-    <string name="fire_my_apps">Le mie app</string>
-    <string name="fire_search">Cerca app</string>
     <string name="ss_amazon_photos">Amazon Foto</string>
     <string name="ss_amazon_disabled">Amazon Foto non può partire: l’app screensaver di Fire OS è disattivata. Riattivala da TV Liberata, Sistema, Pulizia avanzata, Ripristina tutto (se l’ha disattivata TV Liberata), oppure dal PC: adb shell pm enable com.amazon.ftv.screensaver</string>
     <string name="ss_start_after">Avvia dopo</string>
@@ -339,6 +337,18 @@
     <string name="setup_failed">La configurazione si è fermata: vedi il passo qui sopra. Premi Configura per riprovare.</string>
     <string name="setup_to_home">Vai alla Home</string>
     <string name="setup_undo_needs_adb">Per annullare serve il debug della TV autorizzato: premi prima Configura.</string>
+    <string name="power_on_open_yes">Apri TV Liberata all’accensione: sì</string>
+    <string name="power_on_open_no">Apri TV Liberata all’accensione: no</string>
+    <string name="setup_pc_check">Controlla di nuovo</string>
+    <string name="setup_pc_intro">Questa TV non permette alle app di configurarla da sole: lo fa una volta un PC sulla stessa rete, poi non serve più.</string>
+    <string name="setup_pc_ip">Indirizzo di questa TV</string>
+    <string name="setup_pc_no_ip">non collegata</string>
+    <string name="setup_pc_steps">Su un PC Windows apri %1$s, scarica lo zip, estrailo e fai doppio clic su Configura-TV-Liberata. Quando la TV lo chiede, spunta “Consenti sempre” e premi OK. Questa pagina si completa da sola.</string>
+    <string name="setup_pc_secure">Permesso impostazioni</string>
+    <string name="setup_pc_service">Servizio Home (accessibilità)</string>
+    <string name="setup_pc_vpn">Filtro DNS consentito</string>
+    <string name="setup_pc_home">TV Liberata come Home</string>
+    <string name="setup_undo_needs_pc">Su questa TV si annulla dal programma per PC (%1$s): scegli “Annulla tutto”.</string>
     <string name="setup_undone">Tutto è tornato come prima.</string>
     <string name="setup_undone_partly">Tornato come prima, tranne: %1$s</string>
     <string name="syntax_every_minutes">ogni %1$d min</string>

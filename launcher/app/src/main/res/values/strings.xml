@@ -396,8 +396,6 @@
     <string name="update_done_title">TV Liberata updated to version %1$s</string>
     <string name="update_done_no_notes">Small fixes and improvements.</string>
     <string name="update_ok">OK</string>
-    <string name="fire_my_apps">My apps</string>
-    <string name="fire_search">Search apps</string>
     <string name="ss_amazon_photos">Amazon Photos</string>
     <string name="ss_amazon_disabled">Amazon Photos cannot start: Fire OS’s screensaver app is turned off. Turn it on again from TV Liberata, Sistema, Pulizia avanzata, Restore all (if TV Liberata turned it off), or from a PC: adb shell pm enable com.amazon.ftv.screensaver</string>
     <string name="ss_start_after">Start after</string>
@@ -426,6 +424,18 @@
     <string name="setup_failed">The set-up stopped: see the step above. Press Set up to try again.</string>
     <string name="setup_to_home">Go to Home</string>
     <string name="setup_undo_needs_adb">To undo, the TV’s debugging must be allowed: press Set up first.</string>
+    <string name="power_on_open_yes">Open TV Liberata at power-on: yes</string>
+    <string name="power_on_open_no">Open TV Liberata at power-on: no</string>
+    <string name="setup_pc_check">Check again</string>
+    <string name="setup_pc_intro">This TV does not let apps set it up by themselves: a PC on the same network does it once, then it is no longer needed.</string>
+    <string name="setup_pc_ip">Address of this TV</string>
+    <string name="setup_pc_no_ip">not connected</string>
+    <string name="setup_pc_steps">On a Windows PC open %1$s, download the zip, unzip it and double-click Configura-TV-Liberata. When the TV asks, tick “Always allow” and press OK. This page fills in by itself.</string>
+    <string name="setup_pc_secure">Settings permission</string>
+    <string name="setup_pc_service">Home service (accessibility)</string>
+    <string name="setup_pc_vpn">DNS filter allowed</string>
+    <string name="setup_pc_home">TV Liberata as Home</string>
+    <string name="setup_undo_needs_pc">On this TV, undoing is done from the PC program (%1$s): choose “Undo everything”.</string>
     <string name="setup_undone">Everything is back as before.</string>
     <string name="setup_undone_partly">Back as before, except: %1$s</string>
     <string name="syntax_every_minutes">every %1$d min</string>

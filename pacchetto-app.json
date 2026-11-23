@@ -1,0 +1,65 @@
+{
+  "versione": 2,
+  "nota": "Le app di una TV Liberata, installate alla prima configurazione dal PC. tipo: release = TV Liberata stessa; sistema = gia' sulla TV, solo controllata; store = pagina dell'Appstore (Fire TV) o del Play Store (Android TV), l'utente preme Scarica; libera = APK dalla fonte ufficiale con SHA-256. solo = fireos o androidtv. Le altre app trovate sulla TV si possono togliere o nascondere, sempre con conferma; quelle installate dopo restano.",
+  "app": [
+    {
+      "nome": "TV Liberata",
+      "pacchetto": "com.gathin.tvhome.liberata",
+      "tipo": "release"
+    },
+    {
+      "nome": "Appstore Amazon",
+      "pacchetto": "com.amazon.venezia",
+      "tipo": "sistema",
+      "solo": "fireos"
+    },
+    {
+      "nome": "Play Store",
+      "pacchetto": "com.android.vending",
+      "tipo": "sistema",
+      "solo": "androidtv"
+    },
+    {
+      "nome": "Netflix",
+      "pacchetto": "com.netflix.ninja",
+      "tipo": "store"
+    },
+    {
+      "nome": "Prime Video",
+      "pacchetto": "com.amazon.firebat",
+      "tipo": "store",
+      "solo": "fireos"
+    },
+    {
+      "nome": "Prime Video",
+      "pacchetto": "com.amazon.amazonvideo.livingroom",
+      "tipo": "store",
+      "solo": "androidtv"
+    },
+    {
+      "nome": "RaiPlay",
+      "pacchetto": "it.rainet.androidtv",
+      "tipo": "store"
+    },
+    {
+      "nome": "YouTube",
+      "pacchetto": "com.amazon.firetv.youtube",
+      "tipo": "store",
+      "solo": "fireos"
+    },
+    {
+      "nome": "YouTube",
+      "pacchetto": "com.google.android.youtube.tv",
+      "tipo": "store",
+      "solo": "androidtv"
+    },
+    {
+      "nome": "Aerial Views",
+      "pacchetto": "com.neilturner.aerialviews",
+      "tipo": "libera",
+      "apk": "https://github.com/theothernt/AerialViews/releases/download/1.8.6/aerial-views-1.8.6.apk",
+      "sha256": "cd538992471caeb7890045a3c2b15a44fd4ec95509e2f1645a4089965731ef9d",
+      "fonte": "https://github.com/theothernt/AerialViews"
+    }
+  ]
+}

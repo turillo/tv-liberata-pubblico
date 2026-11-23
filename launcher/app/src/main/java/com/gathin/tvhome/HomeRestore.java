@@ -73,5 +73,13 @@ public final class HomeRestore extends BroadcastReceiver {
         restore(context);
         FilterSettings.resume(context);   // the DNS filter, both editions, if it was on
         Updater.schedule(context);        // the liberata's night update check
+        String action = intent.getAction();
+        if (Intent.ACTION_MY_PACKAGE_REPLACED.equals(action)) {
+            SelfInstall.disarm(context);
+            // Updated from TV Liberata itself: back to Home, which says what changed.
+            if (Updater.announcePending(context)) PowerOnOpen.openHome(context);
+        } else if (Intent.ACTION_BOOT_COMPLETED.equals(action) && PowerOnOpen.enabled(context)) {
+            PowerOnOpen.openHome(context);
+        }
     }
 }

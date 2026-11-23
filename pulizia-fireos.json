@@ -1,0 +1,248 @@
+{
+  "versione": 1,
+  "nota": "Fire OS: app Amazon disattivate con pm disable-user --user 0 (mai disinstallate; Annulla tutto le riattiva). Provata su Fire TV Stick Lite e 3a gen, Fire OS 7.7. \"mai\": pacchetti che il programma non tocca in nessun caso.",
+  "disattiva": [
+    {
+      "pacchetto": "com.amazon.ale",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.ceviche",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.connectivitydiag",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.device_remote_config_sync_service",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.dp.logger",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.hedwig",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.hybridadidservice",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.katoch",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.logan",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.media.recommendations",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.neo.minerva.logcat",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.perfc",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.perfcollection",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.privacypassservice",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.shoptv.client",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.shoptv.firetv.client",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.sneakpeek",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.systemnotices",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.tigris",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.tv.acr",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.tv.developer.dataservice",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.tv.easyupgrade",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.tv.forcedotaupdater.v2",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.tv.fw.metrics",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.tv.releasenotes",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.tv.website_launcher",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.wirelessmetrics.service",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.android.traceur",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.client.metrics.api",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.neo.minerva",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.livedeviceservice",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.wifilocker",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.kso.blackbird",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.providers.contentsupport",
+      "gruppo": "telemetria e pubblicita"
+    },
+    {
+      "pacchetto": "com.amazon.cloud9",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.dummy.alarmclock",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.dummy.calendar",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.dummy.contacts",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.dummy.gallery",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.dummy.music",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.dummy.settings",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.gamehub",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.spiderpork",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.storm.lightning.tutorial",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.tahoe",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.tmm.tutorial",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.naatyam",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.tv.ffsprovisioneeclient",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.ods.kindleconnect",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    },
+    {
+      "pacchetto": "com.amazon.tv.mattercohost",
+      "gruppo": "app Amazon non usate, tutorial, segnaposto, aiuti di configurazione"
+    }
+  ],
+  "mai": [
+    "#",
+    "android",
+    "com.amazon.autopairservice",
+    "com.amazon.bueller.photos",
+    "com.amazon.device.blepa",
+    "com.amazon.device.bluetoothpa",
+    "com.amazon.device.messaging",
+    "com.amazon.firebat",
+    "com.amazon.firehomestarter",
+    "com.amazon.fireinputdevices",
+    "com.amazon.franktvinput",
+    "com.amazon.ftv.screensaver",
+    "com.amazon.mediatek.livetv",
+    "com.amazon.tifobserver",
+    "com.amazon.tv.devicecontrol",
+    "com.amazon.tv.devicecontrolsettings",
+    "com.amazon.tv.ime",
+    "com.amazon.tv.inputpreference.service",
+    "com.amazon.tv.keypolicymanager",
+    "com.amazon.tv.launcher",
+    "com.amazon.tv.livetv",
+    "com.amazon.tv.oobe",
+    "com.amazon.tv.ooberesource",
+    "com.amazon.tv.routing",
+    "com.amazon.tv.settings.core",
+    "com.amazon.tv.settings.mediatek",
+    "com.amazon.tv.settings.v2",
+    "com.amazon.venezia",
+    "com.amazon.vizzini",
+    "com.amazon.webview.chromium",
+    "com.amazon.whisperjoin.middleware.np",
+    "com.amazon.whisperplay.service.install",
+    "com.android.packageinstaller",
+    "com.android.permissioncontroller",
+    "com.android.settings",
+    "com.android.shell",
+    "com.android.systemui",
+    "com.gathin.tvhome.liberata",
+    "com.mediatek.dtv.tvinput.atsctuner",
+    "com.mediatek.tis"
+  ]
+}

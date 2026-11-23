@@ -8,3 +8,8 @@ launcher/keys.properties
 *.aab
 *.jks
 *.keystore
+
+# Configura-TV-Liberata: what it downloads and writes next to itself
+configura/platform-tools/
+configura/backup/
+configura/*.log

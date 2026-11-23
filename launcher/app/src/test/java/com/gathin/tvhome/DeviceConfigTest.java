@@ -24,6 +24,14 @@ public class DeviceConfigTest {
     }
 
     @Test
+    public void appsToHideAtTheFirstSetUp() {
+        DeviceConfig.Values v = DeviceConfig.parse("{\"nome\":\"Chicco\",\"nascondi\":[\"com.example.tv\","
+                + "\"not a package\",\"org.x\",42]}");
+        assertEquals(java.util.Arrays.asList("com.example.tv", "org.x"), v.hide);
+        assertTrue(DeviceConfig.parse("{\"nome\":\"Chicco\"}").hide.isEmpty());
+    }
+
+    @Test
     public void updateChannels() {
         String list = "[{\"tag_name\":\"v1.1\",\"prerelease\":true,\"assets\":[{\"name\":\"tv-liberata.apk\","
                 + "\"browser_download_url\":\"https://github.com/a/b/releases/download/v1.1/tv-liberata.apk\"}]},"

@@ -1,0 +1,59 @@
+TV LIBERATA - CONFIGURAZIONE DAL PC
+====================================
+
+A cosa serve
+------------
+Su alcune Fire TV (Fire OS 7.7) Amazon non permette a TV Liberata di
+configurarsi da sola. Questo programma lo fa dal PC, UNA volta sola:
+dopo, il PC non serve piu'.
+
+Cosa serve
+----------
+- Un PC con Windows 10 o 11, sulla stessa rete (Wi-Fi o cavo) della TV.
+- Sulla TV: "Debug ADB" attivo (Impostazioni > La mia Fire TV >
+  Opzioni sviluppatore > Debug ADB). Vedi la guida di installazione.
+- TV Liberata gia' installata (con Downloader, codice 8520002).
+  Se manca, il programma la installa lui.
+
+Come si usa
+-----------
+1. Estrai lo zip in una cartella (tasto destro > Estrai tutto).
+2. Fai doppio clic su  Configura-TV-Liberata.bat
+   (se Windows avvisa "PC protetto": Ulteriori informazioni > Esegui comunque).
+3. Il programma scarica gli strumenti ADB ufficiali di Google (la prima
+   volta), cerca la TV sulla rete e ti chiede se e' quella giusta.
+4. Sulla TV compare "Consentire il debug USB?": spunta
+   "Consenti sempre da questo computer" e premi OK.
+5. Scegli  1  (Configura TV Liberata) e rispondi alle domande:
+   il nome della TV e cosa fare delle app che non fanno parte di
+   TV Liberata: disinstallarle o nasconderle dalla Home
+   (non tocca niente senza chiedertelo).
+6. Alla fine la TV si riavvia e compare il riepilogo
+   "Configurazione completata".
+
+Cosa fa sulla TV
+----------------
+- salva un backup (cartella "backup" accanto al programma);
+- installa TV Liberata se manca, e le sue app: Netflix, Prime Video,
+  RaiPlay, YouTube e Aerial Views (per alcune apre l'Appstore sulla TV:
+  premi Scarica col telecomando);
+- disattiva (NON cancella) le app Amazon di pubblicita' e telemetria;
+- toglie o nasconde, solo se lo confermi, le app che non fanno parte di
+  TV Liberata (solo ora: le app che installerai dopo restano);
+- da' a TV Liberata i permessi che servono: Home, filtro DNS,
+  aggiornamenti, screensaver;
+- lascia acceso il debug ADB.
+
+Tornare indietro
+----------------
+Rilancia il programma e scegli  2  (Annulla tutto e torna come prima):
+riattiva le app disattivate, rimette la Home Amazon e le impostazioni di
+prima. Le app eventualmente disinstallate vanno riscaricate dall'Appstore
+(il programma te ne mostra l'elenco).
+
+Registro
+--------
+Ogni avvio scrive un file Configura-TV-Liberata-<data>.log accanto al
+programma: se qualcosa non va, e' li' che si guarda.
+
+Progetto: https://github.com/turillo/tv-liberata-pubblico

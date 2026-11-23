@@ -88,7 +88,6 @@ public final class SyntaxHiddenAppsActivity extends Activity {
             CharSequence label = ri.loadLabel(pm);
             list.add(new String[]{pkg, label == null ? pkg : label.toString()});
         }
-        if (Device.isFireOs()) for (String fake : FireShortcuts.ALL) list.add(new String[]{fake, FireShortcuts.label(this, fake)});
         list.sort((a, b) -> a[1].compareToIgnoreCase(b[1]));
         for (String[] a : list) labels.put(a[0], a[1]);
         return labels;

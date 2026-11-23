@@ -14,8 +14,8 @@ android {
         minSdk 26
         targetSdk 34
         // Numbered versions; the changes are in CHANGELOG.md (also the text of each GitHub Release).
-        versionCode 100
-        versionName '1.0'
+        versionCode 102
+        versionName '1.0.2'
         // GitHub Releases checked by the in-app updater (owner/repo), and its production pointer produzione.json.
         buildConfigField 'String', 'UPDATE_REPO', '"turillo/tv-liberata-pubblico"'
         // No API key is built in: Unsplash's (off in 1.0) comes from the device configuration (DeviceConfig).

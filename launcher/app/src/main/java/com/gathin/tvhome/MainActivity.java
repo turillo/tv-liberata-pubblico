@@ -3151,11 +3151,11 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
             pickUp(at);
             Toast.makeText(this, R.string.reorder_hint, Toast.LENGTH_LONG).show();
         });
-        if ((appLibraryEnabled || FireShortcuts.is(pkg)) && !AppRules.store(pkg)) addSettingsMenuRow(rows, popup, R.string.library_remove_shortcut, () -> {
+        if (appLibraryEnabled && !AppRules.store(pkg)) addSettingsMenuRow(rows, popup, R.string.library_remove_shortcut, () -> {
             if (LibraryApps.save(this, pkg, false)) reloadApps(false);
             else Toast.makeText(this, R.string.library_save_failed, Toast.LENGTH_LONG).show();
         });
-        if (!FireShortcuts.is(pkg)) addSettingsMenuRow(rows, popup, R.string.library_app_info, () -> open(new Intent(
+        addSettingsMenuRow(rows, popup, R.string.library_app_info, () -> open(new Intent(
                 Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.parse("package:" + pkg))));
         // Disinstalla: the TV's own confirmation; never for system apps, the app stores or TV Liberata.
         if (AppRules.uninstallable(this, pkg)) addSettingsMenuRow(rows, popup, R.string.tile_uninstall, () -> open(

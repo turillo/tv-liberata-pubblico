@@ -299,14 +299,6 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 fresh.add(new Entry(label, component, banner, icon));
             }
         }
-        // Fire OS: "Le mie app" and "Cerca app" of Amazon's home, as tiles (hidden like an app, never disabled).
-        if (Device.isFireOs()) {
-            for (String fake : FireShortcuts.ALL) {
-                if (removed.contains(fake) || hidden.contains(fake)) continue;
-                fresh.add(new Entry(FireShortcuts.label(ctx, fake), FireShortcuts.component(fake),
-                        FireShortcuts.banner(ctx, fake), null));
-            }
-        }
         Collections.sort(fresh, (a, b) -> {
             // The owner's own order first; tiles it does not know (new installs) follow by the rule below.
             int saved = Order.compare(savedRanks, a.component.flattenToShortString(), b.component.flattenToShortString());
@@ -498,10 +490,6 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     /** Opens the tile's activity by explicit component, with no extras: a card can name nothing else. */
     private void launch(Entry e) {
-        if (FireShortcuts.is(e.pkg)) {
-            if (!FireShortcuts.open(ctx, e.pkg)) Toast.makeText(ctx, ctx.getString(R.string.cant_open, e.label), Toast.LENGTH_SHORT).show();
-            return;
-        }
         if (e.kind == Entry.HOME_SETTINGS) {
             ctx.startActivity(new Intent(ctx, HomeSettingsActivity.class)
                     .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
