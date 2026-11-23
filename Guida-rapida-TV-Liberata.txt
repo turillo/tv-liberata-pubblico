@@ -1,0 +1,46 @@
+TV LIBERATA - GUIDA RAPIDA
+==========================
+
+TV Liberata e' una nuova Home per la Fire TV: niente pubblicita',
+solo le tue app, sfondi, meteo e screensaver. Si installa col
+telecomando e si configura una volta con un PC Windows.
+
+Serve: Fire TV collegata a internet, telecomando, un PC Windows
+sulla stessa rete.
+
+
+1. SULLA FIRE TV - OPZIONI SVILUPPATORE
+   Impostazioni > La mia Fire TV > Informazioni >
+   premi OK 7 volte sul nome del dispositivo.
+
+2. SULLA FIRE TV - DEBUG E INSTALLAZIONI
+   Impostazioni > La mia Fire TV > Opzioni sviluppatore:
+   - Debug ADB: ATTIVO
+   - Installa app sconosciute: Downloader ATTIVO
+     (prima installa "Downloader" dall'Appstore)
+
+3. SULLA FIRE TV - INSTALLA TV LIBERATA
+   Apri Downloader, scrivi  8520002  e premi Go.
+   Premi "Installa", poi "Apri".
+   (In alternativa all'8520002:  tinyurl.com/tvliberata)
+
+4. SUL PC - SCARICA IL PROGRAMMA
+   Apri  tinyurl.com/Tv-liberata-pc
+   Tasto destro sullo zip > "Estrai tutto".
+
+5. SUL PC - CONFIGURA
+   Doppio clic su  Configura-TV-Liberata.bat
+   (se Windows avvisa: "Ulteriori informazioni" > "Esegui comunque").
+   - Conferma la TV trovata (S).
+   - Sulla TV: spunta "Consenti sempre" e premi OK.
+   - Scegli  1, scrivi il nome della TV, decidi quali app togliere
+     o nascondere.
+   - Se si apre l'Appstore sulla TV, premi "Scarica".
+
+6. FATTO
+   La TV si riavvia con TV Liberata. Il PC non serve piu'.
+   Lascia attivo "Debug ADB": gli aggiornamenti arrivano da soli.
+
+
+Tornare indietro: rilancia il programma sul PC e scegli  2.
+Guida completa: Guida-installazione-TV-Liberata.txt

@@ -37,7 +37,7 @@ Tutto si regola da **Impostazioni TV Liberata**, l'app delle impostazioni che ar
 
 ## Installazione su Fire TV
 
-La guida passo passo, solo col telecomando: [Guida-installazione-TV-Liberata.txt](Guida-installazione-TV-Liberata.txt).
+La guida passo passo: [Guida-installazione-TV-Liberata.txt](Guida-installazione-TV-Liberata.txt); in breve: [Guida-rapida-TV-Liberata.txt](Guida-rapida-TV-Liberata.txt).
 
 **Fire OS 7.7**: Amazon non permette a TV Liberata di configurarsi da sola. Dopo averla installata con Downloader, la
 configura una volta un PC Windows sulla stessa rete: scarica
