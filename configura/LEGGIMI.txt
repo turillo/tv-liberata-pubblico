@@ -10,10 +10,14 @@ dopo, il PC non serve piu'.
 Cosa serve
 ----------
 - Un PC con Windows 10 o 11, sulla stessa rete (Wi-Fi o cavo) della TV.
+- Una Fire TV con Fire OS 7 o piu' recente, o una TV Google TV / Android TV
+  con Android 8 o piu' recente. Le Fire TV con Fire OS 5 (es. Fire TV Stick
+  2a gen.) e i modelli nuovi con Vega OS non vanno: il programma lo dice
+  subito e non cambia niente.
 - Sulla TV: "Debug ADB" attivo (Impostazioni > La mia Fire TV >
   Opzioni sviluppatore > Debug ADB). Vedi la guida di installazione.
-- TV Liberata gia' installata (con Downloader, codice 8520002).
-  Se manca, il programma la installa lui.
+- Non serve installare niente sulla TV: TV Liberata la installa
+  il programma. (Se e' gia' installata, va bene lo stesso.)
 
 Come si usa
 -----------
@@ -28,8 +32,8 @@ Come si usa
    il nome della TV e cosa fare delle app che non fanno parte di
    TV Liberata: disinstallarle o nasconderle dalla Home
    (non tocca niente senza chiedertelo).
-6. Alla fine la TV si riavvia e compare il riepilogo
-   "Configurazione completata".
+6. Alla fine la TV si riavvia e sul PC compare la scritta grande FATTO!
+   con il riepilogo. Sulla TV, se compare "Fatto!", premi OK.
 
 Cosa fa sulla TV
 ----------------

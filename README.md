@@ -17,6 +17,9 @@ attimo (vedi [Tornare alla Home Amazon](#tornare-alla-home-amazon)).
 - **Le tue app**: una riga in basso e una griglia, che riordini e da cui nascondi quello che non usi (tieni premuto
   OK su un'app: Sposta, Togli dalla Home, **Disinstalla**). L'elenco delle app nascoste è in Impostazioni TV Liberata,
   App. Lo store (Appstore su Fire TV, Play Store su Android TV) resta sempre in Home.
+- **News**: la striscia delle notizie ANSA, in Home e sullo screensaver, con le sezioni che scegli (spenta finché non
+  la accendi).
+- **Temi**: lo stile dei menu (Palloncini, Segmentati, Elenco, Solo testo), il colore principale e lo sfondo dei menu.
 - **Meteo** in alto, per la tua città: trovata da sola dalla connessione internet, o scelta a mano.
 - **Screensaver**: Orologio, "Preferite" (le tue foto preferite con dissolvenza e zoom lento) e, su Fire TV, Amazon
   Foto; "Avvia dopo" 1, 3, 5, 10, 15 o 30 minuti.
@@ -34,51 +37,55 @@ Tutto si regola da **Impostazioni TV Liberata**, l'app delle impostazioni che ar
 
 ## Requisiti
 
-- Fire TV Stick con Fire OS 7 o più recente (provata su Fire TV Stick Lite e Fire TV Stick 3ª gen.), oppure una TV
-  Android TV / Google TV con Android 8 o più recente.
+- Fire TV con **Fire OS 7 o più recente** (provata su Fire TV Stick Lite e Fire TV Stick 3ª gen.; vanno anche
+  Fire TV Stick 4K e 4K Max), oppure una TV **Google TV / Android TV con Android 8** o più recente.
+- **Non funziona** sulle Fire TV con Fire OS 5 (es. Fire TV Stick 2ª gen. del 2016) né sui modelli nuovi con
+  **Vega OS**, che non permettono di installare app. Il programma per PC lo riconosce e si ferma prima di cambiare
+  qualcosa.
+- Un PC Windows 10 o 11 sulla stessa rete della TV, per l'installazione consigliata.
 - Connessione internet (per sfondi e meteo; senza rete restano le foto già scaricate).
 
-## Installazione su Fire TV
+## Installazione (dal PC, consigliata)
 
-La guida passo passo: [Guida-installazione-TV-Liberata.txt](Guida-installazione-TV-Liberata.txt); in breve: [Guida-rapida-TV-Liberata.txt](Guida-rapida-TV-Liberata.txt).
+Si fa **una volta** da un PC Windows sulla stessa rete della TV: dopo, il PC non serve più.
 
-**Fire OS 7.7**: Amazon non permette a TV Liberata di configurarsi da sola. Dopo averla installata con Downloader, la
-configura una volta un PC Windows sulla stessa rete: scarica
-[Configura-TV-Liberata.zip](https://github.com/turillo/tv-liberata-pubblico/releases/latest/download/Configura-TV-Liberata.zip)
-(o apri `tinyurl.com/Tv-liberata-pc`), estrailo e fai doppio clic su `Configura-TV-Liberata.bat`. Le liste che usa
+1. Sulla TV: Impostazioni, La mia Fire TV, Informazioni, premi OK 7 volte sul nome del dispositivo; poi in
+   Opzioni sviluppatore attiva **Debug ADB**.
+2. Sul PC apri **`tinyurl.com/Tv-liberata-pc`** (scarica
+   [Configura-TV-Liberata.zip](https://github.com/turillo/tv-liberata-pubblico/releases/latest/download/Configura-TV-Liberata.zip)),
+   estrai lo zip e fai doppio clic su `Configura-TV-Liberata.bat`.
+3. Conferma la TV trovata, sulla TV spunta "Consenti sempre" e premi OK, poi rispondi alle domande.
+
+Il programma installa TV Liberata, la rende Home, disattiva (senza cancellarle) le app Amazon di pubblicità e
+telemetria e lascia un backup per tornare indietro (scelta 2, "Annulla tutto e torna come prima"). Le liste che usa
 sono in questo repository: [pacchetto-app.json](pacchetto-app.json) e [pulizia-fireos.json](pulizia-fireos.json).
 
-### Con un PC e adb (consigliata: fa anche diventare Home)
+La guida passo passo: [Guida-installazione-TV-Liberata.txt](Guida-installazione-TV-Liberata.txt); in breve:
+[Guida-rapida-TV-Liberata.txt](Guida-rapida-TV-Liberata.txt). Per le TV Android TV / Google TV cambiano solo i menu
+(appendice A della guida).
 
-1. Sulla Fire TV: Impostazioni, La mia Fire TV, Informazioni, premi 7 volte sul nome del dispositivo; poi in
-   Opzioni sviluppatore attiva **Debug ADB**. Annota l'indirizzo IP (Impostazioni, La mia Fire TV, Informazioni, Rete).
-2. Sul PC installa gli [strumenti di piattaforma Android](https://developer.android.com/tools/releases/platform-tools)
-   e scarica `tv-liberata.apk` dall'ultima [Release](https://github.com/turillo/tv-liberata-pubblico/releases/latest).
-3. Da PowerShell, nella cartella `launcher` di questo repository:
-
-   ```powershell
-   .\firetv-home.ps1 -TvHost 192.168.1.60 -NoBuild -Apk C:\percorso\tv-liberata.apk
-   ```
-
-   Lo script salva prima le impostazioni che tocca, installa l'app, la rende Home e controlla che il tasto Home
-   porti qui; se qualcosa non va rimette da solo la Home Amazon. Sulla TV conferma la richiesta di debug.
-4. Facoltativo: lo screensaver di TV Liberata come screensaver di sistema si sceglie in Impostazioni TV Liberata
-   (Screensaver, "Scene TV Liberata"): lo script le ha già dato il permesso che serve.
-5. Filtro DNS: la prima volta che lo accendi la TV chiede il permesso VPN (una volta sola). Da PC si può dare con
-   `adb shell appops set com.gathin.tvhome.liberata ACTIVATE_VPN allow`.
-
-### Solo dal telecomando, con Downloader
+### Senza PC: Downloader (alternativa)
 
 1. Installa **Downloader** (AFTVnews) dall'Appstore e consenti "Installa app sconosciute" per Downloader
    (Impostazioni, La mia Fire TV, Opzioni sviluppatore).
-2. In Downloader apri questo indirizzo e installa:
+2. In Downloader scrivi il codice **`8520002`** (oppure `tinyurl.com/tvliberata`) e installa.
+3. Apri **TV Liberata** dalle tue app: parte la configurazione guidata.
 
-   ```
-   https://github.com/turillo/tv-liberata-pubblico/releases/latest/download/tv-liberata.apk
-   ```
+**Limite di Fire OS 7.7** (le Fire TV più diffuse): senza PC TV Liberata funziona come app normale ma **non diventa
+la Home** e la pulizia delle app Amazon non si fa, perché Amazon non permette alle app di configurare la TV da sole.
+Appena hai un PC, fai l'installazione dal PC qui sopra: completa la configurazione.
 
-3. Apri **TV Liberata** dalle tue app. Così è un'app normale: per farla diventare la Home al posto di quella
-   Amazon serve il passo 3 della sezione adb (Fire OS non lo permette dal solo telecomando).
+### Per chi usa già adb
+
+Dalla cartella `launcher` di questo repository, con `tv-liberata.apk` dell'ultima
+[Release](https://github.com/turillo/tv-liberata-pubblico/releases/latest):
+
+```powershell
+.\firetv-home.ps1 -TvHost 192.168.1.60 -NoBuild -Apk C:\percorso\tv-liberata.apk
+```
+
+Lo script salva prima le impostazioni che tocca, installa l'app, la rende Home e controlla che il tasto Home porti
+qui; se qualcosa non va rimette da solo la Home Amazon.
 
 ## Aggiornamenti
 
