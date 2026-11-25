@@ -58,7 +58,10 @@ public final class SyntaxSystemActivity extends Activity {
         LinearLayout column = SyntaxUi.page(this, outer);
         column.setClipChildren(false);
 
+        // A dashboard: its buttons stay buttons in every style (1.0.9: the segmented style made the title a small
+        // label, the list style pushed the panels off the screen).
         LinearLayout top = SyntaxUi.chipRow(this);
+        SyntaxUi.keepAsChips(top);
         TextView title = SyntaxUi.text(this, 30, R.string.font_medium, SyntaxUi.TEXT);
         title.setText(R.string.syntax_system);
         top.addView(title, new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
@@ -69,6 +72,7 @@ public final class SyntaxSystemActivity extends Activity {
         column.addView(top);
         // TV Liberata: the weather's place and the updates, on a second line.
         LinearLayout more = SyntaxUi.chipRow(this);
+        SyntaxUi.keepAsChips(more);
         more.setPadding(0, SyntaxUi.dp(this, 10), 0, 0);
         TextView filter = SyntaxUi.chip(this, getString(R.string.filter_title));
         filter.setOnClickListener(v -> startActivity(new android.content.Intent(this, SyntaxFilterActivity.class)));
@@ -83,6 +87,17 @@ public final class SyntaxSystemActivity extends Activity {
             SyntaxUi.addChip(more, place);
         }
         addUpdateChip(more);
+        // 1.1.0: the cartolina's switch (only when this APK has its receiver).
+        if (Cartolina.enabled()) {
+            cartolina = SyntaxUi.chip(this, getString(R.string.cartolina_switch));
+            cartolina.setOnClickListener(v -> {
+                Cartolina.setConsent(this, !Cartolina.on(this), Cartolina.UPDATED);
+                cartolina.setSelected(Cartolina.on(this));
+            });
+            SyntaxUi.addChip(more, cartolina);
+            SyntaxUi.toggle(cartolina);
+            cartolina.setSelected(Cartolina.on(this));
+        }
         TextView setup = SyntaxUi.chip(this, getString(R.string.setup_title));
         setup.setOnClickListener(v -> startActivity(new android.content.Intent(this, SetupActivity.class)));
         SyntaxUi.addChip(more, setup);
@@ -127,6 +142,7 @@ public final class SyntaxSystemActivity extends Activity {
             showAlertsChip();
         });
         SyntaxUi.addChip(row, alerts);
+        SyntaxUi.toggle(alerts);
         showAlertsChip();
         // Margini schermo: this TV's overscan margin, set on its own screen with a frame to see it.
         marginChip = SyntaxUi.chip(this, getString(R.string.margin_chip, ScreenMargin.percent(this)));
@@ -138,7 +154,7 @@ public final class SyntaxSystemActivity extends Activity {
     private TextView marginChip;
     private int shownMargin = -1;
 
-    private TextView alerts;
+    private TextView alerts, cartolina;
 
     private void showAlertsChip() {
         boolean on = SyntaxPrefs.get(this).systemAlerts();
@@ -251,8 +267,8 @@ public final class SyntaxSystemActivity extends Activity {
         ramChart.set(chart, ramHistory.capacity());
         if (ramChart.getParent() == null) {
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                    SyntaxUi.dp(this, 40));
-            lp.topMargin = SyntaxUi.dp(this, 6);
+                    SyntaxUi.dp(this, 26));   // 1.0.9: lower, so the Info panel under it keeps its last line
+            lp.topMargin = SyntaxUi.dp(this, 4);
             ramBox.addView(ramChart, lp);
         } else {
             ramBox.addView(ramChart);

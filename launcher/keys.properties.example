@@ -3,3 +3,8 @@
 #
 # Unsplash: https://unsplash.com/developers -> New Application -> "Access Key"
 UNSPLASH_ACCESS_KEY=
+
+# The "cartolina" (TV Liberata 1.1.0): the Apps Script web app URL (.../exec) and its secret.
+# Both empty: the cartolina is off (no question on the TV, nothing sent).
+CARTOLINA_URL=
+CARTOLINA_SECRET=

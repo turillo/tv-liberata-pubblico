@@ -186,6 +186,15 @@
             android:taskAffinity="com.gathin.tvhome.syntax" android:screenOrientation="landscape" />
         <activity android:name=".SyntaxMarginActivity" android:exported="false"
             android:taskAffinity="com.gathin.tvhome.syntax" android:screenOrientation="landscape" />
+        <activity android:name=".SyntaxThemeActivity" android:exported="false"
+            android:taskAffinity="com.gathin.tvhome.syntax" android:screenOrientation="landscape" />
+        <!-- The theme from the PC over adb (tests and screenshots; shell only). -->
+        <receiver android:name=".Theme$Receiver" android:exported="true"
+            android:permission="android.permission.WRITE_SECURE_SETTINGS">
+            <intent-filter>
+                <action android:name="com.gathin.tvhome.THEME" />
+            </intent-filter>
+        </receiver>
         <activity android:name=".SyntaxAppsActivity" android:exported="false"
             android:taskAffinity="com.gathin.tvhome.syntax" android:screenOrientation="landscape" />
         <activity android:name=".SyntaxHiddenAppsActivity" android:exported="false"

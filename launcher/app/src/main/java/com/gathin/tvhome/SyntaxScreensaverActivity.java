@@ -75,6 +75,8 @@ public final class SyntaxScreensaverActivity extends Activity {
             modes.addView(gap2, new LinearLayout.LayoutParams(SyntaxUi.dp(this, 24), 1));
             SyntaxUi.addChip(modes, idleClock);
         }
+        SyntaxUi.group(getString(R.string.syntax_mode), syntaxMode, aerialMode, amazonMode);
+        if (idleClock != null) SyntaxUi.toggle(idleClock);
         column.addView(modes);
         // "Avvia dopo N minuti": the system's screen_off_timeout.
         LinearLayout after = SyntaxUi.chipRow(this);
@@ -96,6 +98,7 @@ public final class SyntaxScreensaverActivity extends Activity {
             }));
             SyntaxUi.addChip(after, minuteChips[i]);
         }
+        SyntaxUi.group(afterLabel, minuteChips);
         column.addView(after);
         notice = SyntaxUi.text(this, 14, R.string.font_light, SyntaxUi.DANGER);
         notice.setPadding(0, SyntaxUi.dp(this, 8), 0, 0);
@@ -104,8 +107,7 @@ public final class SyntaxScreensaverActivity extends Activity {
         // The scenes' heading, with the "Preferite" scene's settings on the same line (seconds, panel), compact so
         // the two rows of cards still fit.
         LinearLayout fav = SyntaxUi.chipRow(this);
-        fav.addView(SyntaxUi.label(this, getString(R.string.syntax_scenes)),
-                new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f));
+        fav.setPadding(0, SyntaxUi.dp(this, 14), 0, 0);
         TextView favLabel = SyntaxUi.text(this, 14, R.string.font_regular, SyntaxUi.MUTED);
         favLabel.setText(R.string.favorites_settings);
         favLabel.setPadding(0, 0, SyntaxUi.dp(this, 10), 0);
@@ -127,7 +129,11 @@ public final class SyntaxScreensaverActivity extends Activity {
             refresh();
         });
         SyntaxUi.addChip(fav, panelChip);
+        SyntaxUi.group(favLabel, secondChips);
+        SyntaxUi.toggle(panelChip);
         column.addView(fav);
+        // The scenes' heading on its own line, right above the cards (1.0.9: in the list style it left an empty item).
+        column.addView(SyntaxUi.label(this, getString(R.string.syntax_scenes)));
         String[] names = getResources().getStringArray(R.array.syntax_scene_names);
         LinearLayout row = null;
         for (int i = 0; i < SyntaxSettings.SCENES.size(); i++) {
@@ -164,7 +170,7 @@ public final class SyntaxScreensaverActivity extends Activity {
         previews[index] = preview;
         frame.addView(preview, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
                 FrameLayout.LayoutParams.MATCH_PARENT));
-        TextView tick = SyntaxUi.text(this, 18, R.string.font_medium, 0xFF06222A);
+        TextView tick = SyntaxUi.text(this, 18, R.string.font_medium, Theme.onColor(SyntaxUi.ACCENT));
         tick.setText("✓");
         tick.setGravity(Gravity.CENTER);
         tick.setBackground(SyntaxUi.rounded(this, 14, SyntaxUi.ACCENT, 0, 0));

@@ -277,11 +277,11 @@ final class SyntaxSettings {
         store.put(KEY_TICKER, String.valueOf(on));
     }
 
-    /** The ticker along the bottom of Home, under the dock: on by default, separate from the screensaver's. */
+    /** The ticker along the bottom of Home, under the dock: off until turned on (1.0.6), separate from the screensaver's. */
     boolean homeTicker() {
         if (!Features.NEWS_TICKER) return false;
         String v = store.get(KEY_HOME_TICKER);
-        return v == null || Boolean.parseBoolean(v);
+        return v != null && Boolean.parseBoolean(v);
     }
 
     void setHomeTicker(boolean on) {
@@ -364,8 +364,14 @@ final class SyntaxSettings {
 
     /** The ticked ANSA sections, as keys of {@link NewsData#SECTIONS}; Ultima ora only by default. */
     List<String> sections() {
-        List<String> chosen = known(store.get(KEY_SECTIONS), NewsData.sectionKeys());
-        return chosen.isEmpty() ? Collections.singletonList(NewsData.TOP) : chosen;
+        String saved = store.get(KEY_SECTIONS);
+        List<String> chosen = known(saved, NewsData.sectionKeys());
+        if (chosen.isEmpty()) chosen = Collections.singletonList(NewsData.TOP);
+        // A section that is gone (1.1.0: Lazio) leaves the saved choice for good.
+        if (saved != null && !saved.trim().isEmpty() && !saved.equals(String.join(",", chosen))) {
+            store.put(KEY_SECTIONS, String.join(",", chosen));
+        }
+        return chosen;
     }
 
     /** Ticks or unticks a section; the last one cannot be unticked (false then). */

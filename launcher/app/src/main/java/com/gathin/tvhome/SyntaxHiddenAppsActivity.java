@@ -43,6 +43,7 @@ public final class SyntaxHiddenAppsActivity extends Activity {
             }
             String pkg = order.get(i);
             TextView chip = SyntaxUi.chip(this, "");
+            SyntaxUi.toggle(chip);   // selected: hidden
             chip.setTextSize(15);
             chip.setMaxWidth(SyntaxUi.dp(this, 200));
             chip.setEllipsize(android.text.TextUtils.TruncateAt.END);

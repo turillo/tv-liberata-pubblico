@@ -93,6 +93,7 @@ public final class SetupActivity extends Activity {
             showPowerOn();
         });
         SyntaxUi.addChip(buttons, powerOn);
+        SyntaxUi.toggle(powerOn);
         showPowerOn();
         column.addView(buttons);
 
@@ -113,6 +114,7 @@ public final class SetupActivity extends Activity {
 
     private void showPowerOn() {
         powerOn.setText(getString(PowerOnOpen.enabled(this) ? R.string.power_on_open_yes : R.string.power_on_open_no));
+        powerOn.setSelected(PowerOnOpen.enabled(this));
     }
 
     /** First the TV's adb (the TV asks "Consenti?"), then the steps. */
@@ -149,7 +151,11 @@ public final class SetupActivity extends Activity {
                 busy = false;
                 show(steps);
                 status.setText(ok ? R.string.setup_done : R.string.setup_failed);
-                if (ok) toHomeButton();
+                if (ok) {
+                    toHomeButton();
+                    // 1.1.0: the cartolina's question, once, at the end of the set-up (focus on "Si").
+                    if (!Cartolina.answered(this)) Cartolina.ask(this, Cartolina.INSTALLED, () -> go.requestFocus());
+                }
             });
         });
     }
@@ -211,6 +217,8 @@ public final class SetupActivity extends Activity {
             showPowerOn();
             toHomeButton();
             go.requestFocus();
+            // The PC program asks it too: only when its answer did not come with the configuration.
+            if (!Cartolina.answered(this)) Cartolina.ask(this, Cartolina.INSTALLED, () -> go.requestFocus());
             return;
         }
         handler.postDelayed(pcPoll, PC_POLL_MS);

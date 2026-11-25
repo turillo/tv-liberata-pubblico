@@ -14,8 +14,8 @@ android {
         minSdk 26
         targetSdk 34
         // Numbered versions; the changes are in CHANGELOG.md (also the text of each GitHub Release).
-        versionCode 105
-        versionName '1.0.5'
+        versionCode 110
+        versionName '1.1.0'
         // GitHub Releases checked by the in-app updater (owner/repo), and its production pointer produzione.json.
         buildConfigField 'String', 'UPDATE_REPO', '"turillo/tv-liberata-pubblico"'
         // The Unsplash Access Key, from launcher/keys.properties (git ignores it; publish.py copies it only for the
@@ -25,6 +25,12 @@ android {
         if (keysFile.isFile()) keysFile.withInputStream { keys.load(it) }
         def unsplash = (keys.getProperty('UNSPLASH_ACCESS_KEY') ?: '').trim().replace('\\', '').replace('"', '')
         buildConfigField 'String', 'UNSPLASH_ACCESS_KEY', "\"${unsplash}\""
+        // The "cartolina" (1.1.0): the Apps Script web app's URL and its secret, also from keys.properties only.
+        // Without them the cartolina is off (no question, nothing sent).
+        def cartUrl = (keys.getProperty('CARTOLINA_URL') ?: '').trim().replace('\\', '').replace('"', '')
+        def cartSecret = (keys.getProperty('CARTOLINA_SECRET') ?: '').trim().replace('\\', '').replace('"', '')
+        buildConfigField 'String', 'CARTOLINA_URL', "\"${cartUrl}\""
+        buildConfigField 'String', 'CARTOLINA_SECRET', "\"${cartSecret}\""
         // No API key is built in: Unsplash's (off in 1.0) comes from the device configuration (DeviceConfig).
         // The commit the APK was built from, for Syntax TV's Sistema page; "?" without git.
         def commit = '?'

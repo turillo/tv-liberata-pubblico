@@ -1,25 +1,17 @@
 package com.gathin.tvhome;
 
 import android.app.Activity;
-import android.app.usage.StorageStats;
-import android.app.usage.StorageStatsManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Process;
-import android.os.storage.StorageManager;
-import android.provider.Settings;
 import android.text.TextUtils;
-import android.text.format.Formatter;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,26 +22,20 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
- * Impostazioni TV Liberata, "App": every app the TV can open, in one place. Tutte le app (OK opens it; it replaces
- * Amazon's "Le mie app"), App nascoste (Home's row), Disinstalla (the TV's own confirmation; system apps, stores and
- * TV Liberata never listed), Info app (version, space, "Svuota cache" through the app's own system page) and the
- * Catalogo. Home's row order and visibility stay where they were: a long press on OK on Home.
+ * Impostazioni TV Liberata, "App": the Catalogo, App nascoste (Home's row) and Disinstalla (the TV's own
+ * confirmation; system apps, stores and TV Liberata never listed). 1.0.9: no "Info app" any more. Home's row order
+ * and visibility stay where they were: a long press on OK on Home.
  */
 public final class SyntaxAppsActivity extends Activity {
 
-    static final int ALL = 0, UNINSTALL = 1, INFO = 2;
     private static final int PER_ROW = 5;
 
-    private final ExecutorService worker = Executors.newSingleThreadExecutor();
-    private final Handler handler = new Handler(Looper.getMainLooper());
-    private final TextView[] modeChips = new TextView[3];
+    private TextView uninstallChip;
     private LinearLayout grid;
     private TextView hint;
-    private int mode = ALL;
+    private boolean uninstalling;
 
     /** One app the TV can open. */
     static final class App {
@@ -71,21 +57,21 @@ public final class SyntaxAppsActivity extends Activity {
         column.setClipChildren(false);
         SyntaxUi.header(this, column, getString(R.string.apps_title), getString(R.string.apps_intro));
 
+        // In this order: Catalogo, App nascoste, Disinstalla (1.0.7: no "Tutte le app"; 1.0.9: no "Info app").
         LinearLayout chips = SyntaxUi.chipRow(this);
-        int[] names = {R.string.apps_all, R.string.tile_uninstall, R.string.apps_info};
-        for (int i = 0; i < names.length; i++) {
-            int m = i;
-            TextView chip = SyntaxUi.chip(this, getString(names[i]));
-            chip.setOnClickListener(v -> show(m));
-            SyntaxUi.addChip(chips, chip);
-            modeChips[i] = chip;
-        }
-        TextView hidden = SyntaxUi.chip(this, getString(R.string.hidden_title));
-        hidden.setOnClickListener(v -> startActivity(new Intent(this, SyntaxHiddenAppsActivity.class)));
-        SyntaxUi.addChip(chips, hidden);
         TextView catalog = SyntaxUi.chip(this, getString(R.string.catalog_title));
         catalog.setOnClickListener(v -> startActivity(new Intent(this, SyntaxCatalogActivity.class)));
         SyntaxUi.addChip(chips, catalog);
+        TextView hidden = SyntaxUi.chip(this, getString(R.string.hidden_title));
+        hidden.setOnClickListener(v -> startActivity(new Intent(this, SyntaxHiddenAppsActivity.class)));
+        SyntaxUi.addChip(chips, hidden);
+        uninstallChip = SyntaxUi.chip(this, getString(R.string.tile_uninstall));
+        uninstallChip.setOnClickListener(v -> {
+            uninstalling = !uninstalling;
+            show();
+        });
+        SyntaxUi.addChip(chips, uninstallChip);
+        SyntaxUi.toggle(uninstallChip);
         column.addView(chips);
 
         hint = SyntaxUi.text(this, 16, R.string.font_regular, SyntaxUi.MUTED);
@@ -96,22 +82,24 @@ public final class SyntaxAppsActivity extends Activity {
         grid.setClipChildren(false);
         column.addView(grid);
         setContentView(outer);
-        modeChips[0].requestFocus();
+        catalog.requestFocus();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        show(mode);   // an app may have gone (Disinstalla) or come (Catalogo)
+        show();   // an app may have gone (Disinstalla) or come (Catalogo)
     }
 
-    private void show(int m) {
-        mode = m;
-        for (int i = 0; i < modeChips.length; i++) modeChips[i].setSelected(i == m);
-        hint.setText(m == ALL ? R.string.apps_all_hint : m == UNINSTALL ? R.string.apps_uninstall_hint : R.string.apps_info_hint);
-        List<App> apps = new ArrayList<>();
-        for (App a : launchable(this)) if (m != UNINSTALL || AppRules.uninstallable(this, a.pkg)) apps.add(a);
+    /** Disinstalla on: the apps that can go, OK on one asks first. Off: nothing under the buttons. */
+    private void show() {
+        uninstallChip.setSelected(uninstalling);
         grid.removeAllViews();
+        hint.setVisibility(uninstalling ? View.VISIBLE : View.GONE);
+        if (!uninstalling) return;
+        hint.setText(R.string.apps_uninstall_hint);
+        List<App> apps = new ArrayList<>();
+        for (App a : launchable(this)) if (AppRules.uninstallable(this, a.pkg)) apps.add(a);
         if (apps.isEmpty()) {
             TextView none = SyntaxUi.text(this, 16, R.string.font_regular, SyntaxUi.MUTED);
             none.setText(R.string.apps_none);
@@ -145,9 +133,8 @@ public final class SyntaxAppsActivity extends Activity {
         image.setScaleType(ImageView.ScaleType.FIT_CENTER);
         Drawable art = null;
         try {
-            art = pm.getActivityBanner(a.component);
-            if (art == null) art = pm.getApplicationBanner(a.pkg);
-            if (art == null) art = pm.getActivityIcon(a.component);
+            // Same artwork as Home's row: the TV banner, or the icon tile (TileArt).
+            art = TileArt.art(this, pm.getActivityInfo(a.component, 0));
         } catch (PackageManager.NameNotFoundException | RuntimeException ignored) {
             // no picture: the name alone
         }
@@ -170,56 +157,10 @@ public final class SyntaxAppsActivity extends Activity {
     }
 
     private void pick(App a) {
-        if (mode == ALL) {
-            try {
-                startActivity(new Intent(Intent.ACTION_MAIN).setComponent(a.component)
-                        .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED));
-            } catch (RuntimeException e) {
-                SyntaxDialog.message(this, getString(R.string.syntax_error), getString(R.string.cant_open, a.label));
-            }
-        } else if (mode == UNINSTALL) {
-            SyntaxDialog.show(this, getString(R.string.tile_uninstall), getString(R.string.apps_uninstall_question, a.label),
-                    new String[]{getString(R.string.tile_uninstall), getString(R.string.syntax_no)}, 1, which -> {
-                        if (which == 0) startActivity(new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + a.pkg)));
-                    });
-        } else {
-            info(a);
-        }
-    }
-
-    /** Version and space (StorageStatsManager: needs GET_USAGE_STATS, granted by the PC program). */
-    private void info(App a) {
-        worker.execute(() -> {
-            String version = "?";
-            try {
-                PackageInfo pi = getPackageManager().getPackageInfo(a.pkg, 0);
-                version = pi.versionName == null ? String.valueOf(Catalog.versionCode(pi)) : pi.versionName;
-            } catch (PackageManager.NameNotFoundException ignored) {
-                // gone meanwhile
-            }
-            String space;
-            try {
-                StorageStatsManager ssm = getSystemService(StorageStatsManager.class);
-                StorageStats st = ssm.queryStatsForPackage(StorageManager.UUID_DEFAULT, a.pkg, Process.myUserHandle());
-                space = getString(R.string.apps_info_space, size(st.getAppBytes()), size(st.getDataBytes()), size(st.getCacheBytes()));
-            } catch (Exception e) {   // SecurityException without the permission, IOException, NameNotFound
-                space = getString(R.string.apps_info_no_space);
-            }
-            String text = getString(R.string.apps_info_text, a.pkg, version, space);
-            handler.post(() -> {
-                if (isFinishing()) return;
-                SyntaxDialog.show(this, a.label, text,
-                        new String[]{getString(R.string.apps_clear_cache), getString(R.string.apps_close)}, 1, which -> {
-                            // Android lets only the system clear another app's cache: its page has the button.
-                            if (which == 0) startActivity(new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-                                    Uri.parse("package:" + a.pkg)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-                        });
-            });
-        });
-    }
-
-    private String size(long bytes) {
-        return Formatter.formatShortFileSize(this, bytes);
+        SyntaxDialog.show(this, getString(R.string.tile_uninstall), getString(R.string.apps_uninstall_question, a.label),
+                new String[]{getString(R.string.tile_uninstall), getString(R.string.syntax_no)}, 1, which -> {
+                    if (which == 0) startActivity(new Intent(Intent.ACTION_DELETE, Uri.parse("package:" + a.pkg)));
+                });
     }
 
     /** Every app the TV can open (TV and phone entry points), one per package, by name; never TV Liberata itself. */
@@ -244,11 +185,5 @@ public final class SyntaxAppsActivity extends Activity {
     /** By name, ignoring case. Plain Java, tested. */
     static void sort(List<App> apps) {
         apps.sort((x, y) -> x.label.toLowerCase(Locale.ROOT).compareTo(y.label.toLowerCase(Locale.ROOT)));
-    }
-
-    @Override
-    protected void onDestroy() {
-        worker.shutdownNow();
-        super.onDestroy();
     }
 }

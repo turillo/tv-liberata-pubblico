@@ -159,11 +159,13 @@ public class SyntaxSettingsTest {
     }
 
     @Test
-    public void homeTickerIsOnByDefaultAndSeparate() {
-        org.junit.Assume.assumeTrue("off in 1.0 (Features)", Features.NEWS_TICKER);
+    public void homeTickerIsOffByDefaultAndSeparate() {
+        org.junit.Assume.assumeTrue("off (Features)", Features.NEWS_TICKER);
         MapStore store = new MapStore();
         SyntaxSettings s = settings(store, "live");
-        assertTrue(s.homeTicker());
+        assertFalse(s.homeTicker());              // 1.0.6: off until turned on
+        s.setHomeTicker(true);
+        assertTrue(settings(store, "live").homeTicker());
         s.setTicker(false);                       // the screensaver's switch does not touch Home's
         assertTrue(settings(store, "live").homeTicker());
         assertFalse(settings(store, "live").ticker());
@@ -203,6 +205,8 @@ public class SyntaxSettingsTest {
         org.junit.Assume.assumeTrue("off in 1.0 (Features)", Features.NEWS_TICKER);
         MapStore store = new MapStore();
         SyntaxSettings s = settings(store, "live");
+        assertEquals("", s.homeTickerKey());      // off by default: no band
+        s.setHomeTicker(true);
         String first = s.homeTickerKey();
         assertFalse(first.isEmpty());
         s.setTickerSize(SyntaxSettings.LARGE);
@@ -316,5 +320,17 @@ public class SyntaxSettingsTest {
         assertEquals("1:vetro", s.recyclingWeek());
         s.setRecyclingWeek("");
         assertEquals("", s.recyclingWeek());
+    }
+
+    @Test
+    public void lazioLeavesTheSavedSections() {   // 1.1.0
+        MapStore store = new MapStore();
+        store.put("news_sections", "ultimaora,lazio,sport");
+        SyntaxSettings s = settings(store, "clock");
+        assertEquals(Arrays.asList(NewsData.TOP, "sport"), s.sections());
+        assertEquals("ultimaora,sport", store.get("news_sections"));
+        store.put("news_sections", "lazio");
+        assertEquals(Collections.singletonList(NewsData.TOP), settings(store, "clock").sections());
+        assertEquals("ultimaora", store.get("news_sections"));
     }
 }

@@ -13,7 +13,8 @@
 # Niente root, niente app di sistema disinstallate (solo disattivate, e riattivabili). Il debug ADB resta acceso.
 #
 # Uso avanzato:  Configura-TV-Liberata.ps1 [-Ip 192.168.1.60] [-Nome Salotto] [-Canale produzione|test]
-#                                          [-Azione configura|annulla] [-Prova] [-Ascii]
+#                                          [-Azione configura|annulla] [-Cartolina si|no] [-Prova] [-Ascii]
+#   -Cartolina  la risposta alla domanda "Vuoi far sapere a Syntax che usi TV Liberata?" (senza: la chiede).
 #   -Prova  mostra cosa farebbe, senza cambiare niente sulla TV (legge soltanto).
 #   -Liste  cartella con pacchetto-app.json e pulizia-fireos.json da usare al posto di quelli del repository.
 #   -Ascii  barra del progresso con # e . (se il terminale non mostra bene i blocchi pieni).
@@ -22,6 +23,7 @@ param(
     [string]$Nome = '',
     [ValidateSet('produzione', 'test')][string]$Canale = 'produzione',
     [ValidateSet('', 'configura', 'annulla')][string]$Azione = '',
+    [ValidateSet('', 'si', 'no')][string]$Cartolina = '',
     [string]$Liste = '',
     [switch]$Prova,
     [switch]$Ascii
@@ -404,7 +406,69 @@ function Descrivi([string]$ip) {
     $mod = Sh 'getprop ro.product.model'; $man = Sh 'getprop ro.product.manufacturer'
     $nomeTv = Sh 'settings get global device_name'
     $os = if ($man -eq 'Amazon') { Sh 'getprop ro.build.version.name' } else { "Android $(Sh 'getprop ro.build.version.release')" }
-    return [pscustomobject]@{ Ip = $ip; Testo = "$ip  $man $mod  ($nomeTv)  $os" }
+    $sdk = Sh 'getprop ro.build.version.sdk'
+    $vecchia = if ($sdk -match '^\d+$' -and [int]$sdk -lt 26) { '  << TROPPO VECCHIA per TV Liberata' } else { '' }
+    return [pscustomobject]@{ Ip = $ip; Testo = "$ip  $man $mod  ($nomeTv)  $os$vecchia" }
+}
+
+
+# =================================================================================================================
+#  TV TROPPO VECCHIE (1.1.0): TV Liberata vuole Android 8 (SDK 26), cioe' Fire OS 7 o Android TV 8.
+# =================================================================================================================
+# Nome e anno dei modelli Amazon piu' comuni, dal codice di ro.product.model.
+$ModelliAmazon = @{
+    'AFTB' = 'Fire TV (1a generazione, 2014)'; 'AFTM' = 'Fire TV Stick (1a generazione, 2014)'
+    'AFTS' = 'Fire TV (2a generazione, 2015)'; 'AFTT' = 'Fire TV Stick (2a generazione, 2016)'
+    'AFTN' = 'Fire TV (3a generazione, 2017)'; 'AFTMM' = 'Fire TV Stick 4K (2018)'
+    'AFTR' = 'Fire TV Cube (1a generazione, 2018)'; 'AFTA' = 'Fire TV Cube (2a generazione, 2019)'
+    'AFTSS' = 'Fire TV Stick Lite (2020)'; 'AFTSSS' = 'Fire TV Stick (3a generazione, 2020)'
+    'AFTKA' = 'Fire TV Stick 4K Max (2021)'; 'AFTGAZL' = 'Fire TV Cube (3a generazione, 2022)'
+    'AFTKM' = 'Fire TV Stick 4K (2a generazione, 2023)'; 'AFTKRT' = 'Fire TV Stick 4K Max (2a generazione, 2023)'
+}
+# "Fire OS 5" da "Fire OS 5.2.9.5 (...)", oppure "Android 5.1".
+function SistemaBreve([bool]$fire, [string]$nomeVersione, [string]$release) {
+    if ($fire -and $nomeVersione -match 'Fire OS (\d+)') { return "Fire OS $($Matches[1])" }
+    return "Android $release"
+}
+function NomeTv([string]$man, [string]$mod) {
+    if ($man -eq 'Amazon' -and $ModelliAmazon.ContainsKey($mod)) { return "Questa $($ModelliAmazon[$mod])" }
+    if ($man -eq 'Amazon') { return 'Questa Fire TV' }
+    return 'Questa TV'
+}
+# Riquadro giallo e uscita: niente altre domande, niente cambiato sulla TV.
+function TroppoVecchia([string]$man, [string]$mod, [string]$sistema) {
+    $chi = NomeTv $man $mod
+    # "Fire TV Stick (2a generazione, 2016)" + "Fire OS 5" -> "Fire TV Stick (2a generazione, 2016, Fire OS 5)"
+    $chi = if ($chi.EndsWith(')')) { $chi.Substring(0, $chi.Length - 1) + ", $sistema)" } else { "$chi ($sistema)" }
+    $righe = @(
+        "$chi e' troppo vecchia per TV Liberata.",
+        '',
+        'Serve una Fire TV con Fire OS 7 o piu'' recente (es. Fire TV Stick 4K / 4K Max),',
+        'oppure un dispositivo Google TV / Android TV (Android 8 o piu'' recente).',
+        '',
+        'Attenzione: i modelli nuovi con Vega OS non permettono di installare app.',
+        '',
+        'Sulla TV non ho cambiato niente.'
+    )
+    $w = ($righe | Measure-Object -Property Length -Maximum).Maximum + 4
+    Write-Host ''
+    Write-Host ('  +' + ('-' * $w) + '+') -ForegroundColor Yellow
+    foreach ($r in $righe) { Write-Host ('  |  ' + $r.PadRight($w - 2) + '|') -ForegroundColor Yellow }
+    Write-Host ('  +' + ('-' * $w) + '+') -ForegroundColor Yellow
+    Log "TV troppo vecchia: $man $mod, $sistema"
+    [void](Chiedi 'Premi Invio per chiudere')
+    exit 1
+}
+# Se la TV e' gia' autorizzata: il controllo subito, prima del consenso e di ogni domanda.
+function ControllaEta([string]$serial) {
+    if ((Stato $serial) -ne 'device') { return }
+    $sdk = (AdbRun @('-s', $serial, 'shell', 'getprop ro.build.version.sdk')).Trim()
+    if ($sdk -match '^\d+$' -and [int]$sdk -ge 26) { return }
+    $man = (AdbRun @('-s', $serial, 'shell', 'getprop ro.product.manufacturer')).Trim()
+    $mod = (AdbRun @('-s', $serial, 'shell', 'getprop ro.product.model')).Trim()
+    $sys = SistemaBreve ($man -eq 'Amazon') (AdbRun @('-s', $serial, 'shell', 'getprop ro.build.version.name')).Trim() `
+        (AdbRun @('-s', $serial, 'shell', 'getprop ro.build.version.release')).Trim()
+    TroppoVecchia $man $mod $sys
 }
 
 Passo 'Ricerca della TV'
@@ -438,6 +502,7 @@ $Script:Tv = if ($Ip -match ':') { $Ip } else { "${Ip}:5555" }
 # =================================================================================================================
 Passo 'Collegamento'
 AdbRun @('connect', $Script:Tv) | Out-Null
+ControllaEta $Script:Tv
 if ((Stato $Script:Tv) -ne 'device') {
     Write-Host ''
     Write-Host '  GUARDA LA TV: compare "Consentire il debug USB?".' -ForegroundColor Yellow
@@ -450,7 +515,10 @@ $FireOs = (Sh 'getprop ro.product.manufacturer') -eq 'Amazon'
 $Sdk = Sh 'getprop ro.build.version.sdk'
 Ok ("collegato: {0} {1}, {2}" -f (Sh 'getprop ro.product.manufacturer'), (Sh 'getprop ro.product.model'),
     $(if ($FireOs) { Sh 'getprop ro.build.version.name' } else { "Android $(Sh 'getprop ro.build.version.release')" }))
-if (-not ($Sdk -match '^\d+$') -or [int]$Sdk -lt 26) { Esci 'Questa TV ha Android piu'' vecchio di 8: TV Liberata non funziona qui.' }
+if (-not ($Sdk -match '^\d+$') -or [int]$Sdk -lt 26) {
+    TroppoVecchia (Sh 'getprop ro.product.manufacturer') (Sh 'getprop ro.product.model') `
+        (SistemaBreve $FireOs (Sh 'getprop ro.build.version.name') (Sh 'getprop ro.build.version.release'))
+}
 if ($Prova) { Write-Host ''; Write-Host '  MODALITA'' PROVA: non cambio niente sulla TV.' -ForegroundColor Yellow }
 
 # =================================================================================================================
@@ -537,6 +605,17 @@ function Configura {
     if (-not $Nome) { $Nome = Chiedi 'Nome di questa TV (es. Salotto)' }
     if (-not $Nome) { $Nome = 'TV' }
     $nomeFile = ($Nome -replace '[^A-Za-z0-9_-]', '-')
+    # La "cartolina" (1.1.0): la risposta passa all'app con la configurazione del dispositivo.
+    if (-not $Cartolina) {
+        Write-Host ''
+        Write-Host '  Vuoi far sapere a Syntax che usi TV Liberata?' -ForegroundColor Green
+        Write-Host '  A ogni aggiornamento viene inviato solo il nome di questa TV, la versione e il modello.' -ForegroundColor DarkGreen
+        Write-Host '  Puoi cambiare idea in Sistema.' -ForegroundColor DarkGreen
+        while (-not $Cartolina) {
+            $r = (Chiedi 'S = Si'', N = No  (Invio = Si'')').ToUpper()
+            if ($r -eq '' -or $r -eq 'S') { $Cartolina = 'si' } elseif ($r -eq 'N') { $Cartolina = 'no' }
+        }
+    }
 
     Write-Host ''
     Write-Host '    > Leggo le liste aggiornate dal repository...' -ForegroundColor Green
@@ -708,7 +787,8 @@ function Configura {
     $Script:Sub = 0.7
     $cfg = Join-Path $env:TEMP 'dispositivo.json'
     $nl = (@($Script:Nascoste) | ForEach-Object { '"' + $_ + '"' }) -join ','
-    ('{{"nome":"{0}","canale":"{1}","nascondi":[{2}]}}' -f ($Nome -replace '"', ''), $Canale, $nl) | Out-File -Encoding ascii $cfg
+    $cart = if ($Cartolina -eq 'si') { 'true' } else { 'false' }
+    ('{{"nome":"{0}","canale":"{1}","nascondi":[{2}],"cartolina":{3}}}' -f ($Nome -replace '"', ''), $Canale, $nl, $cart) | Out-File -Encoding ascii $cfg
     $v = Voce "nome $Nome, canale $Canale"
     if ($Prova) { Chiudi $v 'prova' 'DarkGreen' }
     else {

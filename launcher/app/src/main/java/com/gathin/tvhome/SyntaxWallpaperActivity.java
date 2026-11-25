@@ -91,6 +91,7 @@ public final class SyntaxWallpaperActivity extends Activity {
                 showUse();
             });
             SyntaxUi.addChip(bar, useChip);
+            SyntaxUi.toggle(useChip);
             showUse();
         }
         TextView all = SyntaxUi.chip(this, getString(R.string.syntax_all));
@@ -122,6 +123,8 @@ public final class SyntaxWallpaperActivity extends Activity {
             showInterval();
         });
         SyntaxUi.addChip(bar, onWake);
+        SyntaxUi.toggle(onWake);
+        SyntaxUi.group(every, intervalChips);
         column.addView(bar);
 
         // Sources, and the filter: all photos or one source's.
@@ -152,6 +155,7 @@ public final class SyntaxWallpaperActivity extends Activity {
             filterChips.put(key, chip);
             SyntaxUi.addChip(filters, chip);
         }
+        SyntaxUi.group(show, filterChips.values().toArray(new TextView[0]));
         column.addView(filters);
 
         grid = new RecyclerView(this);

@@ -33,6 +33,10 @@ public final class DeviceConfig extends BroadcastReceiver {
     /** The parsed fields, in plain Java so they are tested. */
     static final class Values {
         String name, channel = PRODUCTION, city, unsplashKey;
+        /** "cartolina": true or false, the owner's answer given on the PC (1.1.0); null when not given. */
+        Boolean cartolina;
+        /** {"cartolina":true} alone: only that changes, the rest of the configuration stays (the owner's TVs). */
+        boolean onlyCartolina;
         double lat = Double.NaN, lon = Double.NaN;
         /** "nascondi": apps taken off TV Liberata's Home at the first set-up (the PC program); never again later. */
         final java.util.List<String> hide = new java.util.ArrayList<>();
@@ -52,6 +56,9 @@ public final class DeviceConfig extends BroadcastReceiver {
             v.lat = lat;
             v.lon = lon;
         }
+        Object cart = ((Map<?, ?>) root).get("cartolina");
+        if (cart instanceof Boolean) v.cartolina = (Boolean) cart;
+        v.onlyCartolina = v.cartolina != null && ((Map<?, ?>) root).size() == 1;
         java.util.List<?> hide = MiniJson.list(root, "nascondi");
         if (hide != null) for (Object o : hide) {
             if (o instanceof String && ((String) o).matches("[A-Za-z0-9_]+([.][A-Za-z0-9_]+)+")) v.hide.add((String) o);
@@ -123,15 +130,24 @@ public final class DeviceConfig extends BroadcastReceiver {
             setResultData("configurazione non valida o mancante (" + f.getPath() + ")");
             return;
         }
+        if (v.onlyCartolina) {
+            Cartolina.setConsent(c, v.cartolina, Cartolina.UPDATED);
+            //noinspection ResultOfMethodCallIgnored
+            f.delete();
+            setResultData("cartolina " + (v.cartolina ? "si" : "no") + " (il resto della configurazione non cambia)");
+            return;
+        }
         save(c, v);
         // Only what the PC names now: an app installed later stays on Home, as the user expects.
         for (String pkg : v.hide) LibraryApps.save(c, pkg, false);
         Setup.markDone(c);   // configured from the PC: no guided set-up on screen
+        if (v.cartolina != null) Cartolina.setConsent(c, v.cartolina, Cartolina.INSTALLED);   // asked on the PC
         //noinspection ResultOfMethodCallIgnored
         f.delete();   // it may hold a key: not left on shared storage
         Log.i(TAG, "device configuration loaded: " + v.name + ", channel " + v.channel);
         setResultData("caricata: " + v.name + ", canale " + v.channel + (Double.isNaN(v.lat) ? "" : ", coordinate fissate")
-                + (v.hide.isEmpty() ? "" : ", nascoste " + v.hide.size()));
+                + (v.hide.isEmpty() ? "" : ", nascoste " + v.hide.size())
+                + (v.cartolina == null ? "" : ", cartolina " + (v.cartolina ? "si" : "no")));
     }
 
     private static String read(File f) {

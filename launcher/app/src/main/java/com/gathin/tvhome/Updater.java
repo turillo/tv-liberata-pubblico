@@ -244,6 +244,12 @@ final class Updater {
         return out.toString();
     }
 
+    /** A newer version was found by a check (and offered): Sistema's tile says "aggiornamento disponibile". */
+    static boolean newerKnown(Context c) {
+        String v = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE).getString("offered", "");
+        return v != null && !v.isEmpty() && newer(v, BuildConfig.VERSION_NAME);
+    }
+
     /** True right after this app was updated, until Home has said so. */
     static boolean announcePending(Context c) {
         SharedPreferences p = c.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
@@ -259,7 +265,7 @@ final class Updater {
         String notes = readable(p.getString("updated_notes", ""));
         SyntaxDialog.show(home, home.getString(R.string.update_done_title, to),
                 notes == null || notes.isEmpty() ? home.getString(R.string.update_done_no_notes) : notes,
-                new String[]{home.getString(R.string.update_ok)}, 0, which -> { });
+                new String[]{home.getString(R.string.update_ok)}, 0, which -> Cartolina.askOnce(home));
     }
 
     /** Home's daily check: a new version is offered once (Home shows the dialog). Never throws. */

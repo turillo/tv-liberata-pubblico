@@ -369,7 +369,7 @@
          fetched every 10 minutes and only while the screensaver runs (the last ones show offline; with none the band
          stays hidden). Panels move up to stay clear of it. Can also be set with "news_ticker": false in a theme's
          config.json. -->
-    <bool name="news_ticker">true</bool>
+    <bool name="news_ticker">false</bool>
     <!-- The ticker's speed in dp per second, 20 to 300 (70 reads easily from a sofa on a 1080p TV). Can also be set
          with "news_ticker_speed": 70 in a theme's config.json. -->
     <integer name="news_ticker_speed">70</integer>

@@ -38,7 +38,7 @@ public final class SyntaxSourcesActivity extends Activity {
         super.onCreate(state);
         xmas = getIntent().getBooleanExtra(SyntaxWallpaperActivity.EXTRA_XMAS, false);
         FrameLayout outer = new FrameLayout(this);
-        LinearLayout column = SyntaxUi.page(this, outer);
+        LinearLayout column = SyntaxUi.scrollPage(this, outer);
         column.setClipChildren(false);
         SyntaxUi.header(this, column, getString(xmas ? R.string.xmas_sources_title : R.string.syntax_sources), null);
 
@@ -61,6 +61,7 @@ public final class SyntaxSourcesActivity extends Activity {
                 chip.setEnabled(false);
                 chip.setAlpha(0.4f);
             }
+            if (usable) SyntaxUi.toggle(chip);
             sourceChips.put(source, chip);
             SyntaxUi.addChip(row, chip);
             TextView note = SyntaxUi.text(this, 13, R.string.font_regular, SyntaxUi.MUTED);
@@ -87,6 +88,7 @@ public final class SyntaxSourcesActivity extends Activity {
                     });
                     SyntaxUi.addChip(row, chips[n - 1]);
                 }
+                SyntaxUi.group(note, chips);
                 perDayChips.put(source, chips);
                 TextView about = SyntaxUi.text(this, 12, R.string.font_light, SyntaxUi.MUTED);
                 about.setText(xmas ? R.string.xmas_source_note : WallpaperSources.WIKIMEDIA.equals(source) ? R.string.syntax_wikimedia_note : R.string.syntax_themed_note);
@@ -117,6 +119,7 @@ public final class SyntaxSourcesActivity extends Activity {
                 }
                 refresh();
             });
+            SyntaxUi.toggle(chip);
             themeChips.put(theme, chip);
             SyntaxUi.addChip(themes, chip);
         }
@@ -133,6 +136,7 @@ public final class SyntaxSourcesActivity extends Activity {
             });
             SyntaxUi.addChip(archive, capChips[i]);
         }
+        SyntaxUi.group(getString(R.string.syntax_archive), capChips);
         archive.addView(new android.view.View(this), new LinearLayout.LayoutParams(SyntaxUi.dp(this, 18), 1));
         TextView now = compact(SyntaxUi.chip(this, getString(R.string.syntax_fetch_now)));
         now.setOnClickListener(v -> fetchNow());
@@ -154,6 +158,7 @@ public final class SyntaxSourcesActivity extends Activity {
                 refresh();
             });
             SyntaxUi.addChip(share, shareChip);
+            SyntaxUi.toggle(shareChip);
             fromChip = compact(SyntaxUi.chip(this, ""));
             fromChip.setOnClickListener(v -> chooseSource());
             SyntaxUi.addChip(share, fromChip);

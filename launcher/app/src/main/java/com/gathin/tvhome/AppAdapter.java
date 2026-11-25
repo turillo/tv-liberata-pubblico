@@ -289,7 +289,8 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                     appLabels.containsKey(pkg) ? appLabels.get(pkg) : String.valueOf(ri.loadLabel(pm)), pkg);
             if (!seen.add(pkg + '\n' + label)) continue;
             Drawable banner = bundledBanner(appBanners.get(pkg));
-            if (banner == null) banner = loadBanner(pm, ri);
+            // The app's TV banner, or a 16:9 tile made from its icon (TileArt: sharp, centred, never stretched).
+            if (banner == null) banner = TileArt.art(ctx, ri.activityInfo);
             // The icon is only drawn (and sampled for the glow) when there is no banner, so a tile with a
             // banner skips loading and decoding it.
             Drawable icon = banner == null ? ri.loadIcon(pm) : null;
@@ -340,30 +341,12 @@ public class AppAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         return id != 0 ? ctx.getDrawable(id) : null;
     }
 
-    private Drawable loadBanner(PackageManager pm, ResolveInfo ri) {
-        int id = ri.activityInfo.banner;
-        if (id == 0) id = ri.activityInfo.applicationInfo.banner;
-        Drawable banner = null;
-        if (id != 0) {
-            try {
-                Resources resources = pm.getResourcesForApplication(ri.activityInfo.applicationInfo);
-                // Keep at least xhdpi detail rather than downsampling artwork before the focus zoom.
-                int density = Math.max(DisplayMetrics.DENSITY_XHIGH, ctx.getResources().getDisplayMetrics().densityDpi);
-                banner = resources.getDrawableForDensity(id, density, null);
-            } catch (PackageManager.NameNotFoundException | Resources.NotFoundException ignored) {
-            }
-        }
-        if (banner == null) banner = ri.activityInfo.loadBanner(pm);
-        // A square "banner" counts as none: the tile shows the app's icon and name instead of a blur.
-        return banner != null && isBannerShaped(banner.getIntrinsicWidth(), banner.getIntrinsicHeight()) ? banner : null;
-    }
-
     /**
      * Some apps declare a small square image as their banner (Rockchip's Media Center ships a 64 px one). Cropped
      * over a 16:9 tile it is a blur. A drawable with no intrinsic size (a colour, a shape) still fills the tile.
      */
     static boolean isBannerShaped(int width, int height) {
-        return width <= 0 || height <= 0 || width >= height * 1.4f;
+        return TileArt.bannerShaped(width, height);
     }
 
     /** Lets go of every tile and its artwork (Home is in the background and memory is short). */

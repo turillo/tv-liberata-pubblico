@@ -1,5 +1,28 @@
 # Novità di TV Liberata
 
+## 1.1.0 — novembre 2026
+- News: tolta la sezione Lazio (chi l'aveva la perde da sola).
+- Nuova domanda, una volta sola: "Vuoi far sapere a Syntax che usi TV Liberata?". Se rispondi Sì, a ogni aggiornamento viene inviato solo il nome di questa TV, la versione e il modello. Si cambia idea in Sistema, "Fai sapere la mia versione a Syntax".
+- Programma per PC: le TV troppo vecchie (Fire OS 5, Android 7 o precedenti) vengono riconosciute subito, con un messaggio chiaro.
+
+## 1.0.9 — novembre 2026
+- Impostazioni: i riquadri della pagina principale mostrano sempre per intero nome e stato, su ogni TV.
+- Il riquadro selezionato (scene dello screensaver, foto, app) ha il bordo nel colore principale e non è più tagliato.
+- Sezione App più semplice: Catalogo, App nascoste e Disinstalla.
+- Correzioni nello stile Elenco (News, Screensaver, Sistema).
+
+## 1.0.8 — novembre 2026
+- Nuova pagina delle **Impostazioni**: riquadri grandi per Wallpaper, Screensaver, App, News, Temi e Sistema, ognuno con lo stato attuale.
+- Nuova sezione **Temi**: quattro stili per i menu (Palloncini, Segmentati, Elenco, Solo testo) con anteprima dal vivo, il colore principale (Arancio di base, altri sei colori o uno personalizzato) e lo sfondo dei menu (foto sfocata, scuro con bagliore, foto scurita a sinistra, filigrana del logo).
+- Le Impostazioni si aprono più in fretta.
+
+## 1.0.7 — novembre 2026
+- Riquadri delle app più belli: banner ufficiale o icona nitida centrata. Le app senza banner per la TV (come l'Appstore) hanno ora un riquadro con la loro icona ufficiale, nitida e centrata, sul suo colore. Anche nella sezione App.
+- Sezione **App** più semplice: Catalogo per primo, poi Info app, App nascoste e Disinstalla.
+
+## 1.0.6 — novembre 2026
+- Nuova sezione **News** nelle Impostazioni: le notizie ANSA in una striscia, in Home e sullo screensaver di TV Liberata. Di base è spenta: accendila da News, scegli le sezioni (Ultima ora, Politica, Sport…), la velocità e la grandezza del testo.
+
 ## 1.0.5 — novembre 2026
 - Nuovo logo e nuovo banner.
 - Nuova sezione **App** nelle Impostazioni: tutte le app della TV in una griglia, app nascoste, disinstalla, info app con lo spazio occupato e "Svuota cache", e il catalogo.

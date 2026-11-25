@@ -53,6 +53,8 @@ public final class SyntaxFilterActivity extends Activity {
             refresh();
         });
         SyntaxUi.addChip(row, reset);
+        SyntaxUi.toggle(onChip);
+        SyntaxUi.toggle(otaChip);
         column.addView(row);
 
         stats = SyntaxUi.text(this, 14, R.string.font_light, SyntaxUi.MUTED);

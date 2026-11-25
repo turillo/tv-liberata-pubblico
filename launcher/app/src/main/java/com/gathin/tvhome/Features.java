@@ -18,7 +18,7 @@ final class Features {
     /** Screensaver scenes ISS, Sole adesso, Terra adesso, Luna adesso, Webb e Hubble, Terra in diretta. */
     static final boolean SPACE_SCENES = false;
     /** The ANSA news ticker (Home and screensaver), and Il Post with it. */
-    static final boolean NEWS_TICKER = false;
+    static final boolean NEWS_TICKER = true;   // 1.0.6: back, ANSA only, off until turned on
     /** Christmas mode (wallpapers, snow, scenes, countdown). */
     static final boolean CHRISTMAS = false;
     /** Notice board on Home. */

@@ -111,14 +111,15 @@ public class NewsDataTest {
 
     @Test
     public void sectionsTable() {
-        org.junit.Assume.assumeTrue("off in 1.0 (Features)", Features.NEWS_TICKER && Features.UNSPLASH);
+        org.junit.Assume.assumeTrue("off (Features)", Features.NEWS_TICKER);
         assertEquals(NewsData.TOP, NewsData.SECTIONS.get(0).key);
         assertEquals(NewsData.FEED_URL, NewsData.section(NewsData.TOP).url);
         for (NewsData.Section s : NewsData.SECTIONS) {
             assertTrue(s.url, s.url.startsWith(NewsData.ansa(s.key) ? "https://www.ansa.it/" : "https://www.ilpost.it/"));
         }
         assertTrue(NewsData.section("spettacolo") == null && NewsData.section("ambiente") == null);
-        assertEquals(12, NewsData.sectionKeys().size());   // 11 ANSA sections and Il Post
+        assertEquals(Edition.ilPost() ? 11 : 10, NewsData.sectionKeys().size());   // 10 ANSA sections (and Il Post)
+        assertFalse(NewsData.sectionKeys().contains("lazio"));   // 1.1.0
     }
 
     @Test
@@ -153,7 +154,7 @@ public class NewsDataTest {
 
     @Test
     public void ilPostFeedMixesWithAnsaByTimeWithItsLabel() throws Exception {
-        org.junit.Assume.assumeTrue("off in 1.0 (Features)", Features.NEWS_TICKER && Features.UNSPLASH);
+        org.junit.Assume.assumeTrue("no Il Post since 1.0.6 (Edition.ilPost)", Features.NEWS_TICKER && Edition.ilPost());
         List<NewsData.Headline> il = NewsData.parse(fixture("/ilpost_feed.xml"), NewsData.ILPOST);
         assertEquals(3, il.size());
         assertEquals("Mamma, pappa, nanna e Stokke", il.get(1).title);
@@ -180,7 +181,7 @@ public class NewsDataTest {
 
     @Test
     public void ilPostIsOffByDefaultAndLabelsTheBand() {
-        org.junit.Assume.assumeTrue("off in 1.0 (Features)", Features.NEWS_TICKER && Features.UNSPLASH);
+        org.junit.Assume.assumeTrue("no Il Post since 1.0.6 (Edition.ilPost)", Features.NEWS_TICKER && Edition.ilPost());
         assertTrue(NewsData.sectionKeys().contains(NewsData.ILPOST));
         assertFalse(NewsData.ansa(NewsData.ILPOST));
         assertEquals(NewsData.LABEL_ANSA, NewsData.labelKind(Arrays.asList(NewsData.TOP, "sport")));

@@ -29,12 +29,15 @@ public final class SyntaxNewsActivity extends Activity {
     private final TextView[] speeds = new TextView[3], sizes = new TextView[3];
     private final TextView[] sections = new TextView[NewsData.SECTIONS.size()];
     private NewsTickerView preview;
+    private LinearLayout page;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         outer = new FrameLayout(this);
-        LinearLayout column = SyntaxUi.page(this, outer);
+        // Scrolls (1.0.9): in the list and tiles styles the sections no longer fit under the band.
+        LinearLayout column = SyntaxUi.scrollPage(this, outer);
+        page = column;
         column.setClipChildren(false);
         SyntaxUi.header(this, column, getString(R.string.syntax_news), null);
 
@@ -46,8 +49,9 @@ public final class SyntaxNewsActivity extends Activity {
         off.setOnClickListener(v -> change(() -> SyntaxPrefs.get(this).setTicker(false)));
         SyntaxUi.addChip(row, on);
         SyntaxUi.addChip(row, off);
+        SyntaxUi.group(getString(R.string.syntax_ticker), on, off);
         spacer(row);
-        addLabel(row, R.string.syntax_speed);
+        TextView speedLabel = addLabel(row, R.string.syntax_speed);
         int[] speedNames = {R.string.syntax_slow, R.string.syntax_medium, R.string.syntax_fast};
         for (int i = 0; i < 3; i++) {
             String value = SPEEDS[i];
@@ -55,11 +59,12 @@ public final class SyntaxNewsActivity extends Activity {
             speeds[i].setOnClickListener(v -> change(() -> SyntaxPrefs.get(this).setTickerSpeed(value)));
             SyntaxUi.addChip(row, speeds[i]);
         }
+        SyntaxUi.group(speedLabel, speeds);
         column.addView(row);
 
         LinearLayout sizeRow = SyntaxUi.chipRow(this);
         sizeRow.setPadding(0, SyntaxUi.dp(this, 14), 0, 0);
-        addLabel(sizeRow, R.string.syntax_size);
+        TextView sizeLabel = addLabel(sizeRow, R.string.syntax_size);
         int[] sizeNames = {R.string.syntax_small, R.string.syntax_medium_f, R.string.syntax_large};
         for (int i = 0; i < 3; i++) {
             String value = SIZES[i];
@@ -67,17 +72,19 @@ public final class SyntaxNewsActivity extends Activity {
             sizes[i].setOnClickListener(v -> change(() -> SyntaxPrefs.get(this).setTickerSize(value)));
             SyntaxUi.addChip(sizeRow, sizes[i]);
         }
+        SyntaxUi.group(sizeLabel, sizes);
         column.addView(sizeRow);
 
         LinearLayout homeRow = SyntaxUi.chipRow(this);
         homeRow.setPadding(0, SyntaxUi.dp(this, 14), 0, 0);
-        addLabel(homeRow, R.string.syntax_home_ticker);
+        TextView homeLabel = addLabel(homeRow, R.string.syntax_home_ticker);
         homeOn = SyntaxUi.chip(this, getString(R.string.syntax_on));
         homeOff = SyntaxUi.chip(this, getString(R.string.syntax_off));
         homeOn.setOnClickListener(v -> change(() -> SyntaxPrefs.get(this).setHomeTicker(true)));
         homeOff.setOnClickListener(v -> change(() -> SyntaxPrefs.get(this).setHomeTicker(false)));
         SyntaxUi.addChip(homeRow, homeOn);
         SyntaxUi.addChip(homeRow, homeOff);
+        SyntaxUi.group(homeLabel, homeOn, homeOff);
         column.addView(homeRow);
 
         column.addView(SyntaxUi.label(this, getString(R.string.syntax_sections)));
@@ -91,6 +98,7 @@ public final class SyntaxNewsActivity extends Activity {
             NewsData.Section section = NewsData.SECTIONS.get(i);
             sections[i] = SyntaxUi.chip(this, section.label);
             sections[i].setOnClickListener(v -> toggleSection(section.key));
+            SyntaxUi.toggle(sections[i]);
             SyntaxUi.addChip(sectionRow, sections[i]);
         }
         status = SyntaxUi.text(this, 14, R.string.font_light, SyntaxUi.MUTED);
@@ -105,11 +113,12 @@ public final class SyntaxNewsActivity extends Activity {
         row.addView(new android.view.View(this), new LinearLayout.LayoutParams(SyntaxUi.dp(this, 18), 1));
     }
 
-    private void addLabel(LinearLayout row, int text) {
+    private TextView addLabel(LinearLayout row, int text) {
         TextView t = SyntaxUi.text(this, 14, R.string.font_regular, SyntaxUi.MUTED);
         t.setText(text);
         t.setPadding(0, 0, SyntaxUi.dp(this, 14), 0);
         row.addView(t);
+        return t;
     }
 
     private void change(Runnable save) {
@@ -169,6 +178,8 @@ public final class SyntaxNewsActivity extends Activity {
             outer.removeView(preview);
             preview = null;
         }
+        page.setPadding(page.getPaddingLeft(), page.getPaddingTop(), page.getPaddingRight(),
+                SyntaxUi.dp(this, 24) + ScreenMargin.y(this, ScreenMargin.percent(this)));
         if (!s.ticker() && !s.homeTicker()) return;   // the band is off everywhere
         preview = new NewsTickerView(this, NewsTicker.label(this, s.sections()), s.tickerSpeedDp(),
                 SyntaxSettings.bandFraction(s.tickerSize()));
@@ -179,6 +190,9 @@ public final class SyntaxNewsActivity extends Activity {
         preview.setHeadlines(items);
         outer.addView(preview, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, preview.bandHeight(),
                 Gravity.BOTTOM));
+        // The page scrolls up above the band: nothing stays hidden under it.
+        page.setPadding(page.getPaddingLeft(), page.getPaddingTop(), page.getPaddingRight(),
+                SyntaxUi.dp(this, 24) + ScreenMargin.y(this, ScreenMargin.percent(this)) + preview.bandHeight());
         preview.startScrolling();
     }
 

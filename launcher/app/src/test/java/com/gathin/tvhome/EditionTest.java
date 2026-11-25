@@ -14,7 +14,7 @@ public class EditionTest {
         assertEquals(Features.UNSPLASH, WallpaperSources.ALL.contains(WallpaperSources.UNSPLASH));
         assertTrue(WallpaperSources.ALL.contains(WallpaperSources.BING));
         assertTrue(WallpaperSources.ALL.contains(WallpaperSources.WIKIMEDIA));
-        assertEquals(Features.NEWS_TICKER, NewsData.sectionKeys().contains(NewsData.ILPOST));
+        assertEquals(Edition.ilPost(), NewsData.sectionKeys().contains(NewsData.ILPOST));   // 1.0.6: ANSA only
         assertEquals(Features.UNSPLASH, SyntaxSettings.XMAS_SOURCES.contains(WallpaperSources.UNSPLASH));
         if (!Features.SPACE_SCENES) {
             assertEquals(java.util.Arrays.asList(Config.SCENE_CLOCK, Config.SCENE_FAVORITES), SyntaxSettings.SCENES);
@@ -31,7 +31,7 @@ public class EditionTest {
         assertEquals(Features.SPACE_SCENES, scene);
         assertTrue(geo && github && lists);
         assertEquals("com.gathin.tvhome.liberata", BuildConfig.APPLICATION_ID);
-        assertTrue(BuildConfig.VERSION_NAME.startsWith("1.0"));   // 1.0.x: the same features
+        assertTrue(BuildConfig.VERSION_NAME.startsWith("1.0.") || BuildConfig.VERSION_NAME.startsWith("1.1."));   // 1.0.x and 1.1.x: the same features
         assertFalse(BuildConfig.UPDATE_REPO.isEmpty());
     }
 }

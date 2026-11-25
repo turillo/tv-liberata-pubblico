@@ -2,104 +2,101 @@ package com.gathin.tvhome;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
+import android.content.res.ColorStateList;
+import android.graphics.drawable.StateListDrawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * Syntax TV, the launcher's own settings app on the TV's app row (LEANBACK_LAUNCHER): large cards for the
- * wallpaper, the screensaver, the news ticker, Christmas and the system page. Every choice is saved in SyntaxSettings and read at run time.
+ * "Impostazioni TV Liberata", the settings app on the TV's app row (LEANBACK_LAUNCHER): a grid of large tiles, one per
+ * section (Wallpaper, Screensaver, App, News, Temi, Sistema; a section switched off in Features is not shown), each
+ * with its icon, its name and a line on what is set now. The focused tile fills with the main colour. This page is
+ * always a grid, whatever style Temi has chosen for the other pages. Every choice is saved in SyntaxSettings and read
+ * at run time.
  */
 public final class SyntaxActivity extends Activity {
 
     private final ExecutorService loader = Executors.newSingleThreadExecutor();
     private final Handler handler = new Handler(Looper.getMainLooper());
-    private TextView[] summaries;
-    private ImageView wallpaperImage, sceneImage;
-    private TextView systemFigure;
-    private TextView appsFigure;
-    private NewsTickerView ticker;
+    private final List<TextView> statuses = new ArrayList<>();
+    private final List<Integer> kinds = new ArrayList<>();
     private TextView[] profiles, positions;
     private TextView kitchenLabel, kitchenScreensaver, kitchenRecycling, nightFrom, nightTo;
     private LinearLayout kitchenRow;
     private int margin = -1;
+    private int themeKey = 0;
 
     @Override
     protected void onCreate(Bundle state) {
         super.onCreate(state);
         SetupActivity.offer(this);   // first start (opened from the apps list after Downloader)
+        long started = android.os.SystemClock.uptimeMillis();
         FrameLayout outer = new FrameLayout(this);
         LinearLayout column = SyntaxUi.page(this, outer);
-        SyntaxUi.header(this, column, getString(R.string.syntax_name), getString(R.string.syntax_intro));
+        themeKey = themeKey();
+        String sub = getString(R.string.syntax_home_sub, BuildConfig.VERSION_NAME,
+                DeviceConfig.TEST.equals(DeviceConfig.channel(this)) ? "test" : "produzione", DeviceConfig.name(this));
+        SyntaxUi.header(this, column, getString(R.string.syntax_home_title), sub);
 
-        LinearLayout row = new LinearLayout(this);
-        row.setOrientation(LinearLayout.HORIZONTAL);
-        row.setGravity(Gravity.CENTER);
-        row.setClipChildren(false);
-        row.setClipToPadding(false);
-        LinearLayout.LayoutParams rowLp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f);
-        column.addView(row, rowLp);
+        LinearLayout grid = new LinearLayout(this);
+        grid.setOrientation(LinearLayout.VERTICAL);
+        grid.setClipChildren(false);
+        grid.setClipToPadding(false);
+        grid.setPadding(0, SyntaxUi.dp(this, 26), 0, 0);
         column.setClipChildren(false);
-
-        summaries = new TextView[6];
-        wallpaperImage = new ImageView(this);
-        sceneImage = new ImageView(this);
-        View wallpaper = card(row, wallpaperImage, R.string.syntax_wallpaper, 0);
-        View screensaver = card(row, sceneImage, R.string.syntax_screensaver, 1);
-        // App (1.0.5): every app, hidden ones, uninstall, info and the catalogue; the figure is how many apps.
-        FrameLayout appsHolder = new FrameLayout(this);
-        appsHolder.setBackgroundColor(0xFF0B1018);
-        appsFigure = SyntaxUi.text(this, 26, R.string.font_medium, SyntaxUi.ACCENT);
-        appsFigure.setGravity(Gravity.CENTER);
-        appsHolder.addView(appsFigure, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT));
-        View apps = card(row, appsHolder, R.string.apps_title, 5);
-        apps.setOnClickListener(v -> startActivity(new Intent(this, SyntaxAppsActivity.class)));
-        FrameLayout tickerHolder = new FrameLayout(this);
-        tickerHolder.setBackgroundColor(0xFF0B1018);
-        ticker = new NewsTickerView(this, NewsTicker.label(this, SyntaxPrefs.get(this).sections()), 45, 0.06f);
-        FrameLayout.LayoutParams tlp = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                SyntaxUi.dp(this, 26), Gravity.CENTER);
-        tickerHolder.addView(ticker, tlp);
-        View news = card(row, tickerHolder, R.string.syntax_news, 2);
-        ImageView xmasImage = new ImageView(this);
-        xmasImage.setImageResource(R.drawable.preview_xmas);
-        View xmas = card(row, xmasImage, R.string.xmas_title, 3);
-        // A festive card: deep red glass with a warm gold edge when focused.
-        android.graphics.drawable.StateListDrawable red = new android.graphics.drawable.StateListDrawable();
-        red.addState(new int[]{android.R.attr.state_focused}, SyntaxUi.rounded(this, 22, 0xFF3A0E16, 3, 0xFFFFD27A));
-        red.addState(new int[0], SyntaxUi.rounded(this, 22, 0xFF2A0B12, 1, 0x55FFD27A));
-        xmas.setBackground(red);
-        xmas.setOnClickListener(v -> startActivity(new Intent(this, SyntaxChristmasActivity.class)));
-        // Sistema: the free space as a big figure on a dark card; the line under it says the free RAM.
-        FrameLayout systemHolder = new FrameLayout(this);
-        systemHolder.setBackgroundColor(0xFF0B1018);
-        systemFigure = SyntaxUi.text(this, 26, R.string.font_medium, SyntaxUi.ACCENT);
-        systemFigure.setGravity(Gravity.CENTER);
-        systemHolder.addView(systemFigure, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT));
-        View system = card(row, systemHolder, R.string.syntax_system, 4);
-        system.setOnClickListener(v -> startActivity(new Intent(this, SyntaxSystemActivity.class)));
-
-        wallpaper.setOnClickListener(v -> startActivity(new Intent(this, SyntaxWallpaperActivity.class)));
-        screensaver.setOnClickListener(v -> startActivity(new Intent(this, SyntaxScreensaverActivity.class)));
-        news.setOnClickListener(v -> startActivity(new Intent(this, SyntaxNewsActivity.class)));
-        // TV Liberata 1.0: no news ticker and no Christmas mode (Features): their cards are not shown.
-        if (!Features.NEWS_TICKER) news.setVisibility(View.GONE);
-        if (!Features.CHRISTMAS) xmas.setVisibility(View.GONE);
+        column.addView(grid);
+        List<int[]> sections = new ArrayList<>();   // {icon kind, title}
+        sections.add(new int[]{SectionIcon.WALLPAPER, R.string.syntax_wallpaper});
+        sections.add(new int[]{SectionIcon.SCREENSAVER, R.string.syntax_screensaver});
+        sections.add(new int[]{SectionIcon.APPS, R.string.apps_title});
+        if (Features.NEWS_TICKER) sections.add(new int[]{SectionIcon.NEWS, R.string.syntax_news});
+        if (Features.CHRISTMAS) sections.add(new int[]{SectionIcon.CHRISTMAS, R.string.xmas_title});
+        sections.add(new int[]{SectionIcon.THEMES, R.string.theme_title});
+        sections.add(new int[]{SectionIcon.SYSTEM, R.string.syntax_system});
+        int room = getResources().getDisplayMetrics().widthPixels
+                - 2 * (SyntaxUi.dp(this, 64) + ScreenMargin.x(this, ScreenMargin.percent(this)));
+        int tileGap = SyntaxUi.dp(this, 22);
+        // Room around the grid for the focused tile's 5% zoom, so its edges are never cut.
+        int zoomRoom = SyntaxUi.dp(this, 14);
+        grid.setPadding(zoomRoom, grid.getPaddingTop(), zoomRoom, zoomRoom);
+        room -= 2 * zoomRoom;
+        int w = (room - 2 * tileGap) / 3, h = Math.round(w * 150f / 330f);
+        List<View> tiles = new ArrayList<>();
+        LinearLayout row = null;
+        View first = null;
+        for (int i = 0; i < sections.size(); i++) {
+            if (i % 3 == 0) {
+                row = new LinearLayout(this);
+                row.setOrientation(LinearLayout.HORIZONTAL);
+                row.setClipChildren(false);
+                row.setClipToPadding(false);
+                LinearLayout.LayoutParams rl = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
+                        LinearLayout.LayoutParams.WRAP_CONTENT);
+                if (i > 0) rl.topMargin = tileGap;
+                grid.addView(row, rl);
+            }
+            int kind = sections.get(i)[0];
+            View tile = tile(kind, sections.get(i)[1]);
+            // 330x150 on a 1280x720 screen, from the real room on any other (see fitTiles).
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(w, h);
+            if (i % 3 != 0) lp.setMarginStart(tileGap);
+            row.addView(tile, lp);
+            sizeTile(tile, w, h);
+            tiles.add(tile);
+            tile.setOnClickListener(v -> open(kind));
+            if (first == null) first = tile;
+        }
 
         // The room this TV is in, under the cards: one chip per profile, the current one selected.
         TextView profileLabel = SyntaxUi.label(this, getString(R.string.syntax_profile));
@@ -185,69 +182,169 @@ public final class SyntaxActivity extends Activity {
         }
         column.addView(kitchenRow);
 
+
         setContentView(outer);
-        wallpaper.requestFocus();
+        int rows = (sections.size() + 2) / 3, rowGap = tileGap, tileW = w;
+        grid.post(() -> fitTiles(outer, grid, tiles, rows, tileW, rowGap));
+        first.requestFocus();
+        outer.getViewTreeObserver().addOnPreDrawListener(new android.view.ViewTreeObserver.OnPreDrawListener() {
+            @Override
+            public boolean onPreDraw() {
+                outer.getViewTreeObserver().removeOnPreDrawListener(this);
+                android.util.Log.i("TvHome.Settings", "settings page ready in "
+                        + (android.os.SystemClock.uptimeMillis() - started) + " ms");
+                return true;
+            }
+        });
     }
 
-    /** A Netflix-style card: a 16:9 picture, a title and one line on what is set now. */
-    private View card(LinearLayout row, View picture, int title, int index) {
-        LinearLayout card = new LinearLayout(this);
-        card.setOrientation(LinearLayout.VERTICAL);
-        card.setBackground(SyntaxUi.cardBackground(this, 22, SyntaxUi.CARD));
-        int pad = SyntaxUi.dp(this, 12);
-        card.setPadding(pad, pad, pad, SyntaxUi.dp(this, 18));
-        SyntaxUi.focusable(card, 1.06f);
+    /**
+     * Makes the tiles shorter when the rows do not fit the screen under the header (a TV with less room in dp, or
+     * screen margins), so the whole grid is always visible.
+     */
+    private void fitTiles(View outer, LinearLayout grid, List<View> tiles, int rows, int w, int gap) {
+        if (tiles.isEmpty() || outer.getHeight() == 0) return;
+        int[] o = new int[2], g = new int[2];
+        outer.getLocationInWindow(o);
+        grid.getLocationInWindow(g);
+        int bottom = SyntaxUi.dp(this, 24) + ScreenMargin.y(this, ScreenMargin.percent(this));
+        int avail = outer.getHeight() - (g[1] - o[1]) - grid.getPaddingTop() - grid.getPaddingBottom() - bottom;
+        int h = tiles.get(0).getLayoutParams().height;
+        int fit = tileHeight(avail, rows, gap, h);
+        if (fit == h) return;
+        for (View t : tiles) {
+            t.getLayoutParams().height = fit;
+            sizeTile(t, w, fit);
+        }
+        grid.requestLayout();
+    }
 
-        FrameLayout frame = new FrameLayout(this);
-        frame.setClipToOutline(true);
-        frame.setBackground(SyntaxUi.rounded(this, 14, 0xFF0B1018, 0, 0));
-        if (picture instanceof ImageView) ((ImageView) picture).setScaleType(ImageView.ScaleType.CENTER_CROP);
-        frame.addView(picture, new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT,
-                FrameLayout.LayoutParams.MATCH_PARENT));
-        // Five cards, their zoom and margins fit 960 dp; narrower inside a screen margin.
-        int room = getResources().getDisplayMetrics().widthPixels
-                - 2 * (SyntaxUi.dp(this, 64) + ScreenMargin.x(this, ScreenMargin.percent(this)));
-        int w = Math.max(SyntaxUi.dp(this, 84), Math.min(SyntaxUi.dp(this, 120), room / 5 - SyntaxUi.dp(this, 24 + 20 + 2)));
-        // Narrower cards, smaller type, so "Screensaver" still fits on its line.
-        float type = Math.min(1f, w / (float) SyntaxUi.dp(this, 120));
-        card.addView(frame, new LinearLayout.LayoutParams(w, w * 9 / 16));
+    /** The tile height: the wanted one, or less when that many rows (with their gaps) would not fit. Tested. */
+    static int tileHeight(int avail, int rows, int gap, int wanted) {
+        if (rows <= 0 || avail <= 0) return wanted;
+        int most = (avail - (rows - 1) * gap) / rows;
+        return Math.max(1, Math.min(wanted, most));
+    }
 
-        TextView name = SyntaxUi.text(this, 19 * type, R.string.font_medium, SyntaxUi.TEXT);
-        name.setSingleLine(true);
+    /**
+     * Sizes a tile's icon and texts from the tile's own height (in pixels, not fixed dp), so the name and the status
+     * line always fit inside it: the icon shrinks first, then the texts.
+     */
+    private void sizeTile(View tile, int w, int h) {
+        LinearLayout t = (LinearLayout) tile;
+        View icon = t.getChildAt(0);
+        TextView name = (TextView) t.getChildAt(1), status = (TextView) t.getChildAt(2);
+        float[] m = tileMetrics(w, h, getResources().getDisplayMetrics().density);
+        int padV = Math.round(m[0]), padH = Math.round(m[1]);
+        t.setPadding(padH, padV, padH, padV);
+        int box = Math.round(m[2]);
+        icon.getLayoutParams().width = box;
+        icon.getLayoutParams().height = box;
+        icon.setForeground(new android.graphics.drawable.InsetDrawable(new SectionIcon(kinds.get(statuses.indexOf(status)),
+                0xFFFFFFFF), Math.round(box * 0.2f)));
+        name.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, m[3]);
+        name.setPadding(0, Math.round(m[5]), 0, 0);
+        status.setTextSize(android.util.TypedValue.COMPLEX_UNIT_PX, m[4]);
+        status.setPadding(0, Math.round(m[6]), 0, 0);
+        t.requestLayout();
+    }
+
+    /**
+     * {vertical padding, horizontal padding, icon box, name size, status size, gap above the name, gap above the
+     * status}, all in pixels, for a w x h tile. The parts add up to at most h (line height about 1.35 x text size).
+     * Plain Java, tested.
+     */
+    static float[] tileMetrics(int w, int h, float density) {
+        float padV = h * 0.10f, padH = Math.min(w * 0.055f, 18 * density);
+        float icon = Math.min(h * 0.26f, 40 * density), name = Math.min(h * 0.14f, 22 * density);
+        float status = Math.min(h * 0.09f, 14 * density), gap1 = h * 0.05f, gap2 = h * 0.015f;
+        float need = 2 * padV + icon + gap1 + name * 1.35f + gap2 + status * 1.35f;
+        if (need > h) {
+            // The icon gives way first (down to 60%), then everything shrinks together.
+            float spare = Math.min(need - h, icon * 0.4f);
+            icon -= spare;
+            need -= spare;
+            if (need > h) {
+                float k = h / need;
+                padV *= k; icon *= k; name *= k; status *= k; gap1 *= k; gap2 *= k;
+            }
+        }
+        return new float[]{padV, padH, icon, name, status, gap1, gap2};
+    }
+
+    /** A section's tile: the icon in a small square, the name, and a line on what is set now. */
+    private View tile(int kind, int title) {
+        LinearLayout t = new LinearLayout(this);
+        t.setOrientation(LinearLayout.VERTICAL);
+        int pad = SyntaxUi.dp(this, 14);
+        t.setPadding(SyntaxUi.dp(this, 18), pad, SyntaxUi.dp(this, 18), pad);
+        t.setGravity(android.view.Gravity.BOTTOM);
+        StateListDrawable bg = new StateListDrawable();
+        bg.addState(new int[]{android.R.attr.state_focused}, SyntaxUi.accentFill(this, 20));
+        bg.addState(new int[0], SyntaxUi.rounded(this, 20, 0xB3101520, 1, SyntaxUi.CARD_EDGE));
+        t.setBackground(bg);
+        t.setFocusable(true);
+        t.setClickable(true);
+        t.setOnFocusChangeListener((v, has) -> {
+            v.animate().scaleX(has ? 1.05f : 1f).scaleY(has ? 1.05f : 1f).setDuration(150).start();
+            v.setElevation(has ? SyntaxUi.dp(this, 14) : 0);
+        });
+        View icon = new View(this);
+        icon.setBackground(SyntaxUi.rounded(this, 12, 0x40000000, 0, 0));
+        int box = SyntaxUi.dp(this, 36);
+        int iconPad = SyntaxUi.dp(this, 7);
+        icon.setForeground(new android.graphics.drawable.InsetDrawable(new SectionIcon(kind, 0xFFFFFFFF), iconPad));
+        t.addView(icon, new LinearLayout.LayoutParams(box, box));
+        int on = Theme.onColor(SyntaxUi.ACCENT);
+        TextView name = SyntaxUi.text(this, 20, R.string.font_medium, SyntaxUi.TEXT);
         name.setText(title);
-        name.setPadding(SyntaxUi.dp(this, 6), SyntaxUi.dp(this, 16), 0, 0);
-        card.addView(name);
-        TextView summary = SyntaxUi.text(this, 14 * type, R.string.font_light, SyntaxUi.MUTED);
-        summary.setPadding(SyntaxUi.dp(this, 6), SyntaxUi.dp(this, 8), SyntaxUi.dp(this, 6), 0);
-        summary.setMaxLines(2);
-        summary.setMaxWidth(w);
-        card.addView(summary);
-        summaries[index] = summary;
+        name.setTextColor(new ColorStateList(new int[][]{{android.R.attr.state_focused}, {}}, new int[]{on, SyntaxUi.TEXT}));
+        name.setDuplicateParentStateEnabled(true);
+        name.setPadding(0, SyntaxUi.dp(this, 8), 0, 0);
+        name.setSingleLine(true);
+        t.addView(name);
+        TextView status = SyntaxUi.text(this, 13, R.string.font_light, SyntaxUi.MUTED);
+        status.setTextColor(new ColorStateList(new int[][]{{android.R.attr.state_focused}, {}},
+                new int[]{Theme.withAlpha(on, 0xD9), SyntaxUi.MUTED}));
+        status.setDuplicateParentStateEnabled(true);
+        status.setPadding(0, SyntaxUi.dp(this, 4), 0, 0);
+        status.setSingleLine(true);
+        status.setEllipsize(android.text.TextUtils.TruncateAt.END);
+        t.addView(status);
+        statuses.add(status);
+        kinds.add(kind);
+        return t;
+    }
 
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-        lp.setMargins(SyntaxUi.dp(this, 10), 0, SyntaxUi.dp(this, 10), 0);
-        row.addView(card, lp);
-        return card;
+    private void open(int kind) {
+        Class<?> page;
+        switch (kind) {
+            case SectionIcon.WALLPAPER: page = SyntaxWallpaperActivity.class; break;
+            case SectionIcon.SCREENSAVER: page = SyntaxScreensaverActivity.class; break;
+            case SectionIcon.APPS: page = SyntaxAppsActivity.class; break;
+            case SectionIcon.NEWS: page = SyntaxNewsActivity.class; break;
+            case SectionIcon.CHRISTMAS: page = SyntaxChristmasActivity.class; break;
+            case SectionIcon.THEMES: page = SyntaxThemeActivity.class; break;
+            default: page = SyntaxSystemActivity.class;
+        }
+        startActivity(new Intent(this, page));
+    }
+
+    /** Changes when the theme does: the page is built again (its tiles carry the colour). */
+    private int themeKey() {
+        return (Theme.savedStyle(this) * 31 + Theme.color(this)) * 31 + Theme.backdrop(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        // A new screen margin (Sistema) moves this page's edges and card sizes: build it again.
-        if (margin >= 0 && margin != ScreenMargin.percent(this)) {
+        // A new screen margin (Sistema) or a new theme (Temi) changes this page: build it again.
+        if ((margin >= 0 && margin != ScreenMargin.percent(this)) || themeKey != themeKey()) {
             recreate();
             return;
         }
         margin = ScreenMargin.percent(this);
         refresh();
-        ticker.startScrolling();
-    }
-
-    @Override
-    protected void onPause() {
-        ticker.stopScrolling();
-        super.onPause();
     }
 
     @Override
@@ -279,13 +376,13 @@ public final class SyntaxActivity extends Activity {
         return String.format(java.util.Locale.ROOT, "%02d:%02d", minutes / 60, minutes % 60);
     }
 
-    /** A toggle chip: a tick in front and selected while on, as the other Syntax TV switches. */
+    /** A toggle chip: a tick in front and selected while on, as the other switches. */
     private void mark(TextView chip, int label, boolean on) {
         chip.setText(on ? "✓ " + getString(label) : getString(label));
         chip.setSelected(on);
     }
 
-    /** The cards' lines and pictures, from the settings as they are now. */
+    /** The tiles' lines, from the settings as they are now (counts and sizes off the main thread). */
     private void refresh() {
         SyntaxSettings s = SyntaxPrefs.get(this);
         refreshProfile();
@@ -294,41 +391,41 @@ public final class SyntaxActivity extends Activity {
                 : ScreensaverMode.isAmazon(this) ? getString(R.string.ss_amazon_photos)
                 : scenes.size() == 1 ? sceneName(scenes.get(0))
                 : getString(R.string.syntax_scenes_count, scenes.size());
-        summaries[1].setText(mode);
-        int appCount = SyntaxAppsActivity.launchable(this).size();
-        appsFigure.setText(String.valueOf(appCount));
-        summaries[5].setText(getString(R.string.apps_summary, appCount));
-        sceneImage.setImageResource(scenePreview(scenes.get(0)));
-        summaries[3].setText(s.christmas() ? R.string.xmas_on_summary : R.string.xmas_off_summary);
-        summaries[2].setText(s.ticker() ? getString(R.string.syntax_news_on, sectionNames(s.sections()))
-                : getString(R.string.syntax_news_off));
-        List<String[]> items = NewsTicker.items(this, NewsTicker.cached(this, s.sections()), s.sections());
-        if (!items.isEmpty()) ticker.setHeadlines(items);
+        String screensaver = getString(R.string.tile_screensaver_status, mode, ScreensaverMode.minutes(this));
+        String news = !s.ticker() && !s.homeTicker() ? getString(R.string.tile_news_off)
+                : s.ticker() && s.homeTicker() ? getString(R.string.tile_news_both)
+                : s.homeTicker() ? getString(R.string.tile_news_home) : getString(R.string.tile_news_dream);
+        String[] styleNames = getResources().getStringArray(R.array.theme_styles);
+        String theme = styleNames[Theme.savedStyle(this)] + " · " + SyntaxThemeActivity.colorName(this, Theme.color(this));
+        String xmas = getString(s.christmas() ? R.string.xmas_on_summary : R.string.xmas_off_summary);
+        String system = getString(FilterSettings.on(this) ? R.string.tile_filter_on : R.string.tile_filter_off) + " · "
+                + getString(Updater.newerKnown(this) ? R.string.tile_update_available : R.string.tile_up_to_date);
         int minutes = s.wallpaperMinutes();
+        for (int i = 0; i < kinds.size(); i++) {
+            switch (kinds.get(i)) {
+                case SectionIcon.SCREENSAVER: statuses.get(i).setText(screensaver); break;
+                case SectionIcon.NEWS: statuses.get(i).setText(news); break;
+                case SectionIcon.THEMES: statuses.get(i).setText(theme); break;
+                case SectionIcon.CHRISTMAS: statuses.get(i).setText(xmas); break;
+                case SectionIcon.SYSTEM: statuses.get(i).setText(system); break;
+                default: break;   // below, off the main thread
+            }
+        }
         loader.execute(() -> {
             WallpaperLibrary.Counts counts = WallpaperLibrary.counts(this);
-            Bitmap picture = latestPhoto();
-            long[] disk = SystemProbe.disk(), ram = SystemProbe.ram(this);
+            int apps = SyntaxAppsActivity.launchable(this).size();
             handler.post(() -> {
                 if (isFinishing()) return;
-                int free = SystemStats.percent(disk[1], disk[0]);
-                systemFigure.setText(free < 0 ? "–" : free + "%");
-                summaries[4].setText(getString(R.string.syntax_system_summary, free < 0 ? "–" : free + "%",
-                        SystemStats.bytes(ram[1])));
-                summaries[0].setText(counts.total == 0 ? getString(R.string.syntax_wallpaper_none)
-                        : getString(R.string.syntax_wallpaper_summary, counts.active, counts.total, interval(minutes)));
-                if (picture != null) wallpaperImage.setImageBitmap(picture);
+                for (int i = 0; i < kinds.size(); i++) {
+                    if (kinds.get(i) == SectionIcon.WALLPAPER) {
+                        statuses.get(i).setText(counts.total == 0 ? getString(R.string.syntax_wallpaper_none)
+                                : getString(R.string.tile_wallpaper_status, counts.total, interval(minutes)));
+                    } else if (kinds.get(i) == SectionIcon.APPS) {
+                        statuses.get(i).setText(getString(R.string.tile_apps_status, apps));
+                    }
+                }
             });
         });
-    }
-
-    /** The newest archived Bing photo at card size, or null. */
-    private Bitmap latestPhoto() {
-        File[] photos = WallpaperLibrary.photos(this);
-        if (photos.length == 0) return null;
-        File newest = photos[0];
-        for (File f : photos) if (f.lastModified() > newest.lastModified()) newest = f;
-        return WallpaperLibrary.thumbnail(this, newest);
     }
 
     String interval(int minutes) {
@@ -352,17 +449,7 @@ public final class SyntaxActivity extends Activity {
             case Config.SCENE_MOON: return R.drawable.preview_moon;
             case Config.SCENE_SPACE: return R.drawable.preview_space;
             case Config.SCENE_LIVE: return R.drawable.preview_live;
-            case Config.SCENE_FAVORITES: return R.drawable.preview_clock;   // the screensaver page shows a favourite photo
             default: return R.drawable.preview_clock;
         }
-    }
-
-    private String sectionNames(List<String> keys) {
-        List<String> names = new ArrayList<>();
-        for (String k : keys) {
-            NewsData.Section s = NewsData.section(k);
-            if (s != null) names.add(s.label);
-        }
-        return android.text.TextUtils.join(", ", names);
     }
 }

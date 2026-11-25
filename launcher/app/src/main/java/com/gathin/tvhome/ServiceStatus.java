@@ -62,6 +62,7 @@ final class ServiceStatus {
         for (Source s : all) {
             if (UNSPLASH.equals(s.id) && !Features.UNSPLASH) continue;
             if ((ANSA.equals(s.id) || ILPOST.equals(s.id)) && !Features.NEWS_TICKER) continue;
+            if (ILPOST.equals(s.id) && !Edition.ilPost()) continue;   // ANSA only
             boolean scene = EUMETSAT.equals(s.id) || SDO.equals(s.id) || EPIC.equals(s.id) || MOON.equals(s.id)
                     || ISS.equals(s.id) || ESA.equals(s.id);
             if (scene && !Features.SPACE_SCENES) continue;

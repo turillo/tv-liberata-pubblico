@@ -885,7 +885,11 @@ public class MainActivity extends Activity implements AppAdapter.TileListener {
     protected void onResume() {
         super.onResume();
         FireHomeGuard.arrived(this);   // Fire OS: a queued takeover must not fire once Home is here
+        boolean news = Updater.announcePending(this);   // the news first; the cartolina's question after its OK
         Updater.maybeOffer(this);   // TV Liberata: a new release, at most one check a day
+        if (!news) Cartolina.askOnce(this);   // 1.1.0: once, for a TV that had TV Liberata already
+        Cartolina.tick(this);   // a message waiting (after an update, or no network last time)
+        MenuBackdrop.prepareAsync(this);   // the settings' photo background, made now so a menu never waits for it
         SyntaxSettings syntax = SyntaxPrefs.get(this);
         kitchen = Edition.profiles() && syntax.kitchen();
         ArchiveShare.apply(this);   // wallpapers shared with the other TVs, if Syntax TV says so

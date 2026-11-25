@@ -48,10 +48,10 @@ final class NewsData {
             new Section("cultura", "Cultura", "https://www.ansa.it/sito/notizie/cultura/cultura_rss.xml"),
             new Section("tecnologia", "Tecnologia", "https://www.ansa.it/canale_tecnologia/notizie/tecnologia_rss.xml"),
             new Section("scienza", "Scienza", "https://www.ansa.it/canale_scienza_tecnica/notizie/scienzaetecnica_rss.xml"),
-            new Section("lazio", "Lazio", "https://www.ansa.it/lazio/notizie/lazio_rss.xml"),
+            // 1.1.0: no "Lazio" any more (SyntaxSettings.sections drops it from the saved choice).
             // Il Post's main feed (RSS 2.0, checked with curl on 2026-11-11; the form with a final "/" gives 403).
             // Not in TV Liberata, which has ANSA only.
-            new Section(NewsData.ILPOST, "Il Post", "https://www.ilpost.it/feed")).subList(0, Edition.ilPost() ? 12 : 11));
+            new Section(NewsData.ILPOST, "Il Post", "https://www.ilpost.it/feed")).subList(0, Edition.ilPost() ? 11 : 10));
 
     /** Il Post: a source of its own, not an ANSA section; off until ticked. */
     static final String ILPOST = "ilpost";

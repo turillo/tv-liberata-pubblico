@@ -707,19 +707,10 @@
     <string name="margin_value">%d%%</string>
     <string name="margin_help">Left and right change the margin until the whole frame shows on this TV. OK saves, Back leaves it as it was.</string>
     <string name="apps_title">Apps</string>
-    <string name="apps_intro">Every app on this TV: open, uninstall, info and the catalogue.</string>
-    <string name="apps_all">All apps</string>
-    <string name="apps_info">App info</string>
-    <string name="apps_all_hint">OK opens the app.</string>
+    <string name="apps_intro">Catalogue, hidden apps and uninstall.</string>
     <string name="apps_uninstall_hint">OK uninstalls the app, after the TV asks. System apps are not listed.</string>
-    <string name="apps_info_hint">OK shows version and space, and leads to Clear cache.</string>
     <string name="apps_none">No apps</string>
     <string name="apps_uninstall_question">Uninstall %1$s?</string>
-    <string name="apps_info_text">%1$s\nVersion %2$s\n%3$s</string>
-    <string name="apps_info_space">App %1$s, data %2$s, cache %3$s</string>
-    <string name="apps_info_no_space">Space: not available (the PC program grants the permission)</string>
-    <string name="apps_clear_cache">Clear cache</string>
-    <string name="apps_close">Close</string>
     <string name="apps_summary">%1$d apps · catalogue</string>
     <string name="hidden_title">Hidden apps</string>
     <string name="hidden_intro">Hidden apps stay installed but are not in Home\'s app row. OK hides or shows one.</string>
@@ -741,4 +732,53 @@
     <string name="share_pick_note">This TV then downloads nothing itself: it copies that TV\'s photos, the ones on, the favourites and the deleted ones, Christmas included.</string>
     <string name="share_copied">Copied from %1$s: %2$d new photos</string>
     <string name="share_failed">%1$s not reachable now (off or in standby?): tried again later</string>
+    <string name="syntax_home_title">TV Liberata settings</string>
+    <string name="syntax_home_sub">Version %1$s · channel %2$s · %3$s</string>
+    <string name="theme_title">Themes</string>
+    <string name="theme_intro">The style and colour of these pages, and their background.</string>
+    <string name="theme_style">Style</string>
+    <string name="theme_style_hint">Move over a style to see it at once; OK keeps it.</string>
+    <string name="theme_preview_hint">Preview: OK keeps this style, Back leaves the one before.</string>
+    <string name="theme_color">Main colour</string>
+    <string name="theme_custom">Custom</string>
+    <string name="theme_custom_hint">Left and right: the colour. Up and down: the brightness. OK keeps it, Back leaves it.</string>
+    <string name="theme_backdrop">Menus background</string>
+    <string name="theme_reset">Restore the default theme</string>
+    <string name="theme_reset_question">Balloons, orange and blurred photo again?</string>
+    <string name="tile_wallpaper_status">%1$d photos · changes %2$s</string>
+    <string name="tile_screensaver_status">%1$s · after %2$d min</string>
+    <string name="tile_apps_status">%1$d installed</string>
+    <string name="tile_news_off">off</string>
+    <string name="tile_news_home">ANSA · on Home</string>
+    <string name="tile_news_dream">ANSA · on the screensaver</string>
+    <string name="tile_news_both">ANSA · Home and screensaver</string>
+    <string name="tile_filter_on">filter on</string>
+    <string name="tile_filter_off">filter off</string>
+    <string name="tile_up_to_date">up to date</string>
+    <string name="tile_update_available">update available</string>
+    <string-array name="theme_styles">
+        <item>Balloons</item>
+        <item>Segmented</item>
+        <item>List</item>
+        <item>Text only</item>
+    </string-array>
+    <string-array name="theme_colors">
+        <item>Orange</item>
+        <item>Red</item>
+        <item>Cyan</item>
+        <item>Green</item>
+        <item>Purple</item>
+        <item>Yellow</item>
+        <item>White</item>
+    </string-array>
+    <string-array name="theme_backdrops">
+        <item>Blurred photo</item>
+        <item>Dark with glow</item>
+        <item>Photo, dark on the left</item>
+        <item>Logo watermark</item>
+    </string-array>
+    <!-- 1.1.0: the cartolina (Cartolina.java) -->
+    <string name="cartolina_question">Let Syntax know you use TV Liberata?</string>
+    <string name="cartolina_text">At each update only this TV\u2019s name, the version and the model are sent.\nYou can change your mind in System.</string>
+    <string name="cartolina_switch">Tell Syntax my version</string>
 </resources>

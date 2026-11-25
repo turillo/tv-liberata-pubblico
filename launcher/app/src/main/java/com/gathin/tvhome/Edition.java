@@ -37,8 +37,9 @@ final class Edition {
     }
 
     /** Il Post in the news ticker. */
+    /** Il Post in the news sections: no (1.0.6 has ANSA only). */
     static boolean ilPost() {
-        return Features.NEWS_TICKER;
+        return false;
     }
 
     /** Unsplash among the wallpaper sources. */
